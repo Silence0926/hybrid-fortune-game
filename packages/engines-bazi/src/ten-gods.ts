@@ -1,4 +1,4 @@
-import { HEAVENLY_STEMS } from "./core.js";
+import { getHeavenlyStem } from "./core.js";
 
 export type FiveElement = "wood" | "fire" | "earth" | "metal" | "water";
 export type TenGod =
@@ -37,14 +37,15 @@ export function deriveTenGod(dayMasterStemIndex: number, targetStemIndex: number
 export function deriveTenGodByStem(
   dayMasterStemIndex: number,
   targetStemIndex: number
-): { dayMaster: typeof HEAVENLY_STEMS[number]; target: typeof HEAVENLY_STEMS[number]; tenGod: TenGod } | null {
+): { dayMaster: NonNullable<ReturnType<typeof getHeavenlyStem>>; target: NonNullable<ReturnType<typeof getHeavenlyStem>>; tenGod: TenGod } | null {
   const tenGod = deriveTenGod(dayMasterStemIndex, targetStemIndex);
   if (tenGod === null) return null;
-  return {
-    dayMaster: HEAVENLY_STEMS[dayMasterStemIndex as keyof typeof HEAVENLY_STEMS]!,
-    target: HEAVENLY_STEMS[targetStemIndex as keyof typeof HEAVENLY_STEMS]!,
-    tenGod
-  };
+
+  const dayMaster = getHeavenlyStem(dayMasterStemIndex);
+  const target = getHeavenlyStem(targetStemIndex);
+  if (dayMaster === null || target === null) return null;
+
+  return { dayMaster, target, tenGod };
 }
 
 function generates(element: FiveElement): FiveElement {
