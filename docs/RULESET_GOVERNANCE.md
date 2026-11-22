@@ -106,3 +106,22 @@ The calendar package now exposes `SOLAR_TERMS_24`, `getSolarTermByLongitude`, an
 - The HKO 2026 fixture set contains Zhongqi only and therefore must not be used as a direct test of month-boundary instants.
 
 The longitude taxonomy is based on HKO's explanation that the 24 terms divide the ecliptic into 24 equal 15-degree segments. The exact tradition-specific month-boundary rule remains governed by the user's approved BaZi V1.0 policy and its 12-Jie convention.
+
+## Jie crossing fixture evidence gate
+
+The calendar package now exposes `validateJieTermReferenceFixtures` and the `JieTermReferenceFixture` contract.
+
+- Every candidate year must contain all twelve Jie terms defined by the project's 24-term taxonomy.
+- Each Jie must have at least two separately identified reference sources.
+- Each record preserves the published local timestamp, its explicit UTC offset, normalized UTC instant, IANA time-zone label, and source precision (minute or second).
+- The validator checks term-to-longitude mapping, local-to-UTC consistency, precision preservation, source metadata, and per-term source multiplicity.
+- A `candidate_supported` result is not proof of independent astronomical derivation or domain approval. Reviewers must verify source ownership, ephemeris/time-scale conventions, and whether the sources derive independently.
+- Synthetic fixtures in the unit tests validate only the gate logic. No 2026 Jie crossing instant is approved or added as a production comparison fixture yet.
+
+The HKO 2026 almanac PDF calendar pages identify the civil dates on which Jie terms occur, but the 2026 24 Solar Terms table publishes the 12 major terms (中氣) only. Date-only calendar cells must not be upgraded into exact crossing instants. HKO's general astronomy page explains that its 24-term astronomical information is based on HM Nautical Almanac Office (UK) and US Naval Observatory data and that published times are Hong Kong Time (UTC+8). A separately retrieved all-24-term table is useful as a secondary cross-check, but its values require direct source verification before they become approved fixtures.
+
+References:
+- HKO 2026 almanac: https://www.hko.gov.hk/en/gts/astron2026/files/HKO_almanac_2026.pdf
+- HKO 2026 major solar terms: https://www.hko.gov.hk/en/gts/astron2026/files/2026SolarTerms24.pdf
+- HKO astronomical solar-term data and time zone: https://www.hko.gov.hk/en/gts/astronomy/Solar_Term.htm
+- HKO 24-term taxonomy and 15-degree longitude intervals: https://www.hko.gov.hk/en/gts/time/24solarterms.htm
