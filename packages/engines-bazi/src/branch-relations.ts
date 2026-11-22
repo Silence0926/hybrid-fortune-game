@@ -164,10 +164,9 @@ export function detectBranchRelations(branchIndices: readonly number[]): BranchR
       matches.push({
         kind: rule.kind,
         branchIndices: [...rule.branches],
-        positions
-          : positions
+        positions,
+        label: rule.label
       });
-      matches[matches.length - 1]!.label = rule.label;
     }
   }
 
