@@ -5,7 +5,6 @@ import {
   getMonthBranchIndex,
   getEarthlyBranch,
   getHeavenlyStem,
-  getMonthBranchIndex,
   isValidStemBranchPair
 } from "./core.js";
 
