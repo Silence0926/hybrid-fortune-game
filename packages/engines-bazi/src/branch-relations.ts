@@ -159,14 +159,26 @@ export function detectBranchRelations(branchIndices: readonly number[]): BranchR
   }
 
   for (const rule of GROUP_RULES) {
-    const positions = rule.branches.map(branch => branchIndices.indexOf(branch));
-    if (positions.every(position => position >= 0)) {
-      matches.push({
-        kind: rule.kind,
-        branchIndices: [...rule.branches],
-        positions,
-        label: rule.label
-      });
+    const positionGroups = rule.branches.map(branch =>
+      branchIndices.flatMap((value, position) => value === branch ? [position] : [])
+    );
+    if (positionGroups.every(group => group.length > 0)) {
+      for (const first of positionGroups[0]!) {
+        for (const second of positionGroups[1]!) {
+          for (const third of positionGroups[2]!) {
+            matches.push({
+              kind: rule.kind,
+              branchIndices: [
+                branchIndices[first] as EarthlyBranchIndex,
+                branchIndices[second] as EarthlyBranchIndex,
+                branchIndices[third] as EarthlyBranchIndex
+              ],
+              positions: [first, second, third],
+              label: rule.label
+            });
+          }
+        }
+      }
     }
   }
 
