@@ -6,9 +6,17 @@ const provenance = {
   providerVersion: "1.0.0",
   datasetId: "synthetic-test-only",
   datasetVersion: "1",
+  datasetChecksum: null,
   sourceCitation: "Synthetic deterministic fixture; not an astronomical source.",
+  license: "test-only",
   coordinateModel: "apparent_geocentric_ecliptic_of_date" as const,
-  timeScale: "TT" as const
+  inputInstantScale: "UTC" as const,
+  calculationTimeScale: "TT" as const,
+  timeConversionPolicy: "Synthetic test: input UTC passed through without physical time conversion.",
+  deltaTModel: "not_applicable_synthetic",
+  supportedFrom: "2025-01-01T00:00:00.000Z",
+  supportedThrough: "2026-01-01T00:00:00.000Z",
+  uncertaintySeconds: null
 };
 
 function linearProvider(startMs: number, startLongitude: number, degreesPerDay: number): EphemerisProvider {
