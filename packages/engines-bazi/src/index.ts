@@ -112,3 +112,12 @@ export { resolveSexagenaryDayFromJdn } from "./day-cycle.js";
 export type { SexagenaryCycleAnchor, SexagenaryDay } from "./day-cycle.js";
 export { deriveHiddenStemTenGods } from "./hidden-stem-ten-gods.js";
 export type { HiddenStemTenGodEntry } from "./hidden-stem-ten-gods.js";
+
+export { assessBranchTransformation } from "./transformation-assessment.js";
+export type {
+  TransformationEvidence,
+  TransformationEvidenceValue,
+  TransformationPolicy,
+  TransformationAssessment,
+  TransformationAssessmentStatus
+} from "./transformation-assessment.js";
