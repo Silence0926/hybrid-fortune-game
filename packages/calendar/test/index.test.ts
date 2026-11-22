@@ -82,3 +82,32 @@ describe("historical IANA local-time resolution", () => {
     }).status).toBe("unsupported_calendar");
   });
 });
+
+
+describe("apparent solar time pipeline", () => {
+  it("applies east-positive longitude and exposes both mean and apparent solar time", async () => {
+    const { calculateApparentSolarTime } = await import("../src/index.js");
+    const result = calculateApparentSolarTime("2024-03-20T04:00:00.000Z", 120);
+    expect(result.status).toBe("calculated_approximation");
+    if (result.status !== "calculated_approximation") return;
+    expect(result.longitudeCorrectionMinutes).toBe(480);
+    expect(result.localMeanSolarTime).toBe("2024-03-20T12:00:00");
+    expect(result.apparentSolarTime).not.toBe(result.localMeanSolarTime);
+    expect(result.model).toBe("noaa_fractional_year_approximation");
+  });
+
+  it("supports west longitude and date rollover", async () => {
+    const { calculateApparentSolarTime } = await import("../src/index.js");
+    const result = calculateApparentSolarTime("2024-01-01T02:00:00Z", -150);
+    expect(result.status).toBe("calculated_approximation");
+    if (result.status !== "calculated_approximation") return;
+    expect(result.longitudeCorrectionMinutes).toBe(-600);
+    expect(result.localMeanSolarTime.startsWith("2023-12-31T16:00:00")).toBe(true);
+  });
+
+  it("rejects timestamps without explicit offset and invalid longitude", async () => {
+    const { calculateApparentSolarTime } = await import("../src/index.js");
+    expect(calculateApparentSolarTime("2024-03-20T04:00:00", 120).status).toBe("invalid_input");
+    expect(calculateApparentSolarTime("2024-03-20T04:00:00Z", 181).status).toBe("invalid_input");
+  });
+});
