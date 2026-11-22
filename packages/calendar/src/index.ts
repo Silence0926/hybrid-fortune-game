@@ -290,13 +290,13 @@ export function calculateApparentSolarTime(
 }
 
 // Public calendar-core exports.
-export { gregorianToJdn } from "./julian-day";
-export type { GregorianDate, JdnResult } from "./julian-day";
-export { findSolarLongitudeCrossing, normalizeDegrees } from "./ephemeris";
+export { gregorianToJdn } from "./julian-day.js";
+export type { GregorianDate, JdnResult } from "./julian-day.js";
+export { findSolarLongitudeCrossing, normalizeDegrees } from "./ephemeris.js";
 export type {
   AstronomicalTimeScale,
   EphemerisProvenance,
   EphemerisProvider,
   SolarLongitudeSample,
   SolarLongitudeCrossingResult
-} from "./ephemeris";
+} from "./ephemeris.js";
