@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { gregorianToJdn } from "./julian-day";
+import { gregorianToJdn } from "./julian-day.js";
 
 describe("gregorianToJdn", () => {
   it("matches the JDN epoch reference date", () => {
