@@ -290,6 +290,8 @@ export function calculateApparentSolarTime(
 }
 
 // Public calendar-core exports.
+export { resolveDayPillarDate } from "./day-pillar-date.js";
+export type { DayPillarDateResult } from "./day-pillar-date.js";
 export { gregorianToJdn } from "./julian-day.js";
 export type { GregorianDate, JdnResult } from "./julian-day.js";
 export { findSolarLongitudeCrossing, normalizeDegrees } from "./ephemeris.js";
