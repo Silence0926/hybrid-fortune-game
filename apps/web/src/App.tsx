@@ -23,10 +23,10 @@ function loadSavedProfile(): BirthInput | null {
 }
 
 export default function App() {
-  const [calendar, setCalendar] = useState<"gregorian" | "chinese_lunisolar">("gregorian");
-  const [timePrecision, setTimePrecision] = useState<"minute" | "hour" | "date_only" | "unknown">("minute");
-  const [solarPolicy, setSolarPolicy] = useState<"disabled" | "optional" | "required">("disabled");
   const [savedProfile, setSavedProfile] = useState<BirthInput | null>(() => loadSavedProfile());
+  const [calendar, setCalendar] = useState<"gregorian" | "chinese_lunisolar">(() => savedProfile?.calendar ?? "gregorian");
+  const [timePrecision, setTimePrecision] = useState<"minute" | "hour" | "date_only" | "unknown">(() => savedProfile?.timePrecision ?? "minute");
+  const [solarPolicy, setSolarPolicy] = useState<"disabled" | "optional" | "required">(() => savedProfile?.trueSolarTimePolicy ?? "disabled");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -112,11 +112,11 @@ export default function App() {
               </select>
             </label>
             <label>Birth date
-              <input name="localDate" type="date" required />
+              <input name="localDate" type="date" defaultValue={savedProfile?.localDate ?? ""} required />
             </label>
             {calendar === "chinese_lunisolar" && (
               <label>Leap month
-                <select name="leapMonth" defaultValue="false">
+                <select name="leapMonth" defaultValue={String(savedProfile?.leapMonth ?? false)}>
                   <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
@@ -132,24 +132,24 @@ export default function App() {
             </label>
             {(timePrecision === "minute" || timePrecision === "hour") && (
               <label>Local birth time
-                <input name="localTime" type="time" step={timePrecision === "hour" ? 3600 : 60} required />
+                <input name="localTime" type="time" step={timePrecision === "hour" ? 3600 : 60} defaultValue={savedProfile?.localTime ?? ""} required />
               </label>
             )}
             <label>Birth time confidence
-              <select name="confidence" defaultValue="exact">
+              <select name="confidence" defaultValue={savedProfile?.confidence ?? "exact"}>
                 <option value="exact">Exact</option>
                 <option value="approximate">Approximate</option>
                 <option value="unknown">Unknown</option>
               </select>
             </label>
             <label>IANA time zone
-              <input name="timeZone" type="text" defaultValue="Asia/Kuala_Lumpur" placeholder="e.g. Asia/Kuala_Lumpur" required />
+              <input name="timeZone" type="text" defaultValue={savedProfile?.timeZone ?? "Asia/Kuala_Lumpur"} placeholder="e.g. Asia/Kuala_Lumpur" required />
             </label>
             <label>Latitude (optional)
-              <input name="latitude" type="number" min="-90" max="90" step="any" placeholder="e.g. 3.1390" required={solarPolicy === "required"} />
+              <input name="latitude" type="number" min="-90" max="90" step="any" defaultValue={savedProfile?.latitude ?? ""} placeholder="e.g. 3.1390" required={solarPolicy === "required"} />
             </label>
             <label>Longitude (optional)
-              <input name="longitude" type="number" min="-180" max="180" step="any" placeholder="e.g. 101.6869" required={solarPolicy === "required"} />
+              <input name="longitude" type="number" min="-180" max="180" step="any" defaultValue={savedProfile?.longitude ?? ""} placeholder="e.g. 101.6869" required={solarPolicy === "required"} />
             </label>
             <label className="wide-field">Apparent Solar Time policy
               <select value={solarPolicy} onChange={(event) => setSolarPolicy(event.target.value as typeof solarPolicy)}>
