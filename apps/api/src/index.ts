@@ -1,0 +1,37 @@
+import Fastify from "fastify";
+import { BirthInputSchema } from "@hybrid-fortune/domain";
+import { calculateBazi } from "@hybrid-fortune/engine-bazi";
+
+const app = Fastify({ logger: true });
+
+app.get("/health", async () => ({
+  status: "ok",
+  service: "hybrid-fortune-api",
+  version: "0.1.0"
+}));
+
+app.get("/v1/engines", async () => ({
+  engines: [
+    { id: "bazi", status: "not_implemented" },
+    { id: "ziwei", status: "not_implemented" },
+    { id: "iching", status: "separate_user_initiated_flow" },
+    { id: "almanac", status: "not_implemented" },
+    { id: "western-astrology", status: "not_implemented" }
+  ]
+}));
+
+app.post("/v1/calculations/bazi", async (request, reply) => {
+  const parsed = BirthInputSchema.safeParse(request.body);
+  if (!parsed.success) {
+    return reply.code(400).send({ error: "INVALID_BIRTH_INPUT", issues: parsed.error.issues });
+  }
+  const result = calculateBazi(parsed.data);
+  return reply.code(501).send(result);
+});
+
+const port = Number(process.env.PORT ?? 3000);
+const host = process.env.HOST ?? "0.0.0.0";
+app.listen({ port, host }).catch((error) => {
+  app.log.error(error);
+  process.exit(1);
+});
