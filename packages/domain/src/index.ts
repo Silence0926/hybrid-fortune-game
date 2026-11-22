@@ -45,6 +45,21 @@ export const BirthInputSchema = z.object({
   longitude: z.number().min(-180).max(180).optional(),
   trueSolarTimePolicy: z.enum(["disabled", "optional", "required"]).default("disabled")
 }).superRefine((value, ctx) => {
+  const parsedDate = new Date(`${value.localDate}T00:00:00.000Z`);
+  if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== value.localDate) {
+    ctx.addIssue({ code: "custom", path: ["localDate"], message: "localDate must be a real Gregorian calendar date" });
+  }
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: value.timeZone });
+  } catch {
+    ctx.addIssue({ code: "custom", path: ["timeZone"], message: "timeZone must be a valid IANA time-zone identifier" });
+  }
+  if (value.timePrecision === "hour" && value.localTime !== undefined && !value.localTime.endsWith(":00")) {
+    ctx.addIssue({ code: "custom", path: ["localTime"], message: "Hour precision requires minutes to be 00" });
+  }
+  if (value.trueSolarTimePolicy === "required" && (value.latitude === undefined || value.longitude === undefined)) {
+    ctx.addIssue({ code: "custom", path: ["latitude"], message: "Coordinates are required when true-solar-time policy is required" });
+  }
   if (value.calendar === "chinese_lunisolar" && value.leapMonth === undefined) {
     ctx.addIssue({ code: "custom", path: ["leapMonth"], message: "leapMonth must be explicit for Chinese lunisolar input" });
   }
