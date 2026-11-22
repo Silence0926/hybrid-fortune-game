@@ -1,6 +1,9 @@
 import Fastify from "fastify";
 import { BirthInputSchema } from "@hybrid-fortune/domain";
 import { calculateBazi } from "@hybrid-fortune/engine-bazi";
+import { IChingSessionRequestSchema } from "@hybrid-fortune/domain";
+import { createIChingSession } from "@hybrid-fortune/engine-iching";
+import { queryAlmanac } from "@hybrid-fortune/engine-almanac";
 
 const app = Fastify({ logger: true });
 
@@ -27,6 +30,24 @@ app.post("/v1/calculations/bazi", async (request, reply) => {
   }
   const result = calculateBazi(parsed.data);
   return reply.code(501).send(result);
+});
+
+app.post("/v1/divinations/iching", async (request, reply) => {
+  const parsed = IChingSessionRequestSchema.safeParse(request.body);
+  if (!parsed.success) {
+    return reply.code(400).send({ error: "INVALID_ICHING_REQUEST", issues: parsed.error.issues });
+  }
+  return reply.code(501).send(createIChingSession(parsed.data));
+});
+
+app.post("/v1/calculations/almanac", async (request, reply) => {
+  const body = request.body as { localDate?: unknown; region?: unknown; editionId?: unknown };
+  if (typeof body?.localDate !== "string" || typeof body?.region !== "string" || typeof body?.editionId !== "string") {
+    return reply.code(400).send({ error: "INVALID_ALMANAC_REQUEST" });
+  }
+  return reply.code(501).send(queryAlmanac({
+    localDate: body.localDate, region: body.region, editionId: body.editionId
+  }));
 });
 
 const port = Number(process.env.PORT ?? 3000);
