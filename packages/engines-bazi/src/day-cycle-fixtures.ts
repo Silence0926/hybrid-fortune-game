@@ -49,7 +49,7 @@ export function validateDayCycleReferenceFixtures(
   }
 
   const first = fixtures[0]!;
-  if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(first.civilDate) ||
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(first.civilDate) ||
       !Number.isSafeInteger(first.jdn) ||
       !Number.isInteger(first.cycleIndex) || first.cycleIndex < 0 || first.cycleIndex > 59) {
     return { status: "rejected", reasons: ["The first fixture has invalid date, JDN, or sexagenary index fields."] };
@@ -57,11 +57,11 @@ export function validateDayCycleReferenceFixtures(
 
   const sourceIds = new Set<string>();
   for (const fixture of fixtures) {
-    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(fixture.civilDate)) reasons.push("A fixture has an invalid ISO civil date.");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fixture.civilDate)) reasons.push("A fixture has an invalid ISO civil date.");
     if (!Number.isSafeInteger(fixture.jdn)) reasons.push("A fixture has an unsafe or non-integer JDN.");
     if (!Number.isInteger(fixture.cycleIndex) || fixture.cycleIndex < 0 || fixture.cycleIndex > 59) reasons.push("A fixture has an invalid sexagenary cycle index.");
     if (fixture.dateBasis !== "proleptic_gregorian_civil_date" || fixture.jdnConvention !== "integer_jdn_gregorian") reasons.push("A fixture uses an unsupported date or JDN convention.");
-    if (!fixture.sourceId.trim() || !fixture.sourceTitle.trim() || !/^https:\\/\\//.test(fixture.sourceUrl) || !/^\\d{4}-\\d{2}-\\d{2}$/.test(fixture.accessedOn)) reasons.push("A fixture is missing traceable source metadata.");
+    if (!fixture.sourceId.trim() || !fixture.sourceTitle.trim() || !/^https:\/\//.test(fixture.sourceUrl) || !/^\d{4}-\d{2}-\d{2}$/.test(fixture.accessedOn)) reasons.push("A fixture is missing traceable source metadata.");
     if (fixture.civilDate !== first.civilDate || fixture.jdn !== first.jdn || fixture.cycleIndex !== first.cycleIndex) reasons.push("Reference fixtures disagree on date, JDN, or sexagenary index.");
     sourceIds.add(fixture.sourceId.trim());
   }
