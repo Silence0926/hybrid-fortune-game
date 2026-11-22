@@ -18,7 +18,7 @@ describe("24 solar-term taxonomy", () => {
 
   it("normalizes wrapped longitudes and rejects non-finite input", () => {
     expect(getSolarTermByLongitude(675)?.nameZh).toBe("立春");
-    expect(getSolarTermByLongitude(-45)?.nameZh).toBe("驚蟄");
+    expect(getSolarTermByLongitude(-45)?.nameZh).toBe("立春");
     expect(getSolarTermByLongitude(Number.NaN)).toBeNull();
   });
 });
