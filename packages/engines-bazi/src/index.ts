@@ -110,6 +110,8 @@ export type { BranchRelationKind, BranchRelationMatch } from "./branch-relations
 
 export { resolveSexagenaryDayFromJdn } from "./day-cycle.js";
 export type { SexagenaryCycleAnchor, SexagenaryDay } from "./day-cycle.js";
+export { validateDayCycleReferenceFixtures } from "./day-cycle-fixtures.js";
+export type { DayCycleReferenceFixture, DayCycleFixtureValidation } from "./day-cycle-fixtures.js";
 export { deriveHiddenStemTenGods } from "./hidden-stem-ten-gods.js";
 export type { HiddenStemTenGodEntry } from "./hidden-stem-ten-gods.js";
 
