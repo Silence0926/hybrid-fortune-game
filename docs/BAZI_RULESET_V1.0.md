@@ -202,3 +202,19 @@ The BaZi package now exposes `detectBranchRelations(branchIndices)`. It detects:
 Every match records its relationship kind, matching branch indices, source positions, and a traditional label. Multiple relationships may be returned for the same pair because traditional relationship systems can overlap (for example, 寅亥六合 and 寅亥破). This is intentional: the detector reports structural matches without resolving priority or transformation.
 
 **Important boundary:** this module does not decide whether a combination transforms, whether transformation conditions are satisfied, or whether a relationship is favorable/unfavorable. Pairwise half-harmony classifications and overlapping punishment conventions must be governed by a selected reference school before production release. The chart calculation gate remains disabled.
+
+
+## Hidden-stem Ten-God integration
+
+The package now exposes `deriveHiddenStemTenGods(dayMasterStemIndex, branchIndex)`. It preserves each hidden stem's Main/Middle/Residual Qi role and order, then derives the Ten God from the Day Master's element relationship and Yin/Yang polarity. It does not infer the Day Master or decide the weight of each qi layer.
+
+## Configurable JDN-to-sexagenary-day resolver
+
+The package now exposes `resolveSexagenaryDayFromJdn(jdn, anchor)`. The caller must provide both:
+
+- `anchorJdn`: the integer JDN of a reference civil date.
+- `anchorCycleIndex`: the verified sexagenary index assigned to that date (0 = 甲子 through 59 = 癸亥).
+
+The resolver applies forward/backward modulo-60 arithmetic and returns the corresponding stem/branch indices and labels. It rejects invalid or unsafe integer inputs.
+
+**Critical validation gate:** the resolver intentionally has no built-in anchor. Tests use a synthetic configured anchor to validate arithmetic only; they do not assert that the anchor is a historically verified 甲子 date. A production anchor must be established from multiple independent authoritative calendar fixtures and checked against the project's exact JDN integer convention before date-to-day-pillar calculation can be enabled.
