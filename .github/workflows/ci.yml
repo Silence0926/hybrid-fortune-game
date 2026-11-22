@@ -15,5 +15,9 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - name: Report dependency audit findings
+        run: |
+          npm audit --json > npm-audit.json || true
+          node --input-type=commonjs -e "const report = require('./npm-audit.json'); const entries = Object.entries(report.vulnerabilities || {}); console.log(JSON.stringify(entries.map(([name, item]) => ({ name, severity: item.severity, isDirect: item.isDirect, range: item.range, fixAvailable: item.fixAvailable })), null, 2)); console.log('Audit totals:', JSON.stringify(report.metadata?.vulnerabilities || {}));"
       - run: npm run typecheck
       - run: npm test
