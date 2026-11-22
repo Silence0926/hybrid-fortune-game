@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import { BirthInputSchema, IChingSessionRequestSchema } from "@hybrid-fortune/domain";
-import { normalizeBirthProfile } from "@hybrid-fortune/calendar";
+import { normalizeBirthProfile, resolveLocalBirthTime } from "@hybrid-fortune/calendar";
 import { calculateBazi } from "@hybrid-fortune/engine-bazi";
 import { createIChingSession } from "@hybrid-fortune/engine-iching";
 import { queryAlmanac } from "@hybrid-fortune/engine-almanac";
@@ -31,13 +31,20 @@ app.post("/v1/birth-profiles/normalize", async (request, reply) => {
   return reply.code(200).send(result.profile);
 });
 
+app.post("/v1/birth-profiles/resolve-time", async (request, reply) => {
+  const result = resolveLocalBirthTime(request.body);
+  if (result.status === "invalid_input") {
+    return reply.code(400).send({ error: "INVALID_BIRTH_INPUT", issues: result.issues });
+  }
+  return reply.code(200).send(result);
+});
+
 app.post("/v1/calculations/bazi", async (request, reply) => {
   const parsed = BirthInputSchema.safeParse(request.body);
   if (!parsed.success) {
     return reply.code(400).send({ error: "INVALID_BIRTH_INPUT", issues: parsed.error.issues });
   }
-  const result = calculateBazi(parsed.data);
-  return reply.code(501).send(result);
+  return reply.code(501).send(calculateBazi(parsed.data));
 });
 
 app.post("/v1/divinations/iching", async (request, reply) => {
