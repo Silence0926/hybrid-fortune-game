@@ -168,3 +168,14 @@ Implemented pure functions:
 The formulas are implemented as pure functions and tested across all ten year/day stems and twelve branches. The tests do not assert any unverified date-to-year-stem, date-to-month-branch, or JDN-to-day-stem mapping.
 
 **Boundary:** solar-term resolution, sexagenary cycle anchoring, and birth-time-to-hour-branch conversion remain separate tasks. These utilities do not enable the BaZi chart endpoint or change `calculationEnabled: false`.
+
+## Ten-God derivation module
+
+A pure Ten-God resolver is now implemented in `packages/engines-bazi/src/ten-gods.ts`.
+
+Inputs are the Day Master's Heavenly Stem index and the target Heavenly Stem index. The resolver applies both:
+
+1. Five-Element relationship: same element, Day Master generates target, Day Master controls target, target controls Day Master, or target generates Day Master.
+2. Yin/Yang polarity: same polarity selects the偏 (indirect) relation where applicable; opposite polarity selects the正 (direct) relation. For same-element relations this distinguishes 比肩 from 劫财; for output relations it distinguishes 食神 from 伤官.
+
+The test matrix checks all ten target stems relative to 甲木 and validates invalid indices. The module does not infer the Day Master from a birth date and does not assign Ten Gods to hidden stems until hidden-stem data is implemented and validated.
