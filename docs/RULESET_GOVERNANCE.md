@@ -61,3 +61,35 @@ A provider-backed crossing result is not independently validated merely because 
 - Solar-longitude solver: implemented as a provider boundary; no production ephemeris provider selected.
 - HKO modern solar-term data: identified as a comparison source; machine-readable, independently reviewed golden fixture set still pending.
 - BaZi calculation remains disabled until all required gates and unresolved policy decisions are closed.
+
+
+## HKO 2026 major-term comparison fixtures
+
+The calendar package now contains a 12-record comparison set transcribed from the Hong Kong Observatory's *24 Solar Terms in 2026* PDF:
+`packages/calendar/src/hko-2026-major-solar-terms.ts`.
+
+Important classification boundary:
+- The published 2026 PDF table lists the 12 **major solar terms (中氣 / zhongqi)** only.
+- These records are not the 12 **Jie (節)** instants used by the project's BaZi month-boundary policy.
+- They are useful for checking the 30-degree major-term longitude sequence and UTC+08:00 to UTC conversion, but they cannot validate the 12 Jie month boundaries.
+- The source publishes times to the minute. Tests preserve that precision and must not imply second-level accuracy.
+- UTC values are deterministic fixed-offset conversions from HKT; they are not a second independent astronomical calculation.
+
+The fixtures and tests intentionally make no claim that a production ephemeris provider has passed astronomical validation.
+
+Source:
+- Hong Kong Observatory, *24 Solar Terms in 2026*: https://www.hko.gov.hk/en/gts/astron2026/files/2026SolarTerms24.pdf
+- HKO states the annual astronomical solar-term data are based on HM Nautical Almanac Office (UK) and US Naval Observatory data, and its published times are Hong Kong Time (UTC+8): https://www.hko.gov.hk/en/gts/astronomy/Solar_Term.htm
+- HKO's explanation gives the 15-degree spacing of the 24 solar-term longitudes: https://www.hko.gov.hk/en/gts/time/24solarterms.htm
+
+## Ephemeris provenance contract update
+
+`EphemerisProvenance` now requires explicit:
+- UTC input timestamp semantics.
+- Internal calculation time scale (UT1 or TT).
+- Time conversion policy and Delta-T model.
+- Supported date range.
+- Dataset checksum field (nullable only when the provider cannot publish one).
+- License, source citation, and uncertainty field.
+
+The synthetic test provider declares these fields explicitly. It is not a real ephemeris and its test success is not an accuracy claim. Production provider selection remains blocked pending time-scale, Delta-T, licensing, range, uncertainty, and independent comparison review.
