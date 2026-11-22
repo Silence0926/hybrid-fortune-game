@@ -1,7 +1,7 @@
 import Fastify from "fastify";
-import { BirthInputSchema } from "@hybrid-fortune/domain";
+import { BirthInputSchema, IChingSessionRequestSchema } from "@hybrid-fortune/domain";
+import { normalizeBirthProfile } from "@hybrid-fortune/calendar";
 import { calculateBazi } from "@hybrid-fortune/engine-bazi";
-import { IChingSessionRequestSchema } from "@hybrid-fortune/domain";
 import { createIChingSession } from "@hybrid-fortune/engine-iching";
 import { queryAlmanac } from "@hybrid-fortune/engine-almanac";
 
@@ -23,6 +23,14 @@ app.get("/v1/engines", async () => ({
   ]
 }));
 
+app.post("/v1/birth-profiles/normalize", async (request, reply) => {
+  const result = normalizeBirthProfile(request.body);
+  if (!result.success) {
+    return reply.code(400).send({ error: "INVALID_BIRTH_INPUT", issues: result.issues });
+  }
+  return reply.code(200).send(result.profile);
+});
+
 app.post("/v1/calculations/bazi", async (request, reply) => {
   const parsed = BirthInputSchema.safeParse(request.body);
   if (!parsed.success) {
@@ -42,7 +50,7 @@ app.post("/v1/divinations/iching", async (request, reply) => {
 
 app.post("/v1/calculations/almanac", async (request, reply) => {
   const body = request.body as { localDate?: unknown; region?: unknown; editionId?: unknown };
-  if (typeof body?.localDate !== "string" || typeof body?.region !== "string" || typeof body?.editionId !== "string") {
+  if (typeof body?.localDate !== "string" || typeof body.region !== "string" || typeof body.editionId !== "string") {
     return reply.code(400).send({ error: "INVALID_ALMANAC_REQUEST" });
   }
   return reply.code(501).send(queryAlmanac({
