@@ -14,14 +14,25 @@ export interface EphemerisProvenance {
   providerVersion: string;
   datasetId: string;
   datasetVersion: string;
+  datasetChecksum: string | null;
   sourceCitation: string;
+  license: string;
   coordinateModel: "apparent_geocentric_ecliptic_of_date";
-  timeScale: AstronomicalTimeScale;
+  /** API timestamps are always ISO-8601 UTC instants. */
+  inputInstantScale: "UTC";
+  /** Internal scale used for the ephemeris evaluation. */
+  calculationTimeScale: "UT1" | "TT";
+  timeConversionPolicy: string;
+  deltaTModel: string;
+  supportedFrom: string;
+  supportedThrough: string;
+  uncertaintySeconds: number | null;
 }
 
 export interface SolarLongitudeSample {
   /** Apparent geocentric ecliptic longitude, normalized to [0, 360). */
   longitudeDegrees: number;
+  /** ISO-8601 UTC instant at which the longitude was evaluated. */
   instant: string;
   provenance: EphemerisProvenance;
 }
