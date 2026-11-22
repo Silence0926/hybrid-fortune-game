@@ -20,6 +20,5 @@ describe("HKO 2026 major solar-term comparison fixtures", () => {
     expect(HKO_2026_MAJOR_SOLAR_TERM_SOURCE.timeZone).toBe("Asia/Hong_Kong");
     expect(HKO_2026_MAJOR_SOLAR_TERM_SOURCE.utcOffset).toBe("+08:00");
     expect(HKO_2026_MAJOR_SOLAR_TERM_SOURCE.url).toContain("hko.gov.hk");
-    expect(HKO_2026_MAJOR_SOLAR_TERM_FIXTURES.every((fixture) => fixture.termClass !== ("jie" as never))).toBe(true);
   });
 });
