@@ -241,3 +241,35 @@ Each evidence item must be marked `satisfied`, `not_satisfied`, or `unknown`. Mi
 It deliberately never returns a final "transformed" state. Even when all configured evidence conditions are satisfied, a domain reviewer must validate the school-specific interpretation before the application may state that transformation occurred.
 
 No default transformation policy has been selected. In particular, the framework does not hard-code month-command support, exposed transforming stems, clash interference, seasonal strength thresholds, or any other school-dependent doctrine. The production chart calculation gate remains disabled.
+
+
+## Day-cycle reference fixture gate
+
+The BaZi package now exports `validateDayCycleReferenceFixtures`. It checks that candidate reference records:
+- Use the same Gregorian civil date, integer JDN and sexagenary index.
+- Use the project's explicit proleptic-Gregorian date basis and integer JDN convention.
+- Include traceable source title, URL, source ID and access date.
+- Contain at least two distinct source IDs.
+
+A `candidate_supported` result is not a validated anchor. Distinct source IDs do not establish genuine independence; human review must inspect whether the sources derive from the same underlying calendar table. The included tests use synthetic data solely to test the validator. No real-world day-cycle anchor has been approved.
+
+## Solar-term provider research status
+
+The existing calendar module already provides an `EphemerisProvider` interface and a bisection-based solar-longitude crossing solver. No production provider is configured.
+
+Research identified the Hong Kong Observatory (HKO) as a useful modern comparison source:
+- HKO defines the 24 solar terms at 15-degree intervals of solar ecliptic longitude.
+- HKO states its published astronomical solar-term data are based on data from the HM Nautical Almanac Office (UK) and the US Naval Observatory.
+- HKO publishes solar-term times in Hong Kong Time (UTC+8).
+
+References:
+- HKO, Date and Time of the 24 Solar Terms: https://www.hko.gov.hk/en/gts/astronomy/Solar_Term.htm
+- HKO, The 24 Solar Terms: https://www.hko.gov.hk/en/gts/time/24solarterms.htm
+- HKO Almanac 2026: https://www.hko.gov.hk/en/gts/astron2026/almanac2026_index.htm
+
+HKO can provide comparison fixtures for modern dates, but its published values do not by themselves establish historical accuracy across the full birth-date range. Each fixture must preserve the original HKT timestamp, its UTC conversion, source edition/date, and displayed precision.
+
+Swiss Ephemeris is a possible implementation candidate, not an adopted dependency. Its documentation describes an AGPL / Professional dual-license model. The project must resolve licensing before bundling it or activating a public service:
+https://www.astro.com/swisseph-download/doc/swisseph.pdf
+
+**Current decision:** retain the provider interface; do not hard-code solar-term timestamps, select a library, or enable BaZi calculation until coordinate conventions, time scales, Delta-T handling, supported historical range, license, and independent comparison fixtures are reviewed.
