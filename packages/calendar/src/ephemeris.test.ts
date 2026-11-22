@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findSolarLongitudeCrossing, type EphemerisProvider } from "./ephemeris";
+import { findSolarLongitudeCrossing, type EphemerisProvider } from "./ephemeris.js";
 
 const provenance = {
   providerId: "test-linear-provider",
