@@ -23,6 +23,14 @@ describe("Earthly Branch relationship detection", () => {
     expect(detectBranchRelations([2,5,8]).some(match => match.kind === "punishment" && match.label === "寅巳申三刑")).toBe(true);
   });
 
+  it("enumerates every distinct position combination when a branch repeats", () => {
+    const matches = detectBranchRelations([8, 8, 0, 4]).filter(
+      match => match.kind === "three_harmony" && match.label === "申子辰水局"
+    );
+    expect(matches).toHaveLength(2);
+    expect(matches.map(match => match.positions)).toEqual([[0, 2, 3], [1, 2, 3]]);
+  });
+
   it("detects self-punishment from repeated chart positions", () => {
     expect(detectBranchRelations([4,4]).some(match => match.kind === "punishment" && match.label === "辰辰自刑")).toBe(true);
   });
