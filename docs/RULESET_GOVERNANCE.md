@@ -93,3 +93,16 @@ Source:
 - License, source citation, and uncertainty field.
 
 The synthetic test provider declares these fields explicitly. It is not a real ephemeris and its test success is not an accuracy claim. Production provider selection remains blocked pending time-scale, Delta-T, licensing, range, uncertainty, and independent comparison review.
+
+
+## 24-term taxonomy and BaZi month-boundary classification
+
+The calendar package now exposes `SOLAR_TERMS_24`, `getSolarTermByLongitude`, and `getBaziMonthBoundaryTerms`.
+
+- The taxonomy defines the 24 apparent solar-longitude targets at 15-degree intervals.
+- It explicitly distinguishes the 12 Jie (節) from the 12 Zhongqi (中氣).
+- Only Jie are marked as BaZi month-boundary terms under the project's confirmed policy.
+- This is a classification table, not an ephemeris: it provides no dates or crossing instants.
+- The HKO 2026 fixture set contains Zhongqi only and therefore must not be used as a direct test of month-boundary instants.
+
+The longitude taxonomy is based on HKO's explanation that the 24 terms divide the ecliptic into 24 equal 15-degree segments. The exact tradition-specific month-boundary rule remains governed by the user's approved BaZi V1.0 policy and its 12-Jie convention.
