@@ -102,3 +102,8 @@ export {
 export type { HeavenlyStemIndex, EarthlyBranchIndex, StemBranch } from "./core.js";
 export { deriveTenGod, deriveTenGodByStem } from "./ten-gods.js";
 export type { FiveElement, TenGod } from "./ten-gods.js";
+
+export { getHiddenStems } from "./hidden-stems.js";
+export type { HiddenStemEntry, HiddenStemQiRole } from "./hidden-stems.js";
+export { detectBranchRelations } from "./branch-relations.js";
+export type { BranchRelationKind, BranchRelationMatch } from "./branch-relations.js";
