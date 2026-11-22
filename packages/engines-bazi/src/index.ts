@@ -88,3 +88,15 @@ export function calculateBazi(_input: BirthInput): EngineResult<BaziChart> {
     calculatedAt: new Date().toISOString()
   };
 }
+
+export {
+  HEAVENLY_STEMS,
+  EARTHLY_BRANCHES,
+  getHeavenlyStem,
+  getEarthlyBranch,
+  getMonthBranchIndex,
+  deriveMonthStemIndex,
+  deriveHourStemIndex,
+  isValidStemBranchPair
+} from "./core.js";
+export type { HeavenlyStemIndex, EarthlyBranchIndex, StemBranch } from "./core.js";
