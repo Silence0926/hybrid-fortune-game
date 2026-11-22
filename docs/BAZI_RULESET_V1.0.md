@@ -179,3 +179,26 @@ Inputs are the Day Master's Heavenly Stem index and the target Heavenly Stem ind
 2. Yin/Yang polarity: same polarity selects the偏 (indirect) relation where applicable; opposite polarity selects the正 (direct) relation. For same-element relations this distinguishes 比肩 from 劫财; for output relations it distinguishes 食神 from 伤官.
 
 The test matrix checks all ten target stems relative to 甲木 and validates invalid indices. The module does not infer the Day Master from a birth date and does not assign Ten Gods to hidden stems until hidden-stem data is implemented and validated.
+
+
+## Hidden-stem data module implementation status
+
+The BaZi package now exposes `getHiddenStems(branchIndex)` for all twelve Earthly Branches. Each entry retains the Heavenly Stem index/name and its ordered qi role (`main_qi`, `middle_qi`, or `residual_qi`). Branches traditionally containing one or two hidden stems return only those entries; the implementation does not fabricate missing qi slots.
+
+The current ordered data table is encoded as a conventional reference dataset and covered by a twelve-branch regression test. Before production use, this table should be reviewed against the project's selected classical reference edition and documented source provenance. Hidden-stem Ten-God derivation can now consume this data, but no full chart interpretation is enabled.
+
+## Earthly Branch relationship detector implementation status
+
+The BaZi package now exposes `detectBranchRelations(branchIndices)`. It detects:
+
+- Six Harmonies (六合)
+- Three Harmonies (三合) and the three pairwise half-harmony forms (半合/拱合)
+- Three Meetings (三会)
+- Six Clashes (六冲)
+- Punishments (刑), including the two three-branch punishment groups and repeated self-punishment branches
+- Six Harms (六害)
+- Six Breaks (六破)
+
+Every match records its relationship kind, matching branch indices, source positions, and a traditional label. Multiple relationships may be returned for the same pair because traditional relationship systems can overlap (for example, 寅亥六合 and 寅亥破). This is intentional: the detector reports structural matches without resolving priority or transformation.
+
+**Important boundary:** this module does not decide whether a combination transforms, whether transformation conditions are satisfied, or whether a relationship is favorable/unfavorable. Pairwise half-harmony classifications and overlapping punishment conventions must be governed by a selected reference school before production release. The chart calculation gate remains disabled.
