@@ -1,5 +1,6 @@
 export interface ScoreFactor {
   id: string;
+  sourceSystem: "bazi" | "ziwei" | "almanac" | "western_astrology";
   value: number;
   weight: number;
   explanation: string;
@@ -25,8 +26,9 @@ export function calculateDailyReflectionScore(
       disclaimer: "Cultural reflection aid only; not a scientific prediction."
     };
   }
+  const allowedSources = new Set(["bazi", "ziwei", "almanac", "western_astrology"]);
   const valid = factors.filter((factor) =>
-    Number.isFinite(factor.value) && Number.isFinite(factor.weight) &&
+    allowedSources.has(factor.sourceSystem) && Number.isFinite(factor.value) && Number.isFinite(factor.weight) &&
     factor.weight >= model.minWeight && factor.weight <= model.maxWeight
   );
   const totalWeight = valid.reduce((sum, factor) => sum + factor.weight, 0);
