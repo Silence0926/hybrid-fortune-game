@@ -31,7 +31,7 @@ export function resolveDayPillarDate(
     return { status: "invalid_input", message: validated.message };
   }
 
-  if (!/^([01]\\d|2[0-3]):[0-5]\\d$/.test(localTime)) {
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(localTime)) {
     return { status: "invalid_input", message: "localTime must use 24-hour HH:mm format." };
   }
 
