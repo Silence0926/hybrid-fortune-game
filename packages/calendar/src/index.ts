@@ -302,3 +302,6 @@ export type {
   SolarLongitudeSample,
   SolarLongitudeCrossingResult
 } from "./ephemeris.js";
+
+export { HKO_2026_MAJOR_SOLAR_TERM_FIXTURES, HKO_2026_MAJOR_SOLAR_TERM_SOURCE } from "./hko-2026-major-solar-terms.js";
+export type { HkoMajorSolarTermFixture } from "./hko-2026-major-solar-terms.js";
