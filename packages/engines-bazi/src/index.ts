@@ -100,3 +100,5 @@ export {
   isValidStemBranchPair
 } from "./core.js";
 export type { HeavenlyStemIndex, EarthlyBranchIndex, StemBranch } from "./core.js";
+export { deriveTenGod, deriveTenGodByStem } from "./ten-gods.js";
+export type { FiveElement, TenGod } from "./ten-gods.js";
