@@ -2,13 +2,14 @@
   "name": "Hybrid Fortune & Destiny",
   "short_name": "Hybrid Fortune",
   "description": "A cultural reflection platform for traditional symbolic systems.",
-  "start_url": "/",
+  "start_url": "/hybrid-fortune-game/",
+  "scope": "/hybrid-fortune-game/",
   "display": "standalone",
   "background_color": "#0b1220",
   "theme_color": "#101827",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "/hybrid-fortune-game/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
