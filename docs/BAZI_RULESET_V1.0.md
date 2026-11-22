@@ -140,3 +140,16 @@ The calendar package currently contains a research-stage NOAA fractional-year ap
 - Separate output fields for Local Mean Solar Time and Apparent Solar Time, including date rollover.
 
 **This is not a production astronomical ephemeris.** The approximation is exposed with model provenance and warnings. It must not be treated as a validated historical solar-time source for BaZi chart calculation until accuracy is benchmarked against an authoritative ephemeris, time-scale conventions are fixed, and historical fixtures are reviewed. Civil time remains independently represented by the IANA-resolved local wall time; this solar-time function does not overwrite it or apply DST a second time.
+
+## Day-pillar civil-date resolver implementation status
+
+The calendar package now exposes `resolveDayPillarDate(date, localTime)`. It applies the confirmed civil-date convention before JDN lookup:
+
+- 23:00–23:59 resolves to the preceding Gregorian civil date.
+- 00:00–00:59 remains on the supplied Gregorian civil date.
+- Other valid local times remain on the supplied Gregorian civil date.
+- The result retains the original date, resolved day-pillar date, and integer JDN for auditability.
+
+Automated tests cover the 23:00/00:00 boundaries, month/year rollover, leap-day rollover, JDN output, and invalid input.
+
+**Scope limitation:** this resolver does not map JDN to a sexagenary day index or return a day stem/branch. The cycle anchor and independent authoritative golden fixtures must be verified before that mapping is enabled.
