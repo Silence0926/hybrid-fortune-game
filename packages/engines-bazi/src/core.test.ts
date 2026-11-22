@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   deriveHourStemIndex,
   deriveMonthStemIndex,
+  getMonthBranchIndex,
   getEarthlyBranch,
   getHeavenlyStem,
   getMonthBranchIndex,
@@ -29,7 +30,7 @@ describe("Five Tigers formula (五虎遁)", () => {
   });
 
   it("advances one stem for each month branch", () => {
-    expect(Array.from({ length: 12 }, (_, i) => deriveMonthStemIndex(0, i))).toEqual([1,2,3,4,5,6,7,8,9,0,1,2]);
+    expect(Array.from({ length: 12 }, (_, i) => deriveMonthStemIndex(0, getMonthBranchIndex(i + 1)!))).toEqual([2,3,4,5,6,7,8,9,0,1,2,3]);
   });
 });
 
