@@ -288,3 +288,15 @@ export function calculateApparentSolarTime(
     ]
   };
 }
+
+// Public calendar-core exports.
+export { gregorianToJdn } from "./julian-day";
+export type { GregorianDate, JdnResult } from "./julian-day";
+export { findSolarLongitudeCrossing, normalizeDegrees } from "./ephemeris";
+export type {
+  AstronomicalTimeScale,
+  EphemerisProvenance,
+  EphemerisProvider,
+  SolarLongitudeSample,
+  SolarLongitudeCrossingResult
+} from "./ephemeris";
