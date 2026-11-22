@@ -7,7 +7,8 @@ const birth = {
   timeZone: "Asia/Kuala_Lumpur",
   calendar: "gregorian" as const,
   timePrecision: "minute" as const,
-  confidence: "exact" as const
+  confidence: "exact" as const,
+  trueSolarTimePolicy: "disabled" as const
 };
 
 describe("BaZi engine bootstrap", () => {
