@@ -218,3 +218,26 @@ The package now exposes `resolveSexagenaryDayFromJdn(jdn, anchor)`. The caller m
 The resolver applies forward/backward modulo-60 arithmetic and returns the corresponding stem/branch indices and labels. It rejects invalid or unsafe integer inputs.
 
 **Critical validation gate:** the resolver intentionally has no built-in anchor. Tests use a synthetic configured anchor to validate arithmetic only; they do not assert that the anchor is a historically verified 甲子 date. A production anchor must be established from multiple independent authoritative calendar fixtures and checked against the project's exact JDN integer convention before date-to-day-pillar calculation can be enabled.
+
+
+## Transformation assessment framework (policy-driven, not yet a school ruleset)
+
+The package now exposes `assessBranchTransformation(relation, policy, evidence)`. This is an assessment framework, not a built-in transformation doctrine.
+
+A caller must provide a versioned policy containing:
+- Policy ID, version, and named school/tradition.
+- Relationship kinds eligible for assessment.
+- Explicit required evidence keys.
+- Optional target transformed element.
+
+Each evidence item must be marked `satisfied`, `not_satisfied`, or `unknown`. Missing and unknown evidence remain distinguishable. The framework returns one of:
+
+- `policy_not_configured`
+- `not_eligible`
+- `insufficient_evidence`
+- `conditions_not_met`
+- `conditions_met_pending_domain_review`
+
+It deliberately never returns a final "transformed" state. Even when all configured evidence conditions are satisfied, a domain reviewer must validate the school-specific interpretation before the application may state that transformation occurred.
+
+No default transformation policy has been selected. In particular, the framework does not hard-code month-command support, exposed transforming stems, clash interference, seasonal strength thresholds, or any other school-dependent doctrine. The production chart calculation gate remains disabled.
