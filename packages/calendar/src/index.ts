@@ -212,3 +212,79 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
     warnings: ["Resolution uses the host runtime's ICU/IANA time-zone database; record runtime and tzdb provenance before production use."]
   };
 }
+
+
+export interface SolarTimeResult {
+  status: "calculated_approximation";
+  utcInstant: string;
+  longitudeDegreesEastPositive: number;
+  equationOfTimeMinutes: number;
+  localMeanSolarTime: string;
+  apparentSolarTime: string;
+  longitudeCorrectionMinutes: number;
+  model: "noaa_fractional_year_approximation";
+  warnings: string[];
+}
+
+function formatSolarWallTime(instantMs: number): string {
+  const date = new Date(instantMs);
+  const pad = (value: number) => String(value).padStart(2, "0");
+  const millis = date.getUTCMilliseconds();
+  const base = `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}T${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
+  return millis === 0 ? base : `${base}.${String(millis).padStart(3, "0")}`;
+}
+
+/**
+ * NOAA fractional-year equation-of-time approximation.
+ * E is apparent solar time minus local mean solar time, in minutes.
+ * This is a research-stage approximation, not a validated historical ephemeris.
+ */
+export function calculateApparentSolarTime(
+  utcInstant: string,
+  longitudeDegreesEastPositive: number
+): SolarTimeResult | { status: "invalid_input"; message: string } {
+  const instantMs = Date.parse(utcInstant);
+  if (!Number.isFinite(instantMs) || !/(Z|[+-]\\d{2}:?\\d{2})$/i.test(utcInstant)) {
+    return { status: "invalid_input", message: "utcInstant must be a valid ISO-8601 timestamp with an explicit UTC offset." };
+  }
+  if (!Number.isFinite(longitudeDegreesEastPositive) ||
+      longitudeDegreesEastPositive < -180 || longitudeDegreesEastPositive > 180) {
+    return { status: "invalid_input", message: "Longitude must be a finite value from -180 to +180 degrees; east is positive." };
+  }
+
+  const utc = new Date(instantMs);
+  const year = utc.getUTCFullYear();
+  const startOfYear = Date.UTC(year, 0, 1);
+  const dayOfYear = Math.floor((Date.UTC(year, utc.getUTCMonth(), utc.getUTCDate()) - startOfYear) / 86_400_000) + 1;
+  const daysInYear = (Date.UTC(year + 1, 0, 1) - startOfYear) / 86_400_000;
+  const utcHour = utc.getUTCHours() + utc.getUTCMinutes() / 60 +
+    utc.getUTCSeconds() / 3600 + utc.getUTCMilliseconds() / 3_600_000;
+  const gamma = 2 * Math.PI / daysInYear * (dayOfYear - 1 + (utcHour - 12) / 24);
+  const equationOfTimeMinutes = 229.18 * (
+    0.000075 +
+    0.001868 * Math.cos(gamma) -
+    0.032077 * Math.sin(gamma) -
+    0.014615 * Math.cos(2 * gamma) -
+    0.040849 * Math.sin(2 * gamma)
+  );
+  const longitudeCorrectionMinutes = longitudeDegreesEastPositive * 4;
+  const localMeanMs = instantMs + longitudeCorrectionMinutes * 60_000;
+  const apparentMs = localMeanMs + equationOfTimeMinutes * 60_000;
+
+  return {
+    status: "calculated_approximation",
+    utcInstant: utc.toISOString(),
+    longitudeDegreesEastPositive,
+    equationOfTimeMinutes,
+    localMeanSolarTime: formatSolarWallTime(localMeanMs),
+    apparentSolarTime: formatSolarWallTime(apparentMs),
+    longitudeCorrectionMinutes,
+    model: "noaa_fractional_year_approximation",
+    warnings: [
+      "Equation of Time uses a NOAA fractional-year approximation; it is not a high-precision ephemeris.",
+      "This result is a solar-time coordinate, not a civil time-zone timestamp; do not apply DST or a time-zone offset again.",
+      "Latitude is not used in this longitude-based solar-time conversion.",
+      "Historical precision, TT/UT1 handling, Delta-T, and an authoritative ephemeris remain to be validated before production BaZi calculations."
+    ]
+  };
+}
