@@ -153,3 +153,18 @@ The calendar package now exposes `resolveDayPillarDate(date, localTime)`. It app
 Automated tests cover the 23:00/00:00 boundaries, month/year rollover, leap-day rollover, JDN output, and invalid input.
 
 **Scope limitation:** this resolver does not map JDN to a sexagenary day index or return a day stem/branch. The cycle anchor and independent authoritative golden fixtures must be verified before that mapping is enabled.
+
+## Gan-Zhi foundational formula module
+
+The BaZi package now exposes the ten Heavenly Stems and twelve Earthly Branches as ordered, zero-based tables, plus validated index lookups.
+
+Implemented pure functions:
+
+- `getMonthBranchIndex(monthNumber)`: maps solar month number 1–12 to 寅 through 丑. It does not determine the solar-month number from a timestamp.
+- `deriveMonthStemIndex(yearStemIndex, monthBranchIndex)`: Five Tigers formula (五虎遁), deriving the month stem from a previously established year stem and month branch.
+- `deriveHourStemIndex(dayStemIndex, hourBranchIndex)`: Five Rats formula (五鼠遁), deriving the hour stem from a previously established day stem and hour branch.
+- `isValidStemBranchPair(stemIndex, branchIndex)`: checks the required Yin/Yang parity compatibility of a stem-branch pair.
+
+The formulas are implemented as pure functions and tested across all ten year/day stems and twelve branches. The tests do not assert any unverified date-to-year-stem, date-to-month-branch, or JDN-to-day-stem mapping.
+
+**Boundary:** solar-term resolution, sexagenary cycle anchoring, and birth-time-to-hour-branch conversion remain separate tasks. These utilities do not enable the BaZi chart endpoint or change `calculationEnabled: false`.
