@@ -127,3 +127,16 @@ The system must retain the selected analysis method and its rule version. Do not
 ## Release gate
 
 The convention baseline above is fixed. The engine remains non-production until the unresolved decisions are resolved and the astronomical/time data provider is validated. No synthetic pillar values may be returned as a substitute.
+
+
+## Solar-time pipeline implementation status
+
+The calendar package currently contains a research-stage NOAA fractional-year approximation for the Equation of Time. It implements:
+
+- East-positive longitude correction: longitude × 4 minutes per degree.
+- Local Mean Solar Time = UTC + longitude correction.
+- Apparent Solar Time = Local Mean Solar Time + Equation of Time.
+- Explicit UTC-offset timestamp validation and longitude range validation.
+- Separate output fields for Local Mean Solar Time and Apparent Solar Time, including date rollover.
+
+**This is not a production astronomical ephemeris.** The approximation is exposed with model provenance and warnings. It must not be treated as a validated historical solar-time source for BaZi chart calculation until accuracy is benchmarked against an authoritative ephemeris, time-scale conventions are fixed, and historical fixtures are reviewed. Civil time remains independently represented by the IANA-resolved local wall time; this solar-time function does not overwrite it or apply DST a second time.
