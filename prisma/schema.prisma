@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id          String       @id @default(uuid()) @db.Uuid
+  displayName String?      @map("display_name")
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  birthInputs BirthInput[]
+  runs        CalculationRun[]
+
+  @@map("profiles")
+}
+
+model BirthInput {
+  id             String   @id @default(uuid()) @db.Uuid
+  profileId      String   @map("profile_id") @db.Uuid
+  localDate      String   @map("local_date")
+  localTime      String?  @map("local_time")
+  timeZone       String   @map("time_zone")
+  calendar       String
+  leapMonth      Boolean? @map("leap_month")
+  timePrecision  String   @map("time_precision")
+  confidence     String
+  latitude       Float?
+  longitude      Float?
+  inputSnapshot  Json     @map("input_snapshot")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  profile        Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, createdAt])
+  @@map("birth_inputs")
+}
+
+model EngineVersion {
+  id             String   @id @default(uuid()) @db.Uuid
+  engineId       String   @map("engine_id")
+  engineVersion  String   @map("engine_version")
+  rulesetId      String   @map("ruleset_id")
+  rulesetVersion String   @map("ruleset_version")
+  status         String
+  sourceMetadata Json     @default("{}") @map("source_metadata")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  runs           CalculationRun[]
+
+  @@unique([engineId, engineVersion, rulesetId, rulesetVersion])
+  @@index([engineId, status])
+  @@map("engine_versions")
+}
+
+model CalculationRun {
+  id              String        @id @default(uuid()) @db.Uuid
+  profileId       String        @map("profile_id") @db.Uuid
+  engineVersionId String        @map("engine_version_id") @db.Uuid
+  inputDigest     String        @map("input_digest")
+  status          String
+  inputSnapshot   Json          @map("input_snapshot")
+  outputSnapshot  Json?         @map("output_snapshot")
+  warnings        Json          @default("[]")
+  calculatedAt    DateTime      @default(now()) @map("calculated_at") @db.Timestamptz(6)
+  profile         Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  engineVersion   EngineVersion @relation(fields: [engineVersionId], references: [id])
+
+  @@index([profileId, calculatedAt])
+  @@index([engineVersionId, status])
+  @@index([inputDigest])
+  @@map("calculation_runs")
+}
+
+model DivinationSession {
+  id             String   @id @default(uuid()) @db.Uuid
+  method         String
+  question       String?
+  status         String
+  requestSnapshot Json    @map("request_snapshot")
+  resultSnapshot Json?    @map("result_snapshot")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([createdAt])
+  @@map("divination_sessions")
+}
