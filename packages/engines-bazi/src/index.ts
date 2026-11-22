@@ -107,3 +107,8 @@ export { getHiddenStems } from "./hidden-stems.js";
 export type { HiddenStemEntry, HiddenStemQiRole } from "./hidden-stems.js";
 export { detectBranchRelations } from "./branch-relations.js";
 export type { BranchRelationKind, BranchRelationMatch } from "./branch-relations.js";
+
+export { resolveSexagenaryDayFromJdn } from "./day-cycle.js";
+export type { SexagenaryCycleAnchor, SexagenaryDay } from "./day-cycle.js";
+export { deriveHiddenStemTenGods } from "./hidden-stem-ten-gods.js";
+export type { HiddenStemTenGodEntry } from "./hidden-stem-ten-gods.js";
