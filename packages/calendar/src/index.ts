@@ -155,6 +155,7 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
     };
   }
 
+  const exactLocalDateTime = `${birth.localDate}T${birth.localTime}`;
   const [year, month, day] = birth.localDate.split("-").map(Number);
   const [hour, minute] = birth.localTime.split(":").map(Number);
   const naiveUtc = Date.UTC(year!, month! - 1, day!, hour!, minute!, 0);
@@ -184,14 +185,14 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
 
   if (candidates.length === 0) {
     return {
-      status: "nonexistent", timeZone, localDateTime, candidates: [],
+      status: "nonexistent", timeZone, localDateTime: exactLocalDateTime, candidates: [],
       warnings: ["This local wall time does not exist in the selected time zone, commonly because clocks moved forward."]
     };
   }
 
   if (candidates.length > 1) {
     return {
-      status: "ambiguous", timeZone, localDateTime,
+      status: "ambiguous", timeZone, localDateTime: exactLocalDateTime,
       candidates: candidates.map(({ instantMs, offsetMinutes }) => ({
         utcInstant: new Date(instantMs).toISOString(),
         offsetMinutes
@@ -204,7 +205,7 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
   return {
     status: "resolved",
     timeZone,
-    localDateTime,
+    localDateTime: exactLocalDateTime,
     utcInstant: new Date(candidate.instantMs).toISOString(),
     offsetMinutes: candidate.offsetMinutes,
     method: "iana_offset_candidate_validation",
