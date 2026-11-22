@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import { BirthInputSchema, IChingSessionRequestSchema } from "@hybrid-fortune/domain";
-import { normalizeBirthProfile, resolveLocalBirthTime } from "@hybrid-fortune/calendar";
+import { normalizeBirthProfile, resolveLocalBirthTime, calculateApparentSolarTime } from "@hybrid-fortune/calendar";
 import { calculateBazi } from "@hybrid-fortune/engine-bazi";
 import { createIChingSession } from "@hybrid-fortune/engine-iching";
 import { queryAlmanac } from "@hybrid-fortune/engine-almanac";
@@ -35,6 +35,19 @@ app.post("/v1/birth-profiles/resolve-time", async (request, reply) => {
   const result = resolveLocalBirthTime(request.body);
   if (result.status === "invalid_input") {
     return reply.code(400).send({ error: "INVALID_BIRTH_INPUT", issues: result.issues });
+  }
+  return reply.code(200).send(result);
+});
+
+
+app.post("/v1/birth-profiles/solar-time", async (request, reply) => {
+  const body = request.body as { utcInstant?: unknown; longitude?: unknown };
+  if (typeof body?.utcInstant !== "string" || typeof body.longitude !== "number") {
+    return reply.code(400).send({ error: "INVALID_SOLAR_TIME_REQUEST" });
+  }
+  const result = calculateApparentSolarTime(body.utcInstant, body.longitude);
+  if (result.status === "invalid_input") {
+    return reply.code(400).send({ error: "INVALID_SOLAR_TIME_REQUEST", message: result.message });
   }
   return reply.code(200).send(result);
 });
