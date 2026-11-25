@@ -21,6 +21,11 @@ export type ZiWeiDecisionId = (typeof ZIWEI_REQUIRED_DECISIONS)[number];
 
 export type ZiWeiSourceKind =
   | "edition"
+  | "archive_catalog"
+  | "archive_manifest"
+  | "digital_facsimile"
+  | "electronic_transcription"
+  | "facsimile_description"
   | "scholarly_study"
   | "school_manual"
   | "practitioner_reference"
@@ -29,6 +34,10 @@ export type ZiWeiSourceKind =
 export type ZiWeiEvidenceClass =
   | "primary_edition"
   | "critical_edition"
+  | "catalog_metadata"
+  | "digital_facsimile"
+  | "electronic_transcription"
+  | "technical_manifest"
   | "scholarly_secondary"
   | "lineage_specific"
   | "modern_secondary"
