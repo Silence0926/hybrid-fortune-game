@@ -62,4 +62,5 @@ The repository foundation, initial UI, API shell, shared input contracts, engine
 - [Ruleset Governance](docs/RULESET_GOVERNANCE.md)
 - [Zi Wei Dou Shu Ruleset Research V0.1](docs/ZIWEI_RULESET_RESEARCH_V0.1.md)
 - [Zi Wei Dou Shu Source Register V0.1](docs/ZIWEI_SOURCE_REGISTER_V0.1.md)
+- [Zi Wei Dou Shu Rule Comparison V0.2](docs/ZIWEI_RULE_COMPARISON_V0.2.md)
 - [Architecture Decision Records](docs/decisions/README.md)
