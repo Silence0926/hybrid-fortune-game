@@ -145,3 +145,17 @@ Minimum golden fixtures before validation:
 - Zi Wei Dou Shu Quan Shu text discovery page (modern transcription; verify against a facsimile before rule approval): https://shixingji.club/public/ziweidoushuquanshu
 - Xin Ke Zuan Ji Zi Wei Dou Shu Jie Lan text discovery page (modern transcription / edition description; verify catalogue and facsimile): https://shixingji.club/public/ziweidoushujielan
 - The above online text repositories are research entry points, not substitutes for edition-level verification.
+
+
+## 11. Machine-readable source registry contract
+
+The ruleset manifest must carry a source registry, not merely free-form source IDs. Each source record has:
+- stable `sourceId`, exact `title`, `sourceKind`, and `evidenceClass`;
+- `lineageId`, used to flag records that may derive from the same underlying text or reproduction;
+- HTTPS URL and a valid Gregorian `accessedOn` date;
+- for edition records, a non-empty `editionLabel`;
+- optional author / compiler, publisher / repository, publication date, volume, chapter, page / folio, and passage note.
+
+Every `sourceEditionId` must resolve to a registered record whose `sourceKind` is `edition`. Every selected rule decision must reference source IDs that resolve in the same registry. Duplicate source IDs, invalid access dates, missing lineage IDs, non-HTTPS URLs, and invalid edition references block assessment.
+
+The `lineageId` is not an automated proof of independence. It is an explicit grouping key that helps reviewers identify repeated transcriptions, copied tables, and derivative websites. A candidate assessment still requires human inspection of the underlying edition and exact passage. The registry validator does not rank sources or decide which school is correct.
