@@ -12,7 +12,14 @@ describe("Zi Wei research source registry", () => {
       expect(source.title.trim().length).toBeGreaterThan(0);
       expect(source.lineageId.trim().length).toBeGreaterThan(0);
       expect(source.accessedOn).toBe("2026-11-25");
+      expect(["discovery_only", "metadata_recorded", "url_accessible", "content_inspected", "page_collated"]).toContain(source.verificationStatus);
     }
+  });
+
+  it("does not claim page collation for sources that have not been collated", () => {
+    expect(ZIWEI_RESEARCH_SOURCES.every((source) => source.verificationStatus !== "page_collated")).toBe(true);
+    const manifests = ZIWEI_RESEARCH_SOURCES.filter((source) => source.sourceKind === "archive_manifest");
+    expect(manifests.every((source) => source.verificationStatus === "url_accessible")).toBe(true);
   });
 
   it("groups the two archive IIIF manifests under the same physical witness", () => {
