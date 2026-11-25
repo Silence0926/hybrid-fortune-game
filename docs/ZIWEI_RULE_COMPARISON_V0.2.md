@@ -227,3 +227,24 @@ The 1607 十八飛星 material should remain a separately documented comparative
 6. 《捷覽》 edition discussion, https://www.shuge.org/meet/topic/22543/
 7. Research baseline, [ZIWEI_RULESET_RESEARCH_V0.1.md](ZIWEI_RULESET_RESEARCH_V0.1.md)
 8. Source register, [ZIWEI_SOURCE_REGISTER_V0.1.md](ZIWEI_SOURCE_REGISTER_V0.1.md)
+
+
+## 10. Exact electronic-text witness used for passage discovery
+
+The 《全書》卷二 passage locator was cross-checked against the Wikisource page:
+https://zh.wikisource.org/wiki/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8/%E5%8D%B7%E4%BA%8C
+
+The companion research library identifies its text as Wikisource fixed revision **1963110**, with CC BY-SA 4.0 attribution for the electronic transcription. It explicitly states that the transcription's printed base edition is not identified and that it has not been collated character-by-character against the Ming print. It also explicitly separates the three-volume electronic transcription from the 266-image Ming seven-volume facsimile.
+
+This makes the electronic text useful for locating and comparing passages such as:
+- 卷二「安身命例」 — 命宮 / 身宮, leap-month note, and a 火六局 / 初一紫微 example;
+- 「起五行寅例」 and 「六十花甲子納音歌」 — year-stem month-stem sequence and 纳音 reference;
+- 「安南北斗諸星訣」 — fourteen principal-star sequence;
+- individual auxiliary-star placement passages;
+- 「安祿權科忌四星變化訣」 — natal four transformations;
+- 「安大限訣」 and 「安小限訣」 — limit procedures.
+
+**Evidence boundary:** this is a fixed, attributable electronic transcription, not a verified diplomatic transcription of the Ming image witness. It is not independent of other websites that reproduce the same Wikisource text. All formula extraction remains provisional until matched to the corresponding leaf in the seven-volume scan and, where possible, an independent manuscript / edition.
+
+The third-party facsimile reader describes its 266 images as the complete two-booklet image set from the National Archives item, while also stating that it has not yet completed page-by-page collation or reconstructed original foliation. Its page number is an image sequence number, not the original leaf number:
+https://sndmp.com/library/quanshu/scan
