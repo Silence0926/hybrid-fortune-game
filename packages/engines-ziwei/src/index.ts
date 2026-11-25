@@ -12,6 +12,8 @@ export type {
   ZiWeiSourceRecord
 } from "./ruleset.js";
 
+export { ZIWEI_RESEARCH_SOURCES } from "./research-sources.js";
+
 export const ziWeiEngineStatus = {
   engineId: "ziwei",
   engineVersion: "0.1.0",
