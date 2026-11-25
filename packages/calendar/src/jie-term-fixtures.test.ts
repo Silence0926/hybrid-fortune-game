@@ -109,4 +109,11 @@ describe("Jie-term reference fixture evidence gate", () => {
     expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
   });
 
+
+  it("rejects a timestamp whose declared IANA zone disagrees with its wall time", () => {
+    const fixtures = buildSyntheticFixtures();
+    fixtures[0] = { ...fixtures[0]!, timeZone: "Asia/Tokyo" };
+    expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
+  });
+
 });
