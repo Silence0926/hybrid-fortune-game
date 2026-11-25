@@ -95,3 +95,18 @@ The bibliographic material identifies Wanli 9 as 1581 and Wanli 35 as 1607. A se
 ## 7. Current decision
 
 **No school selected. No rule approved. No calculation enabled.** This register narrows the source search and identifies candidate passages; it does not authorize implementation.
+
+
+## 8. Access and collation clarification (2026-11-25)
+
+The access status of the 《全書》 witness must be described at three separate levels:
+
+1. **Catalogue metadata:** the National Archives of Japan record is publicly discoverable and identifies request number 子060-0001, two booklets, seven volumes, and its catalogued attributions.
+2. **Official image viewer:** the official viewer currently displays an on-site viewing restriction. Public catalogue metadata does not imply that the official page images are downloadable by every remote visitor.
+3. **Third-party image mirror:** a modern research site states that it has reproduced 266 images from the same National Archives item and supplies image provenance / checksum information. This is a distinct secondary access route; its completeness and image integrity still require independent verification.
+
+The three-volume searchable electronic text is also a separate object. Its host explicitly says that it is not the complete collation of the seven-volume Ming print and that its arrangement differs from the original image set.
+
+For 《捷覽》, a book-collector discussion reports uncertainty about public access to a complete original facsimile and distinguishes punctuated editions from the printed witness. Treat this as a research lead only. The 1581 edition's physical witness, complete foliation, and collation must be confirmed from a library or publisher catalogue and inspectable images.
+
+A detailed provisional rule extraction and variant ledger is now in [ZIWEI_RULE_COMPARISON_V0.2.md](ZIWEI_RULE_COMPARISON_V0.2.md). It records the exact boundary between reported textual rules, modern reconstruction, and unresolved evidence. None of its extracted formulas is approved for production.
