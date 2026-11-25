@@ -164,3 +164,18 @@ The `lineageId` is not an automated proof of independence. It is an explicit gro
 ## 12. Source register
 
 The current edition-level discovery and passage-comparison work is maintained separately in [Zi Wei Dou Shu Source Register & Textual Comparison V0.1](ZIWEI_SOURCE_REGISTER_V0.1.md). That register records source identity, evidence class, lineage, candidate chapter locations, and unresolved verification work. It does not select a school or approve rules.
+
+## 11. Source-registry integrity gate (engineering baseline)
+
+The Zi Wei ruleset assessor now performs structural checks before a manifest can be considered for domain review:
+
+- Source URLs must parse as HTTPS URLs with a non-empty hostname.
+- Source access dates must be real Gregorian calendar dates.
+- Source IDs and decision IDs must be unique; unknown decision IDs are rejected.
+- Source-edition references must resolve to registered records whose source kind is `edition`.
+- Duplicate source-edition references are rejected.
+- A selected decision must provide a policy ID and registered source IDs; duplicate source references within one decision are rejected.
+- An edition record must include an edition label.
+- The strongest successful result remains `candidate_for_domain_review`; this gate does not assess textual correctness, source independence, lineage authority, doctrinal agreement, or chart-calculation readiness.
+
+These checks are data-integrity controls, not a source-quality scoring system. In particular, two URLs or two source IDs must never be treated automatically as two independent witnesses. Human collation and lineage review remain mandatory.
