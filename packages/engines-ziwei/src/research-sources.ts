@@ -8,6 +8,7 @@ import type { ZiWeiSourceRecord } from "./ruleset.js";
 export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   {
     sourceId: "zw-src-jielan-catalog-1581",
+    verificationStatus: "discovery_only",
     title: "Bibliographic description of 《新刻纂集紫微斗数捷览》",
     sourceKind: "archive_catalog",
     evidenceClass: "catalog_metadata",
@@ -18,6 +19,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-jielan-tianji-transcription",
+    verificationStatus: "discovery_only",
     title: "Tianji digital transcription of 《新刻纂集紫微斗数捷览》",
     sourceKind: "electronic_transcription",
     evidenceClass: "electronic_transcription",
@@ -28,6 +30,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-na-japan-archives",
+    verificationStatus: "metadata_recorded",
     title: "National Archives of Japan catalogue record for 《新鋟希夷陳先生紫微斗数全書》",
     sourceKind: "archive_catalog",
     evidenceClass: "catalog_metadata",
@@ -39,6 +42,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-na-upper-iiif",
+    verificationStatus: "url_accessible",
     title: "National Archives of Japan IIIF manifest — upper booklet",
     sourceKind: "archive_manifest",
     evidenceClass: "technical_manifest",
@@ -50,6 +54,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-na-lower-iiif",
+    verificationStatus: "url_accessible",
     title: "National Archives of Japan IIIF manifest — lower booklet",
     sourceKind: "archive_manifest",
     evidenceClass: "technical_manifest",
@@ -61,6 +66,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-nanyangtang-facsimile-description",
+    verificationStatus: "discovery_only",
     title: "Nanyangtang description of a seven-volume 《紫微斗數全書》 facsimile",
     sourceKind: "facsimile_description",
     evidenceClass: "modern_secondary",
@@ -72,6 +78,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-mirror-266-images",
+    verificationStatus: "content_inspected",
     title: "266-image facsimile reader for the National Archives 《紫微斗數全書》 item",
     sourceKind: "digital_facsimile",
     evidenceClass: "digital_facsimile",
@@ -83,6 +90,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-xudaozang-nlc-167",
+    verificationStatus: "metadata_recorded",
     title: "National Library of China scan metadata — 《續道藏》 volume 167",
     sourceKind: "archive_catalog",
     evidenceClass: "catalog_metadata",
@@ -94,6 +102,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-xudaozang-nlc-168",
+    verificationStatus: "metadata_recorded",
     title: "National Library of China scan metadata — 《續道藏》 volume 168",
     sourceKind: "archive_catalog",
     evidenceClass: "catalog_metadata",
@@ -105,6 +114,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-xudaozang-nlc-169",
+    verificationStatus: "metadata_recorded",
     title: "National Library of China scan metadata — 《續道藏》 volume 169",
     sourceKind: "archive_catalog",
     evidenceClass: "catalog_metadata",
@@ -116,6 +126,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-yuntech-zhao-yiwu-2021",
+    verificationStatus: "discovery_only",
     title: "趙翊吾, 〈紫微斗數之起源與發展〉, 《雲科漢學學刊》第二十二期",
     sourceKind: "scholarly_study",
     evidenceClass: "scholarly_secondary",
@@ -127,6 +138,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-foguang-liao-2020",
+    verificationStatus: "metadata_recorded",
     title: "廖維駿, 2020 thesis catalogue record",
     sourceKind: "scholarly_study",
     evidenceClass: "scholarly_secondary",
@@ -138,6 +150,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
   },
   {
     sourceId: "zw-src-quanshu-wikisource-vol2-rev1963110",
+    verificationStatus: "content_inspected",
     title: "Wikisource fixed revision of 《紫微斗數全書》卷二",
     sourceKind: "electronic_transcription",
     evidenceClass: "electronic_transcription",
