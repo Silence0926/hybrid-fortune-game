@@ -34,3 +34,4 @@ export type {
   IiifCollationAssessment,
   IiifPageCollationRecord
 } from "./iiif-collation.js";
+\nexport { assessIiifPageCollationAgainstManifest } from "./iiif-manifest-collation.js";\n
