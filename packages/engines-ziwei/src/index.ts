@@ -21,3 +21,10 @@ export const ziWeiEngineStatus = {
   status: "not_implemented" as const,
   reason: "No school profile, source-verified calendar policy, or reviewed placement ruleset has been approved."
 };
+
+export { indexIiifManifest } from "./iiif-manifest.js";
+export type {
+  IiifCanvasRecord,
+  IiifImageResource,
+  IiifManifestIndex
+} from "./iiif-manifest.js";
