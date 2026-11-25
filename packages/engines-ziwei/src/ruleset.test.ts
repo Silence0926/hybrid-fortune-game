@@ -123,6 +123,31 @@ describe("Zi Wei ruleset assessment", () => {
     expect(result.reasons.some((reason) => reason.includes("Duplicate decision"))).toBe(true);
   });
 
+  it("rejects malformed HTTPS URLs and duplicate edition references", () => {
+    const malformedUrl = buildManifest();
+    malformedUrl.sources[0]!.url = "https://";
+    const malformedResult = assessZiWeiRuleset(malformedUrl);
+    expect(malformedResult.status).toBe("blocked");
+    if (malformedResult.status !== "blocked") return;
+    expect(malformedResult.reasons.some((reason) => reason.includes("valid HTTPS URL"))).toBe(true);
+
+    const duplicateEdition = buildManifest();
+    duplicateEdition.sourceEditionIds.push("edition-a");
+    const duplicateResult = assessZiWeiRuleset(duplicateEdition);
+    expect(duplicateResult.status).toBe("blocked");
+    if (duplicateResult.status !== "blocked") return;
+    expect(duplicateResult.reasons).toContain("Source edition IDs must not contain duplicates.");
+  });
+
+  it("rejects duplicate source references within one selected decision", () => {
+    const manifest = buildManifest();
+    manifest.decisions[0]!.sourceIds = ["edition-a", "edition-a"];
+    const result = assessZiWeiRuleset(manifest);
+    expect(result.status).toBe("blocked");
+    if (result.status !== "blocked") return;
+    expect(result.reasons).toContain("Decision textual_basis contains duplicate source IDs.");
+  });
+
   it("only reaches candidate-for-review and never claims doctrinal validation", () => {
     const result = assessZiWeiRuleset(buildManifest());
     expect(result.status).toBe("candidate_for_domain_review");
