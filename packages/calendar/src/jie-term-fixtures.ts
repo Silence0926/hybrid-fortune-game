@@ -54,6 +54,23 @@ function isValidIanaTimeZone(value: string): boolean {
   }
 }
 
+function matchesIanaTimeZone(timestamp: string, timeZone: string): boolean {
+  if (!isValidIanaTimeZone(timeZone) || !Number.isFinite(Date.parse(timestamp))) return false;
+  const parts = new Intl.DateTimeFormat("en", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date(Date.parse(timestamp)));
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  const zonedWallTime = `${values.year}-${values.month}-${values.day}T${values.hour}:${values.minute}:${values.second}`;
+  return zonedWallTime === timestamp.slice(0, 19);
+}
+
 /**
  * Checks coverage of all twelve BaZi Jie boundaries, time normalization,
  * source metadata and per-term source multiplicity. It cannot prove that
@@ -126,6 +143,9 @@ export function validateJieTermReferenceFixtures(
         !fixture.sourceTitle.trim() || !/^https:\/\//.test(fixture.sourceUrl) ||
         !isValidGregorianDate(fixture.accessedOn)) {
       reasons.push(`Traceable source metadata is incomplete or invalid for ${fixture.termZh}.`);
+    }
+    if (!matchesIanaTimeZone(fixture.publishedLocalDateTime, fixture.timeZone)) {
+      reasons.push(`Published local timestamp for ${fixture.termZh} does not match IANA zone ${fixture.timeZone}.`);
     }
 
     const sourceId = fixture.sourceId.trim();
