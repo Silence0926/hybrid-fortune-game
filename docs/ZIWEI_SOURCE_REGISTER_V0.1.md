@@ -169,3 +169,19 @@ It accepts IIIF Presentation API v2 and v3 JSON and extracts:
 The adapter intentionally preserves the canvas sequence exactly as supplied. It does **not** infer original folio numbers, recto/verso order, chapter boundaries, or rule passages. Those require visual collation and a separate reviewed mapping record.
 
 Synthetic tests cover v2 and v3 shapes, multiple image bodies, canvases without recognized image annotations, and malformed/unsupported manifests. These tests validate the parser contract only; they do not claim that the National Archives manifests have been fully extracted or that any page has been matched to the electronic transcription.
+
+## 13. Page-to-text collation record and evidence gate
+
+A separate record contract is now available in `packages/engines-ziwei/src/iiif-collation.ts`. It links:
+
+- a registered digital facsimile source;
+- a registered archive manifest source;
+- the exact canvas and image identifiers;
+- the digital sequence index;
+- the original printed folio label and physical side, once visually confirmed;
+- the electronic transcription source and passage locator;
+- reviewer identity and review date.
+
+A record may remain a `draft` while only digital identifiers are known. It cannot be marked `reviewed` unless the printed folio/side, transcription source/locator, reviewer, and review date are present. The validator also checks that the referenced records have the correct evidence kinds.
+
+No real-world collation records have been created. Tests use synthetic identifiers only. A reviewed collation would certify the image-to-folio/text correspondence, not the historical accuracy or doctrinal authority of the rule itself.
