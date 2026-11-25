@@ -9,7 +9,8 @@ export type {
   ZiWeiRulesetAssessment,
   ZiWeiRulesetManifest,
   ZiWeiSourceKind,
-  ZiWeiSourceRecord
+  ZiWeiSourceRecord,
+  ZiWeiSourceVerificationStatus
 } from "./ruleset.js";
 
 export { ZIWEI_RESEARCH_SOURCES } from "./research-sources.js";
