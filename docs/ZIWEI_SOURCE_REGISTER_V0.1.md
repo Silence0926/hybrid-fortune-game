@@ -126,3 +126,17 @@ The facsimile reader states that the archive supplies 2000-pixel IIIF thumbnails
 **Important implementation boundary:** the IIIF manifest IDs provide a stable route to the archive's digital object metadata and page sequence. They do not by themselves establish the original printed foliation or align an image to the Wikisource electronic text. Page-level passage mapping remains pending until the relevant canvas/image and printed leaf are visually identified and recorded.
 
 The web research tool could open the manifest endpoints as JSON resources but did not expose their full one-line JSON payload for extraction. No page-to-passage mapping has therefore been claimed in this update.
+
+## 10. Machine-readable evidence registry
+
+The research records are now also represented in `packages/engines-ziwei/src/research-sources.ts` and exported from the Zi Wei package. The registry separates:
+
+- archive catalogue metadata;
+- archive IIIF manifests;
+- digital facsimiles and facsimile descriptions;
+- electronic transcriptions;
+- scholarly secondary studies.
+
+Each record carries a `lineageId`. Records sharing a lineage are related evidence objects and must not be counted as independent witnesses. In particular, the upper/lower IIIF manifests and the mirror are grouped with the same National Archives physical item; the three 《續道藏》 volume records are grouped as one corpus; and the Wikisource electronic transcription remains a separate derivative text lineage.
+
+This registry is a research inventory, not a selected ruleset source list. It deliberately does not nominate a default school, approve any placement formula, or enable chart calculation.
