@@ -154,3 +154,18 @@ Each machine-readable source record now has a `verificationStatus`:
 No current source is marked `page_collated`. The IIIF manifests are marked only `url_accessible`, because their JSON endpoints can be reached but their complete one-line payloads were not available for reliable extraction in the current research interface. The Wikisource transcription and the mirror reader are marked `content_inspected`, not as primary-edition verification.
 
 This distinction prevents an accessible URL, a catalogue description, or a derivative transcription from being mistaken for a page-level primary-source collation.
+
+## 12. IIIF manifest indexing utility
+
+A format-only adapter is now available at `packages/engines-ziwei/src/iiif-manifest.ts`.
+
+It accepts IIIF Presentation API v2 and v3 JSON and extracts:
+
+- manifest identifier and label;
+- presentation API version;
+- ordered canvas identifiers, digital labels, and dimensions;
+- image resource identifiers, dimensions, formats, and Image API service identifiers.
+
+The adapter intentionally preserves the canvas sequence exactly as supplied. It does **not** infer original folio numbers, recto/verso order, chapter boundaries, or rule passages. Those require visual collation and a separate reviewed mapping record.
+
+Synthetic tests cover v2 and v3 shapes, multiple image bodies, canvases without recognized image annotations, and malformed/unsupported manifests. These tests validate the parser contract only; they do not claim that the National Archives manifests have been fully extracted or that any page has been matched to the electronic transcription.
