@@ -63,6 +63,18 @@ describe("IIIF page collation evidence gate", () => {
     expect(result.reasons).toContain("transcriptionSourceId must reference an electronic_transcription source.");
   });
 
+  it("requires inspected source content before allowing page collation", () => {
+    const record = buildDraft();
+    const sources = ZIWEI_RESEARCH_SOURCES.map((source) =>
+      source.sourceId === "zw-src-quanshu-mirror-266-images"
+        ? { ...source, verificationStatus: "discovery_only" as const }
+        : source
+    );
+    const result = assessIiifPageCollation(record, sources);
+    expect(result.valid).toBe(false);
+    expect(result.reasons).toContain("Facsimile source must be inspected before it can support a page collation.");
+  });
+
   it("rejects invalid digital sequence indices", () => {
     const record = buildDraft();
     record.digitalSequenceIndex = -1;
