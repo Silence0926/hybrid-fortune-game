@@ -32,9 +32,9 @@ export type JieTermFixtureValidation =
       reasons: string[];
     };
 
-const ISO_WITH_OFFSET = /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?(?:Z|[+-]\\d{2}:\\d{2})$/;
-const ISO_UTC = /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$/;
-const ISO_DATE = /^\\d{4}-\\d{2}-\\d{2}$/;
+const ISO_WITH_OFFSET = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2})$/;
+const ISO_UTC = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 function isValidGregorianDate(value: string): boolean {
   if (!ISO_DATE.test(value)) return false;
@@ -111,11 +111,11 @@ export function validateJieTermReferenceFixtures(
       const localSeconds = fixture.publishedLocalDateTime.slice(17, 19);
       const utcSeconds = fixture.utcInstant.slice(17, 19);
       if (localSeconds !== "00" || utcSeconds !== "00" ||
-          /\\.\\d+/.test(fixture.publishedLocalDateTime) || /\\.\\d+/.test(fixture.utcInstant)) {
+          /\.\d+/.test(fixture.publishedLocalDateTime) || /\.\d+/.test(fixture.utcInstant)) {
         reasons.push(`Minute-precision fixture ${fixture.termZh} contains unsupported seconds or fractions.`);
       }
     } else if (fixture.publishedPrecision === "second") {
-      if (/\\.\\d+/.test(fixture.publishedLocalDateTime) || /\\.\\d+/.test(fixture.utcInstant)) {
+      if (/\.\d+/.test(fixture.publishedLocalDateTime) || /\.\d+/.test(fixture.utcInstant)) {
         reasons.push(`Second-precision fixture ${fixture.termZh} must not imply sub-second precision.`);
       }
     } else {
@@ -123,7 +123,7 @@ export function validateJieTermReferenceFixtures(
     }
 
     if (!isValidIanaTimeZone(fixture.timeZone) || !fixture.sourceId.trim() ||
-        !fixture.sourceTitle.trim() || !/^https:\\/\\//.test(fixture.sourceUrl) ||
+        !fixture.sourceTitle.trim() || !/^https:\/\//.test(fixture.sourceUrl) ||
         !isValidGregorianDate(fixture.accessedOn)) {
       reasons.push(`Traceable source metadata is incomplete or invalid for ${fixture.termZh}.`);
     }
