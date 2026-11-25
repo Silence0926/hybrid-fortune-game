@@ -39,6 +39,12 @@ describe("Zi Wei research source registry", () => {
     expect(xuDaoZang.every((source) => source.lineageId !== quanshu!.lineageId)).toBe(true);
   });
 
+  it("stores a transcription revision separately from an edition label", () => {
+    const transcription = ZIWEI_RESEARCH_SOURCES.find((source) => source.sourceId === "zw-src-quanshu-wikisource-vol2-rev1963110");
+    expect(transcription?.versionLabel).toBe("Wikisource revision 1963110");
+    expect(transcription?.editionLabel).toBeUndefined();
+  });
+
   it("labels transcriptions and technical manifests as non-primary evidence classes", () => {
     const transcription = ZIWEI_RESEARCH_SOURCES.find((source) => source.sourceId === "zw-src-quanshu-wikisource-vol2-rev1963110");
     const manifest = ZIWEI_RESEARCH_SOURCES.find((source) => source.sourceId === "zw-src-quanshu-na-upper-iiif");
