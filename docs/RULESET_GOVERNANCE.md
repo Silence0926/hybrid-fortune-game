@@ -125,3 +125,12 @@ References:
 - HKO 2026 major solar terms: https://www.hko.gov.hk/en/gts/astron2026/files/2026SolarTerms24.pdf
 - HKO astronomical solar-term data and time zone: https://www.hko.gov.hk/en/gts/astronomy/Solar_Term.htm
 - HKO 24-term taxonomy and 15-degree longitude intervals: https://www.hko.gov.hk/en/gts/time/24solarterms.htm
+
+
+## Zi Wei Dou Shu ruleset gate
+
+Zi Wei Dou Shu is governed independently from BaZi. The project must not inherit BaZi's solar-term, day-boundary, apparent-solar-time, or Da Yun rules without a Zi Wei-specific source and an explicit ruleset decision.
+
+No school, textual edition, leap-month policy, birth-time policy, 命宫 / 身宫 formula, 五行局 mapping, star-placement formula, 四化 table, or 大限 convention is selected by default. See `docs/ZIWEI_RULESET_RESEARCH_V0.1.md` and ADR-007.
+
+The Zi Wei package exposes a typed ruleset manifest and an assessment gate. Its strongest positive status is `candidate_for_domain_review`; this is not doctrinal validation and never enables production chart calculation. Automated tests verify the gate's behavior only.
