@@ -185,3 +185,5 @@ A separate record contract is now available in `packages/engines-ziwei/src/iiif-
 A record may remain a `draft` while only digital identifiers are known. It cannot be marked `reviewed` unless the printed folio/side, transcription source/locator, reviewer, and review date are present. The validator also checks that the referenced records have the correct evidence kinds.
 
 No real-world collation records have been created. Tests use synthetic identifiers only. A reviewed collation would certify the image-to-folio/text correspondence, not the historical accuracy or doctrinal authority of the rule itself.
+
+The collation validator also enforces minimum source inspection depth: a facsimile must be `content_inspected` or better, a manifest must be `url_accessible` or better, and a transcription must be `content_inspected` or better. A record cannot become `reviewed` merely by supplying plausible-looking identifiers.
