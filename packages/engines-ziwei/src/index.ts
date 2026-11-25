@@ -4,9 +4,12 @@ export {
 } from "./ruleset.js";
 export type {
   ZiWeiDecisionId,
+  ZiWeiEvidenceClass,
   ZiWeiRuleDecision,
   ZiWeiRulesetAssessment,
-  ZiWeiRulesetManifest
+  ZiWeiRulesetManifest,
+  ZiWeiSourceKind,
+  ZiWeiSourceRecord
 } from "./ruleset.js";
 
 export const ziWeiEngineStatus = {
