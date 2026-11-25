@@ -15,6 +15,7 @@ function buildManifest(): ZiWeiRulesetManifest {
     lineageId: "lineage-a",
     url: "https://example.org/edition-a",
     accessedOn: "2026-11-25",
+    verificationStatus: "content_inspected",
     editionLabel: "Test edition"
   }];
 
@@ -86,7 +87,8 @@ describe("Zi Wei ruleset assessment", () => {
       evidenceClass: "scholarly_secondary",
       lineageId: "lineage-a",
       url: "https://example.org/study",
-      accessedOn: "2026-11-25"
+      accessedOn: "2026-11-25",
+      verificationStatus: "content_inspected"
     };
     const result = assessZiWeiRuleset(manifest);
     expect(result.status).toBe("blocked");
