@@ -19,6 +19,39 @@ export const ZIWEI_REQUIRED_DECISIONS = [
 
 export type ZiWeiDecisionId = (typeof ZIWEI_REQUIRED_DECISIONS)[number];
 
+export type ZiWeiSourceKind =
+  | "edition"
+  | "scholarly_study"
+  | "school_manual"
+  | "practitioner_reference"
+  | "software_observation";
+
+export type ZiWeiEvidenceClass =
+  | "primary_edition"
+  | "critical_edition"
+  | "scholarly_secondary"
+  | "lineage_specific"
+  | "modern_secondary"
+  | "software_output";
+
+export interface ZiWeiSourceRecord {
+  sourceId: string;
+  title: string;
+  sourceKind: ZiWeiSourceKind;
+  evidenceClass: ZiWeiEvidenceClass;
+  lineageId: string;
+  url: string;
+  accessedOn: string;
+  editionLabel?: string;
+  authorOrCompiler?: string;
+  publisherOrRepository?: string;
+  publicationDate?: string;
+  volume?: string;
+  chapter?: string;
+  pageOrFolio?: string;
+  passageNote?: string;
+}
+
 export interface ZiWeiRuleDecision {
   decisionId: ZiWeiDecisionId;
   status: "undecided" | "selected";
@@ -33,6 +66,7 @@ export interface ZiWeiRulesetManifest {
   schoolId: string;
   schoolLabel: string;
   sourceEditionIds: string[];
+  sources: ZiWeiSourceRecord[];
   decisions: ZiWeiRuleDecision[];
 }
 
@@ -57,23 +91,69 @@ export type ZiWeiRulesetAssessment =
       warnings: string[];
     };
 
+function isValidCalendarDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year!, month! - 1, day!));
+  return (
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month! - 1 &&
+    date.getUTCDate() === day
+  );
+}
+
 /**
  * Checks whether a proposed school profile has enough explicit decisions and
- * source references to enter human domain review. It never validates doctrine,
- * approves source independence, or enables chart calculation.
+ * registered source references to enter human domain review. It never validates
+ * doctrine, approves source independence, or enables chart calculation.
  */
 export function assessZiWeiRuleset(
   manifest: ZiWeiRulesetManifest
 ): ZiWeiRulesetAssessment {
   const reasons: string[] = [];
   const decisionsById = new Map<ZiWeiDecisionId, ZiWeiRuleDecision>();
+  const sourcesById = new Map<string, ZiWeiSourceRecord>();
 
   if (!manifest.rulesetId.trim()) reasons.push("rulesetId is required.");
   if (!manifest.version.trim()) reasons.push("version is required.");
   if (!manifest.schoolId.trim()) reasons.push("schoolId is required.");
   if (!manifest.schoolLabel.trim()) reasons.push("schoolLabel is required.");
+
+  for (const source of manifest.sources) {
+    if (!source.sourceId.trim()) {
+      reasons.push("Every source record requires a non-empty sourceId.");
+      continue;
+    }
+    if (sourcesById.has(source.sourceId)) {
+      reasons.push(`Duplicate source record: ${source.sourceId}.`);
+      continue;
+    }
+    sourcesById.set(source.sourceId, source);
+
+    if (!source.title.trim()) reasons.push(`Source ${source.sourceId} requires a title.`);
+    if (!source.lineageId.trim()) reasons.push(`Source ${source.sourceId} requires a lineageId.`);
+    if (!/^https:\/\//i.test(source.url)) {
+      reasons.push(`Source ${source.sourceId} must use an HTTPS URL.`);
+    }
+    if (!isValidCalendarDate(source.accessedOn)) {
+      reasons.push(`Source ${source.sourceId} has an invalid accessedOn date.`);
+    }
+    if (source.sourceKind === "edition" && !source.editionLabel?.trim()) {
+      reasons.push(`Edition source ${source.sourceId} requires editionLabel.`);
+    }
+  }
+
   if (manifest.sourceEditionIds.length === 0) {
     reasons.push("At least one source edition must be registered.");
+  }
+
+  for (const editionId of manifest.sourceEditionIds) {
+    const edition = sourcesById.get(editionId);
+    if (!edition) {
+      reasons.push(`Referenced source edition does not exist: ${editionId}.`);
+    } else if (edition.sourceKind !== "edition") {
+      reasons.push(`Source edition reference is not an edition record: ${editionId}.`);
+    }
   }
 
   for (const decision of manifest.decisions) {
@@ -91,30 +171,25 @@ export function assessZiWeiRuleset(
 
   const decisionsMissingEvidence = ZIWEI_REQUIRED_DECISIONS.filter((id) => {
     const decision = decisionsById.get(id);
-    return Boolean(
-      decision &&
-      decision.status === "selected" &&
-      (!decision.policyId?.trim() || decision.sourceIds.length === 0)
+    if (!decision || decision.status !== "selected") return false;
+    return (
+      !decision.policyId?.trim() ||
+      decision.sourceIds.length === 0 ||
+      decision.sourceIds.some((sourceId) => !sourcesById.has(sourceId))
     );
   });
 
   if (unresolvedDecisionIds.length > 0) {
     reasons.push("All required Zi Wei decisions must be explicitly selected before domain review.");
   }
+  if (decisionsMissingEvidence.length > 0) {
+    reasons.push("Every selected rule must identify a policy and source IDs present in the source registry.");
+  }
   if (reasons.length > 0 || unresolvedDecisionIds.length > 0) {
     return {
       status: "blocked",
       reasons,
       unresolvedDecisionIds,
-      decisionsMissingEvidence
-    };
-  }
-
-  if (decisionsMissingEvidence.length > 0) {
-    return {
-      status: "evidence_incomplete",
-      reasons: ["Every selected rule must identify a policy and at least one source record."],
-      unresolvedDecisionIds: [],
       decisionsMissingEvidence
     };
   }
@@ -126,6 +201,7 @@ export function assessZiWeiRuleset(
     decisionsMissingEvidence: [],
     warnings: [
       "This assessment does not establish source authority, textual accuracy, or independence.",
+      "A shared lineageId means records must not be counted as independent evidence without human review.",
       "A domain reviewer must inspect each cited edition and rule passage.",
       "Candidate status does not enable production chart calculation."
     ]
