@@ -60,6 +60,7 @@ export interface ZiWeiSourceRecord {
   accessedOn: string;
   verificationStatus: ZiWeiSourceVerificationStatus;
   editionLabel?: string;
+  versionLabel?: string;
   authorOrCompiler?: string;
   publisherOrRepository?: string;
   publicationDate?: string;
