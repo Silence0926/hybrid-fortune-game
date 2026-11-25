@@ -58,6 +58,8 @@ export function assessIiifPageCollation(
     reasons.push(`Facsimile source is not registered: ${record.facsimileSourceId}.`);
   } else if (facsimile.sourceKind !== "digital_facsimile") {
     reasons.push("facsimileSourceId must reference a digital_facsimile source.");
+  } else if (!["content_inspected", "page_collated"].includes(facsimile.verificationStatus)) {
+    reasons.push("Facsimile source must be inspected before it can support a page collation.");
   }
 
   const manifest = sourceById.get(record.manifestSourceId);
@@ -65,6 +67,8 @@ export function assessIiifPageCollation(
     reasons.push(`Manifest source is not registered: ${record.manifestSourceId}.`);
   } else if (manifest.sourceKind !== "archive_manifest") {
     reasons.push("manifestSourceId must reference an archive_manifest source.");
+  } else if (!["url_accessible", "content_inspected", "page_collated"].includes(manifest.verificationStatus)) {
+    reasons.push("Manifest source must be accessible before it can support a page collation.");
   }
 
   if (record.transcriptionSourceId) {
@@ -73,6 +77,8 @@ export function assessIiifPageCollation(
       reasons.push(`Transcription source is not registered: ${record.transcriptionSourceId}.`);
     } else if (transcription.sourceKind !== "electronic_transcription") {
       reasons.push("transcriptionSourceId must reference an electronic_transcription source.");
+    } else if (!["content_inspected", "page_collated"].includes(transcription.verificationStatus)) {
+      reasons.push("Transcription source must be inspected before it can support a page collation.");
     }
   }
 
