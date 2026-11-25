@@ -110,3 +110,19 @@ The three-volume searchable electronic text is also a separate object. Its host 
 For 《捷覽》, a book-collector discussion reports uncertainty about public access to a complete original facsimile and distinguishes punctuated editions from the printed witness. Treat this as a research lead only. The 1581 edition's physical witness, complete foliation, and collation must be confirmed from a library or publisher catalogue and inspectable images.
 
 A detailed provisional rule extraction and variant ledger is now in [ZIWEI_RULE_COMPARISON_V0.2.md](ZIWEI_RULE_COMPARISON_V0.2.md). It records the exact boundary between reported textual rules, modern reconstruction, and unresolved evidence. None of its extracted formulas is approved for production.
+
+## 9. IIIF access identifiers and image-rights metadata (2026-11-25)
+
+The facsimile reader now exposes the official archive IIIF manifest endpoints for the two booklets:
+
+- Upper booklet manifest: https://www.digital.archives.go.jp/api/iiif/4468520/manifest.json
+- Lower booklet manifest: https://www.digital.archives.go.jp/api/iiif/4469314/manifest.json
+- Upper booklet official viewer: https://www.digital.archives.go.jp/img/4468520
+- The reader identifies the upper booklet as 129 image-sequence pages and the complete set as 266 images. The sequence number is an archive digital-image sequence, not an original folio number.
+- The first image in the upper-booklet sequence is the outer cover/title label, not a rule-bearing text leaf. It is therefore not a valid mapping target for the 《安身命例》 passage.
+
+The facsimile reader states that the archive supplies 2000-pixel IIIF thumbnails and links to 6300-pixel official originals. It also states that the archive permits copying, adaptation, and redistribution, including commercial use, provided that the collection, data name, request number, and official link are retained. The reader records image dimensions, file sizes, official source links, and SHA-256 values. These are statements made by the mirror's access page; the underlying official secondary-use terms and per-image checksums should still be independently captured before production asset ingestion.
+
+**Important implementation boundary:** the IIIF manifest IDs provide a stable route to the archive's digital object metadata and page sequence. They do not by themselves establish the original printed foliation or align an image to the Wikisource electronic text. Page-level passage mapping remains pending until the relevant canvas/image and printed leaf are visually identified and recorded.
+
+The web research tool could open the manifest endpoints as JSON resources but did not expose their full one-line JSON payload for extraction. No page-to-passage mapping has therefore been claimed in this update.
