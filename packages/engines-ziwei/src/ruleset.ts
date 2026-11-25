@@ -102,6 +102,15 @@ function isValidCalendarDate(value: string): boolean {
   );
 }
 
+function isValidHttpsUrl(value: string): boolean {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "https:" && parsed.hostname.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Checks whether a proposed school profile has enough explicit decisions and
  * registered source references to enter human domain review. It never validates
@@ -132,8 +141,8 @@ export function assessZiWeiRuleset(
 
     if (!source.title.trim()) reasons.push(`Source ${source.sourceId} requires a title.`);
     if (!source.lineageId.trim()) reasons.push(`Source ${source.sourceId} requires a lineageId.`);
-    if (!/^https:\/\//i.test(source.url)) {
-      reasons.push(`Source ${source.sourceId} must use an HTTPS URL.`);
+    if (!isValidHttpsUrl(source.url)) {
+      reasons.push(`Source ${source.sourceId} must use a valid HTTPS URL with a hostname.`);
     }
     if (!isValidCalendarDate(source.accessedOn)) {
       reasons.push(`Source ${source.sourceId} has an invalid accessedOn date.`);
@@ -146,6 +155,9 @@ export function assessZiWeiRuleset(
   if (manifest.sourceEditionIds.length === 0) {
     reasons.push("At least one source edition must be registered.");
   }
+  if (new Set(manifest.sourceEditionIds).size !== manifest.sourceEditionIds.length) {
+    reasons.push("Source edition IDs must not contain duplicates.");
+  }
 
   for (const editionId of manifest.sourceEditionIds) {
     const edition = sourcesById.get(editionId);
@@ -157,10 +169,17 @@ export function assessZiWeiRuleset(
   }
 
   for (const decision of manifest.decisions) {
+    if (!ZIWEI_REQUIRED_DECISIONS.includes(decision.decisionId)) {
+      reasons.push(`Unknown decision ID: ${String(decision.decisionId)}.`);
+      continue;
+    }
     if (decisionsById.has(decision.decisionId)) {
       reasons.push(`Duplicate decision: ${decision.decisionId}.`);
     } else {
       decisionsById.set(decision.decisionId, decision);
+    }
+    if (new Set(decision.sourceIds).size !== decision.sourceIds.length) {
+      reasons.push(`Decision ${decision.decisionId} contains duplicate source IDs.`);
     }
   }
 
