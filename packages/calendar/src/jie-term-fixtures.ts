@@ -56,6 +56,7 @@ export function validateJieTermReferenceFixtures(
   const expectedTerms = getBaziMonthBoundaryTerms();
   const year = fixtures[0]!.year;
   const sourceIdsByTerm = new Map<string, Set<string>>();
+  const sourceRecordsByTerm = new Set<string>();
 
   if (!Number.isInteger(year) || year < 1 || year > 9999) {
     return { status: "rejected", reasons: ["The fixture year is invalid."] };
@@ -73,6 +74,11 @@ export function validateJieTermReferenceFixtures(
     }
     if (!ISO_WITH_OFFSET.test(fixture.publishedLocalDateTime) || !Number.isFinite(Date.parse(fixture.publishedLocalDateTime))) {
       reasons.push(`Published local time for ${fixture.termZh} must be ISO-8601 with an explicit UTC offset.`);
+    } else {
+      const localDate = fixture.publishedLocalDateTime.slice(0, 10);
+      if (!isValidGregorianDate(localDate) || Number(localDate.slice(0, 4)) !== fixture.year) {
+        reasons.push(`Published local date for ${fixture.termZh} must be a valid Gregorian date in fixture year ${fixture.year}.`);
+      }
     }
     if (!ISO_UTC.test(fixture.utcInstant) || !Number.isFinite(Date.parse(fixture.utcInstant))) {
       reasons.push(`UTC instant for ${fixture.termZh} must be an ISO-8601 UTC timestamp.`);
