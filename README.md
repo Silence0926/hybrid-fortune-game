@@ -60,4 +60,5 @@ The repository foundation, initial UI, API shell, shared input contracts, engine
 - [Technical Specification V1.0](docs/TECHNICAL_SPEC_V1.0.md)
 - [BaZi Ruleset V1.0 — Confirmed Conventions](docs/BAZI_RULESET_V1.0.md)
 - [Ruleset Governance](docs/RULESET_GOVERNANCE.md)
+- [Zi Wei Dou Shu Ruleset Research V0.1](docs/ZIWEI_RULESET_RESEARCH_V0.1.md)
 - [Architecture Decision Records](docs/decisions/README.md)
