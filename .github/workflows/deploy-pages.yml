@@ -19,7 +19,7 @@ jobs:
   build-and-deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment-retry-2.outputs.page_url || steps.deployment-retry-1.outputs.page_url || steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,8 +41,40 @@ jobs:
         with:
           path: apps/web/dist
           name: github-pages-${{ github.run_attempt }}
+      - name: Wait for Pages artifact registration
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARTIFACT_NAME: github-pages-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          artifacts_url="$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$ARTIFACT_NAME&per_page=100"
+          for attempt in 1 2 3 4 5 6; do
+            count=$(curl --fail --silent --show-error \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              "$artifacts_url" | jq --arg name "$ARTIFACT_NAME" '[.artifacts[] | select(.name == $name and .expired == false)] | length')
+            echo "Artifact registration check $attempt/6: $count matching artifact(s)"
+            if [ "$count" -ge 1 ]; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Pages artifact did not become visible through the Actions API." >&2
+          exit 1
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+      - name: Retry Pages deployment once
+        id: deployment-retry-1
+        if: failure() && steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+      - name: Retry Pages deployment a second time
+        id: deployment-retry-2
+        if: failure() && steps.deployment-retry-1.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
