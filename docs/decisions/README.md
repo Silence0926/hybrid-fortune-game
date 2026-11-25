@@ -20,3 +20,7 @@ Accepted. Every engine declares ruleset and version, and returns provenance and 
 
 ## ADR-004 — I Ching isolation
 Accepted. I Ching casting is explicit and user initiated. Its result is not an input to the daily score.
+
+## ADR-007 — Zi Wei Dou Shu ruleset selection and isolation
+
+Accepted governance constraint. Zi Wei remains independent from BaZi and no school, calendar, leap-month, time, placement, transformation, or decade-limit convention is selected by default. See [ADR-007](ADR-007-ziwei-ruleset-governance.md).
