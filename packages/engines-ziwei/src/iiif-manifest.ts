@@ -75,21 +75,27 @@ function parseV2Canvas(canvas: Record<string, unknown>, canvasIndex: number): Ii
     const resource = annotation.resource;
     const imageId = readId(resource);
     if (!imageId) continue;
+    const width = readDimension(resource.width);
+    const height = readDimension(resource.height);
+    const format = typeof resource.format === "string" ? resource.format : undefined;
     images.push({
       imageId,
       serviceIds: readServices(resource.service),
-      width: readDimension(resource.width),
-      height: readDimension(resource.height),
-      format: typeof resource.format === "string" ? resource.format : undefined
+      ...(width !== undefined ? { width } : {}),
+      ...(height !== undefined ? { height } : {}),
+      ...(format !== undefined ? { format } : {})
     });
   }
 
+  const canvasLabel = readLabel(canvas.label);
+  const width = readDimension(canvas.width);
+  const height = readDimension(canvas.height);
   return {
     canvasIndex,
     canvasId,
-    canvasLabel: readLabel(canvas.label),
-    width: readDimension(canvas.width),
-    height: readDimension(canvas.height),
+    ...(canvasLabel !== undefined ? { canvasLabel } : {}),
+    ...(width !== undefined ? { width } : {}),
+    ...(height !== undefined ? { height } : {}),
     images
   };
 }
@@ -115,23 +121,29 @@ function parseV3Canvas(canvas: Record<string, unknown>, canvasIndex: number): Ii
         if (!isRecord(body)) continue;
         const imageId = readId(body);
         if (!imageId) continue;
+        const width = readDimension(body.width);
+        const height = readDimension(body.height);
+        const format = typeof body.format === "string" ? body.format : undefined;
         images.push({
           imageId,
           serviceIds: readServices(body.service),
-          width: readDimension(body.width),
-          height: readDimension(body.height),
-          format: typeof body.format === "string" ? body.format : undefined
+          ...(width !== undefined ? { width } : {}),
+          ...(height !== undefined ? { height } : {}),
+          ...(format !== undefined ? { format } : {})
         });
       }
     }
   }
 
+  const canvasLabel = readLabel(canvas.label);
+  const width = readDimension(canvas.width);
+  const height = readDimension(canvas.height);
   return {
     canvasIndex,
     canvasId,
-    canvasLabel: readLabel(canvas.label),
-    width: readDimension(canvas.width),
-    height: readDimension(canvas.height),
+    ...(canvasLabel !== undefined ? { canvasLabel } : {}),
+    ...(width !== undefined ? { width } : {}),
+    ...(height !== undefined ? { height } : {}),
     images
   };
 }
@@ -156,9 +168,10 @@ export function indexIiifManifest(input: unknown): IiifManifestIndex {
       if (!isRecord(canvas)) throw new TypeError(`IIIF v2 canvas at index ${index} is invalid.`);
       return parseV2Canvas(canvas, index);
     });
+    const manifestLabel = readLabel(input.label);
     return {
       manifestId,
-      manifestLabel: readLabel(input.label),
+      ...(manifestLabel !== undefined ? { manifestLabel } : {}),
       presentationVersion: 2,
       canvasCount: canvases.length,
       canvases,
@@ -174,9 +187,10 @@ export function indexIiifManifest(input: unknown): IiifManifestIndex {
       if (!isRecord(canvas)) throw new TypeError(`IIIF v3 canvas at index ${index} is invalid.`);
       return parseV3Canvas(canvas, index);
     });
+    const manifestLabel = readLabel(input.label);
     return {
       manifestId,
-      manifestLabel: readLabel(input.label),
+      ...(manifestLabel !== undefined ? { manifestLabel } : {}),
       presentationVersion: 3,
       canvasCount: canvases.length,
       canvases,
