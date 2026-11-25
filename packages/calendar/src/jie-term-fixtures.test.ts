@@ -69,4 +69,44 @@ describe("Jie-term reference fixture evidence gate", () => {
   it("does not permit weakening the two-source minimum", () => {
     expect(validateJieTermReferenceFixtures(buildSyntheticFixtures(), 1).status).toBe("rejected");
   });
+
+  it("rejects a local timestamp whose calendar year differs from the fixture year", () => {
+    const fixtures = buildSyntheticFixtures();
+    fixtures[0] = {
+      ...fixtures[0]!,
+      publishedLocalDateTime: "2025-01-01T12:00:00+08:00",
+      utcInstant: "2025-01-01T04:00:00Z"
+    };
+    expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
+  });
+
+  it("rejects impossible Gregorian access dates and invalid IANA zones", () => {
+    const fixtures = buildSyntheticFixtures();
+    fixtures[0] = { ...fixtures[0]!, accessedOn: "2026-02-30" };
+    expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
+
+    const secondSet = buildSyntheticFixtures();
+    secondSet[0] = { ...secondSet[0]!, timeZone: "Mars/Olympus_Mons" };
+    expect(validateJieTermReferenceFixtures(secondSet).status).toBe("rejected");
+  });
+
+  it("rejects duplicate records from the same source for one Jie", () => {
+    const fixtures = buildSyntheticFixtures();
+    fixtures.push({ ...fixtures[0]!, sourceTitle: "Duplicate row" });
+    expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
+  });
+
+  it("rejects fractional seconds when a source only publishes second precision", () => {
+    const fixtures = buildSyntheticFixtures().map((fixture) => ({
+      ...fixture,
+      publishedPrecision: "second" as const
+    }));
+    fixtures[0] = {
+      ...fixtures[0]!,
+      publishedLocalDateTime: "2026-01-01T12:00:00.123+08:00",
+      utcInstant: "2026-01-01T04:00:00.123Z"
+    };
+    expect(validateJieTermReferenceFixtures(fixtures).status).toBe("rejected");
+  });
+
 });
