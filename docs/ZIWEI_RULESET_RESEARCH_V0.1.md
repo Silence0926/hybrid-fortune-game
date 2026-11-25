@@ -159,3 +159,8 @@ The ruleset manifest must carry a source registry, not merely free-form source I
 Every `sourceEditionId` must resolve to a registered record whose `sourceKind` is `edition`. Every selected rule decision must reference source IDs that resolve in the same registry. Duplicate source IDs, invalid access dates, missing lineage IDs, non-HTTPS URLs, and invalid edition references block assessment.
 
 The `lineageId` is not an automated proof of independence. It is an explicit grouping key that helps reviewers identify repeated transcriptions, copied tables, and derivative websites. A candidate assessment still requires human inspection of the underlying edition and exact passage. The registry validator does not rank sources or decide which school is correct.
+
+
+## 12. Source register
+
+The current edition-level discovery and passage-comparison work is maintained separately in [Zi Wei Dou Shu Source Register & Textual Comparison V0.1](ZIWEI_SOURCE_REGISTER_V0.1.md). That register records source identity, evidence class, lineage, candidate chapter locations, and unresolved verification work. It does not select a school or approve rules.
