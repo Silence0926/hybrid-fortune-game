@@ -43,6 +43,13 @@ export type ZiWeiEvidenceClass =
   | "modern_secondary"
   | "software_output";
 
+export type ZiWeiSourceVerificationStatus =
+  | "discovery_only"
+  | "metadata_recorded"
+  | "url_accessible"
+  | "content_inspected"
+  | "page_collated";
+
 export interface ZiWeiSourceRecord {
   sourceId: string;
   title: string;
@@ -51,6 +58,7 @@ export interface ZiWeiSourceRecord {
   lineageId: string;
   url: string;
   accessedOn: string;
+  verificationStatus: ZiWeiSourceVerificationStatus;
   editionLabel?: string;
   authorOrCompiler?: string;
   publisherOrRepository?: string;
@@ -150,6 +158,9 @@ export function assessZiWeiRuleset(
 
     if (!source.title.trim()) reasons.push(`Source ${source.sourceId} requires a title.`);
     if (!source.lineageId.trim()) reasons.push(`Source ${source.sourceId} requires a lineageId.`);
+    if (!["discovery_only", "metadata_recorded", "url_accessible", "content_inspected", "page_collated"].includes(source.verificationStatus)) {
+      reasons.push(`Source ${source.sourceId} has an invalid verificationStatus.`);
+    }
     if (!isValidHttpsUrl(source.url)) {
       reasons.push(`Source ${source.sourceId} must use a valid HTTPS URL with a hostname.`);
     }
