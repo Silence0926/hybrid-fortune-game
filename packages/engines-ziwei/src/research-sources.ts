@@ -157,7 +157,7 @@ export const ZIWEI_RESEARCH_SOURCES: ZiWeiSourceRecord[] = [
     lineageId: "wikisource-quanshu-revision-1963110",
     url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷二",
     accessedOn: "2026-11-25",
-    editionLabel: "Fixed revision 1963110",
+    versionLabel: "Wikisource revision 1963110",
     volume: "Electronic transcription volume 2",
     passageNote: "Derivative electronic text; base print is unspecified and it is not collated character-by-character against the Ming facsimile."
   }
