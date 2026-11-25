@@ -28,3 +28,9 @@ export type {
   IiifImageResource,
   IiifManifestIndex
 } from "./iiif-manifest.js";
+
+export { assessIiifPageCollation } from "./iiif-collation.js";
+export type {
+  IiifCollationAssessment,
+  IiifPageCollationRecord
+} from "./iiif-collation.js";
