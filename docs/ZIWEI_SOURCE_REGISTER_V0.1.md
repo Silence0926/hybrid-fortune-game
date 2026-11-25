@@ -140,3 +140,17 @@ The research records are now also represented in `packages/engines-ziwei/src/res
 Each record carries a `lineageId`. Records sharing a lineage are related evidence objects and must not be counted as independent witnesses. In particular, the upper/lower IIIF manifests and the mirror are grouped with the same National Archives physical item; the three 《續道藏》 volume records are grouped as one corpus; and the Wikisource electronic transcription remains a separate derivative text lineage.
 
 This registry is a research inventory, not a selected ruleset source list. It deliberately does not nominate a default school, approve any placement formula, or enable chart calculation.
+
+## 11. Verification depth is explicit
+
+Each machine-readable source record now has a `verificationStatus`:
+
+- `discovery_only`: a lead has been identified, but its metadata/content has not been sufficiently inspected.
+- `metadata_recorded`: catalogue or bibliographic metadata has been inspected; the underlying text is not thereby verified.
+- `url_accessible`: the endpoint has been reached, but its full payload or underlying image content has not been independently inspected.
+- `content_inspected`: the relevant web text or facsimile-reader content has been inspected, but not collated against a printed leaf.
+- `page_collated`: a specific passage has been visually matched to a specific facsimile image/printed leaf and recorded with reproducible identifiers.
+
+No current source is marked `page_collated`. The IIIF manifests are marked only `url_accessible`, because their JSON endpoints can be reached but their complete one-line payloads were not available for reliable extraction in the current research interface. The Wikisource transcription and the mirror reader are marked `content_inspected`, not as primary-edition verification.
+
+This distinction prevents an accessible URL, a catalogue description, or a derivative transcription from being mistaken for a page-level primary-source collation.
