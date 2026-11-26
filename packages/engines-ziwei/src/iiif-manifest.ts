@@ -63,6 +63,15 @@ function readServices(value: unknown): string[] {
   return values.map(readId).filter((id): id is string => Boolean(id));
 }
 
+
+function isPaintingAnnotation(annotation: Record<string, unknown>): boolean {
+  const motivation = annotation.motivation;
+  if (motivation === undefined) return true;
+  const values = Array.isArray(motivation) ? motivation : [motivation];
+  return values.some((value) => typeof value === "string" &&
+    (value === "painting" || value === "sc:painting" || value.endsWith("/painting")));
+}
+
 function parseV2Canvas(canvas: Record<string, unknown>, canvasIndex: number): IiifCanvasRecord {
   const canvasId = readId(canvas);
   if (!canvasId) throw new TypeError(`IIIF v2 canvas at index ${canvasIndex} has no @id.`);
@@ -71,7 +80,7 @@ function parseV2Canvas(canvas: Record<string, unknown>, canvasIndex: number): Ii
   const images: IiifImageResource[] = [];
 
   for (const annotation of annotations) {
-    if (!isRecord(annotation) || !isRecord(annotation.resource)) continue;
+    if (!isRecord(annotation) || !isPaintingAnnotation(annotation) || !isRecord(annotation.resource)) continue;
     const resource = annotation.resource;
     const imageId = readId(resource);
     if (!imageId) continue;
@@ -110,7 +119,7 @@ function parseV3Canvas(canvas: Record<string, unknown>, canvasIndex: number): Ii
   for (const page of annotationPages) {
     if (!isRecord(page) || !Array.isArray(page.items)) continue;
     for (const annotation of page.items) {
-      if (!isRecord(annotation)) continue;
+      if (!isRecord(annotation) || !isPaintingAnnotation(annotation)) continue;
       const bodies = Array.isArray(annotation.body)
         ? annotation.body
         : annotation.body === undefined
