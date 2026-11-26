@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { WANLI_1590_CTEXT_CROSS_CHECK as record } from "./wanli-1590-ctext-cross-check.js";
+import { WANLI_1590_MONTH_START_CANDIDATES } from "./wanli-1590-month-start-cross-check.js";
 
 describe("Wanli 18 Chinese Text Project date cross-check", () => {
   it("checks the published tenth-month first-day label against configured JDN arithmetic", () => {
@@ -11,6 +12,9 @@ describe("Wanli 18 Chinese Text Project date cross-check", () => {
     expect(record.arithmetic.projectCycleIndex).toBe(5);
     expect(record.arithmetic.projectGanzhi).toBe("己巳");
     expect(record.arithmetic.matchesPublishedLabel).toBe(true);
+    const reconstructedMonthStart = WANLI_1590_MONTH_START_CANDIDATES.find((entry) => entry.month === 10);
+    expect(reconstructedMonthStart?.civilDate).toBe(record.historicalDate.publishedGregorianDate);
+    expect(reconstructedMonthStart?.ganzhi).toBe(record.historicalDate.publishedGanzhi);
   });
 
   it("does not promote a modern digital calendar table to primary historical evidence", () => {
