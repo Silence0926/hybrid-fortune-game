@@ -51,6 +51,14 @@ describe("historical IANA local-time resolution", () => {
     if (result.status !== "resolved") return;
     expect(result.utcInstant).toBe("1995-06-15T04:30:00.000Z");
     expect(result.offsetMinutes).toBe(480);
+    expect(result.timeZoneProvenance).toMatchObject({
+      requestedTimeZone: "Asia/Kuala_Lumpur",
+      resolvedTimeZone: "Asia/Kuala_Lumpur",
+      calendar: "gregory",
+      numberingSystem: "latn",
+      tzDatabaseVersion: null,
+      tzDatabaseVersionStatus: "not_exposed_by_ecmascript_intl"
+    });
   });
 
   it("detects a spring-forward nonexistent time", () => {
