@@ -690,3 +690,10 @@ The NYPL item record still identifies the digitized Taiping calendar (image ID 1
 
 NYPL item record: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
 NYPL API deprecation notice: https://api.repo.nypl.org/
+
+
+### Bibliographic note on the 1948 Taiping-calendar study
+
+The scanned issue's cover and the article's running headers identify the publication as *學原* 第二卷第六期. One internal contents heading is extracted/read as 第十一卷第六期, which conflicts with the cover and the article's own repeated running headers; this anomaly is preserved rather than silently harmonized. The article title page's author is read as 羅爾綱. Some PDF text extraction/search output renders the name as 羅衛綱, an OCR variant; the research record retains 羅爾綱 while documenting the extraction discrepancy.
+
+The article begins at printed page 39; the 1861 discussion and comparison table occur later in the same article. Its conclusion is a historical reconstruction supported by cited records, not a direct transcription of the original 1861 monthly calendar leaf.
