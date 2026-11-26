@@ -616,7 +616,7 @@ Implemented research module and tests:
 - `packages/engines-bazi/src/taiping-1861-primary-source-candidate.ts` updated to supersede 甲子 with the provisional 乙丑 candidate.
 
 References:
-- 羅爾綱, *天曆與陰陽曆對照考*, 學原第二卷第六期 / 第十一卷第六期 (1948), especially the discussion of the Tanaka table and the 1861 evidence, printed pp. 52–53: https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf
+- 羅爾綱, *天曆與陰陽曆對照考*, 學原第二卷第六期 (1948), especially the discussion of the Tanaka table and the 1861 evidence, printed pp. 52–53: https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf
 - 劉復輯, *太平天國有趣文件十六種* (1926), reproduced 1861 calendar rules and first-month page: https://upload.wikimedia.org/wikipedia/commons/4/4c/NLC511-027032013013759-17435_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E6%9C%89%E8%B6%A3%E6%96%87%E4%BB%B6%E5%8D%81%E5%85%AD%E7%A8%AE.pdf
 - NYPL digitized 1861 calendar item: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
 - Partial daily-page image mirror: https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg
