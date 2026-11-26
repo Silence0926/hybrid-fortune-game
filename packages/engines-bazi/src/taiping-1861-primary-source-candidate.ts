@@ -68,13 +68,21 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     civilDateMapping: "unresolved",
     transcriptionStatus: "partial_visual_transcription_pending_second_review"
   },
+  dateMappingResearch: {
+    sourceId: "luo-ergang-1948-taiping-calendar-offset",
+    proposedTaipingNewYear: "1861-02-09",
+    targetTaipingDate: "month 10, day 1",
+    candidateGanzhi: "乙丑",
+    conventionalGregorianGanzhi: "甲子",
+    status: "candidate_pending_original_month_ten_leaf_collation"
+  },
   targetCheck: {
     civilDate: "1861-11-11",
-    expectedGanzhiCandidate: "甲子",
+    expectedGanzhiCandidate: "乙丑",
     originalLeafIdentified: true,
     originalCellTranscribed: false,
     pageCollationStatus: "partial_visual_transcription_month_mapping_pending",
-    note: "Do not treat the expected Ganzhi candidate as confirmed until the original leaf and date mapping are read directly."
+    note: "The earlier 甲子 candidate is superseded by Luo Ergang’s one-day-offset reconstruction. 乙丑 is still a candidate pending direct collation of the original month-ten day-one leaf."
   },
   assessment: {
     sourceClass: "contemporary_primary_calendar_candidate",
