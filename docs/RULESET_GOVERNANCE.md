@@ -134,3 +134,18 @@ Zi Wei Dou Shu is governed independently from BaZi. The project must not inherit
 No school, textual edition, leap-month policy, birth-time policy, 命宫 / 身宫 formula, 五行局 mapping, star-placement formula, 四化 table, or 大限 convention is selected by default. See `docs/ZIWEI_RULESET_RESEARCH_V0.1.md` and ADR-007.
 
 The Zi Wei package exposes a typed ruleset manifest and an assessment gate. Its strongest positive status is `candidate_for_domain_review`; this is not doctrinal validation and never enables production chart calculation. Automated tests verify the gate's behavior only.
+
+
+## 2027 institutional Jie reference candidates
+
+A real-world candidate set is now recorded in `packages/calendar/src/jie-2027-reference-fixtures.ts`. It contains 24 source records: all twelve BaZi month-boundary Jie, each represented by two institutional publications.
+
+Sources:
+- Taipei City Government, *2027 Astronomical Almanac* (2027 曆象表). The publication states that its calendar times use mean solar time at longitude 120°E. The records preserve those published values as Asia/Taipei UTC+08:00 wall times for normalization: https://www-ws.gov.taipei/001/Upload/439/relfile/21703/3425086/26a88cec-7828-4623-995c-ea7b402723cc.pdf
+- National Astronomical Observatory of Japan, ECO *24 Solar Terms (Equinoxes, Solstices) Long Term Edition*, year 2027. The page explicitly reports Japan Civil Standard Time (UT+9h) and ΔT = 69 seconds: https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_sy_en.cgi?year=2027
+
+The records preserve each source's local wall time, IANA time zone, normalized UTC instant, minute precision, URL, and access date. The two institutions' published values normalize to the same UTC minute for each of the twelve Jie. This is a useful cross-publication consistency check, but it is **not yet proof of independent ephemeris derivation**: the source algorithms, underlying ephemerides, time-scale conventions, and publication dependencies still require review.
+
+The fixture validator returns only `candidate_supported`; it does not approve the values for production or certify the sources as independent. No seconds are inferred from minute-level publications. The 2027 records are comparison candidates only and do not enable BaZi calculation.
+
+Automated tests verify twelve-term coverage, two source records per term, timezone normalization, minute-precision preservation, and source time-basis metadata. They validate data integrity and the evidence-gate contract, not astronomical accuracy.
