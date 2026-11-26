@@ -185,3 +185,16 @@ A cross-check record is stored in `packages/engines-bazi/src/historical-day-cycl
 The code converts 720 BCE to astronomical year -719, converts Julian -719-02-22 to JDN 1458496, and applies the 1949-10-01 = JDN 2433191 = 甲子 anchor. The resulting zero-based cycle index is 5 = 己巳, matching the primary record.
 
 This evidence is marked `candidate_only_pending_domain_review`. It is a strong long-range historical consistency check, not a production approval and not a full independent day-cycle table. The primary text and modern astronomical reconstruction have different evidentiary roles; a reviewer must assess the chronology, date conversion, source independence and historical calendar conventions before approving the anchor.
+
+
+## 31 Chunqiu sexagenary-day historical fixtures
+
+The 1992 Stephenson–Yau study's Table 3 lists 31 Chunqiu eclipse records with both a Julian-calendar date and a sexagenary cycle day. These entries have been transcribed into `chunqiu-eclipse-day-cycle-fixtures.ts` and independently recomputed by the project's Julian JDN converter and the 1949-10-01 Jiazi anchor.
+
+All 31 Table 3 date/cycle-day pairs reproduce their published 1-based cycle-day indices. This is a broader historical consistency test than the single 720 BCE example. It remains one scholarly source's table and is not counted as 31 independent sources or a complete independent calendar. The underlying historical records and the paper's date reductions still require specialist review.
+
+The paper also identifies one event-level discrepancy: for the 525 BCE record, Table 3 gives 525-08-22 (Julian), cycle day 11, while Table 4's eclipse computation places the actual eclipse on 525-08-21, cycle day 10. The repository preserves this explicitly rather than silently normalizing it. It is a discrepancy between the chronicle's recorded event date and the astronomical eclipse reconstruction, not a failure of the JDN arithmetic for the stated 525-08-22 calendar date.
+
+Source: F. R. Stephenson & K. K. C. Yau (1992), *Astronomical Records in the Ch'un-ch'iu Chronicle*, Journal for the History of Astronomy 23, Tables 3–4: https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
+
+The fixture tests establish arithmetic reproducibility against the transcribed published table. They do not approve the historical anchor for production.
