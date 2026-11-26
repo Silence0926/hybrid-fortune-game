@@ -22,8 +22,10 @@ describe("2027 institutional Jie reference candidates", () => {
       expect(taipei.solarLongitudeDegrees).toBe(japan.solarLongitudeDegrees);
       expect(Date.parse(taipei.publishedLocalDateTime)).toBe(Date.parse(japan.publishedLocalDateTime));
       expect(taipei.utcInstant).toBe(japan.utcInstant);
-      expect(taipei.timeZone).toBe("Asia/Taipei");
+      expect(taipei.timeZone).toBe("Etc/GMT-8");
+      expect(taipei.publishedTimeBasis).toBe("mean_solar_time");
       expect(japan.timeZone).toBe("Asia/Tokyo");
+      expect(japan.publishedTimeBasis).toBe("standard_time");
       expect(taipei.publishedPrecision).toBe("minute");
       expect(japan.publishedPrecision).toBe("minute");
     }
