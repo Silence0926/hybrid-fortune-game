@@ -129,6 +129,12 @@ The system must retain the selected analysis method and its rule version. Do not
 The convention baseline above is fixed. The engine remains non-production until the unresolved decisions are resolved and the astronomical/time data provider is validated. No synthetic pillar values may be returned as a substitute.
 
 
+## IANA time-zone provenance implementation status
+
+The local wall-time resolver now returns a structured `timeZoneProvenance` object alongside every non-invalid resolution result. It records the requested and canonicalized IANA identifier, the resolved Intl locale, calendar, numbering system, and hour cycle used by the resolver.
+
+**Known platform limitation:** ECMAScript `Intl.DateTimeFormat` does not expose the underlying IANA tzdb release identifier. The result therefore explicitly reports `tzDatabaseVersion: null` and `tzDatabaseVersionStatus: not_exposed_by_ecmascript_intl`; it does not pretend that the exact database release is known. Reproducible production calculations will require a pinned server/runtime image or a separately versioned time-zone data provider, plus recorded runtime/build provenance. The current resolver continues to use the host runtime's ICU/IANA data and does not enable BaZi calculation.
+
 ## Solar-time pipeline implementation status
 
 The calendar package currently contains a research-stage NOAA fractional-year approximation for the Equation of Time. It implements:
