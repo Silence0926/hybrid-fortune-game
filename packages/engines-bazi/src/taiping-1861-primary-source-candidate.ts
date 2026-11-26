@@ -1,17 +1,16 @@
 /**
  * Contemporary Taiping calendar primary-source candidate (1861).
  *
- * A digitized NYPL copy of the 1861 Taiping calendar has been located.
- * The NYPL catalogue describes the item as issued in 1861, likely Nanjing,
- * with 24 pages in traditional double-leaf format. Its physical description
- * says month labels appear at the top, the year in the middle, and page
- * numbers below. The British Library shelfmark 15297.d.33 independently
- * identifies a Taiping Calendar for 1861 with the same title.
+ * NYPL catalogue metadata identifies a 1861 Taiping calendar and provides
+ * unusually useful physical-layout details. Third-party mirrors expose
+ * several page images associated with the NYPL item. A visible daily-table
+ * fragment contains day numbers, Heavenly Stems, and 28 lunar-mansion names.
+ * It does not visibly provide Earthly Branches in the same row. Full Ganzhi
+ * pairs previously inferred from the stem sequence must not be represented
+ * as direct transcription.
  *
- * The item-level record and digitized cover/image record are not equivalent
- * to collation of the daily-calendar leaf. The target 1861-11-11 cell has
- * not yet been read from an original calendar page. No day-cycle evidence
- * or production gate credit is awarded at this stage.
+ * The month heading and printed folio for the inspected fragment are not
+ * established, and the target month-ten/day-one leaf has not been identified.
  */
 export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
   title: "太平天國辛酉拾壹年新曆頒行天下",
@@ -25,13 +24,23 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
   physicalDescription: {
     extent: "2, 2, 7, 24 p.",
     format: "traditional_double_leaf",
-    heightCm: 23,
-    layout: {
+    pageSizeCm: { width: 10.5, height: 19 },
+    printedLayout: {
       linesPerPage: 8,
-      monthLabel: "top",
-      yearLabel: "middle",
-      pageNumber: "bottom"
-    }
+      border: "single_border",
+      fishTail: "single_black_fish_tail",
+      mouth: "white_mouth",
+      monthLabel: "engraved_at_top",
+      yearLabel: "辛酉拾壹年_at_middle",
+      pageNumber: "at_bottom",
+      proclamationSupplement: {
+        title: "天王詔旨",
+        printing: "red_and_black",
+        lines: 8,
+        charactersPerLine: 20
+      }
+    },
+    source: "NYPL catalogue item data"
   },
   nypl: {
     institution: "New York Public Library",
@@ -41,7 +50,8 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     imageId: "1707705",
     uuid: "908e8c40-004e-0130-f94b-58d385a7bc34",
     digitizedOn: "2015",
-    rightsStatement: "NYPL public domain statement; territorial copyright status must be checked for reuse"
+    rightsStatement: "NYPL public domain statement; territorial copyright status must be checked for reuse",
+    apiStatus: "legacy_repo_api_deprecated_2026_08_01"
   },
   britishLibrary: {
     institution: "British Library",
@@ -50,23 +60,54 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     catalogueRecordUrl: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail",
     crossIdentificationStatus: "matching_title_and_year_catalogue_candidate"
   },
+  imageCaptureCandidates: [
+    {
+      id: "picryl-nypl-capture-82c575",
+      imageUrl: "https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg",
+      role: "third_party_mirror_of_nypl_digitized_page",
+      inspected: true,
+      monthHeadingRead: false,
+      printedFolioRead: false,
+      dateMapping: "unresolved"
+    },
+    {
+      id: "picryl-nypl-capture-28be45",
+      imageUrl: "https://cdn6.picryl.com/photo/1861/01/01/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-28be45-640.jpg",
+      role: "third_party_mirror_of_nypl_digitized_page",
+      inspected: true,
+      monthHeadingRead: false,
+      printedFolioRead: false,
+      dateMapping: "unresolved"
+    },
+    {
+      id: "picryl-nypl-capture-439a5e",
+      imageUrl: "https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-439a5e-640.jpg",
+      role: "third_party_mirror_of_nypl_digitized_page",
+      inspected: true,
+      monthHeadingRead: false,
+      printedFolioRead: false,
+      dateMapping: "unresolved"
+    }
+  ],
   observedPageFragment: {
-    sourceImageUrl: "https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg",
-    sourceImageRole: "third_party_mirror_of_nypl_digitized_item_image",
+    sourceImageId: "picryl-nypl-capture-82c575",
     visibleDayEntries: [
-      { day: 8, ganzhi: "辛丑" },
-      { day: 9, ganzhi: "壬寅" },
-      { day: 10, ganzhi: "癸卯" },
-      { day: 11, ganzhi: "甲辰" },
-      { day: 12, ganzhi: "乙巳" },
-      { day: 13, ganzhi: "丙午" },
-      { day: 14, ganzhi: "丁未" },
-      { day: 15, ganzhi: "戊申" }
+      { day: 8, dayStem: "辛", lunarMansion: "柳" },
+      { day: 9, dayStem: "壬", lunarMansion: "星" },
+      { day: 10, dayStem: "癸", lunarMansion: "張" },
+      { day: 11, dayStem: "甲", lunarMansion: "翼" },
+      { day: 12, dayStem: "乙", lunarMansion: "軫" },
+      { day: 13, dayStem: "丙", lunarMansion: "角" },
+      { day: 14, dayStem: "丁", lunarMansion: "亢" },
+      { day: 15, dayStem: "戊", lunarMansion: "氐" }
     ],
+    transcriptionBasis: "visible_day_number_heavenly_stem_and_28_lunar_mansion_columns",
+    earthlyBranchVisibleInTheseRows: false,
     monthHeadingRead: false,
     printedFolioIdentified: false,
     civilDateMapping: "unresolved",
-    transcriptionStatus: "partial_visual_transcription_pending_second_review"
+    transcriptionStatus: "partial_visual_transcription_second_review_completed",
+    correction: "Earlier full Ganzhi pairs such as 甲辰 were inferred from cycle continuity, not directly visible in this page fragment."
   },
   dateMappingResearch: {
     sourceId: "luo-ergang-1948-taiping-calendar-offset",
@@ -79,15 +120,16 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
   targetCheck: {
     civilDate: "1861-11-11",
     expectedGanzhiCandidate: "乙丑",
-    originalLeafIdentified: true,
+    originalDailyPageImageLocated: true,
+    targetMonthTenDayOneLeafIdentified: false,
     originalCellTranscribed: false,
-    pageCollationStatus: "partial_visual_transcription_month_mapping_pending",
-    note: "The earlier 甲子 candidate is superseded by Luo Ergang’s one-day-offset reconstruction. 乙丑 is still a candidate pending direct collation of the original month-ten day-one leaf."
+    pageCollationStatus: "partial_stem_and_lunar_mansion_transcription_only",
+    note: "乙丑 remains a secondary-source/calendar-structure reconstruction candidate. The NYPL fragment does not display the target month-ten day-one cell or a complete Ganzhi pair."
   },
   assessment: {
     sourceClass: "contemporary_primary_calendar_candidate",
     itemLevelIdentity: "catalogued_and_digitized",
-    dailyContentVerification: "pending_original_leaf_collation",
+    dailyContentVerification: "partial_stem_and_lunar_mansion_transcription_only",
     independentDayCycleGateCredit: false,
     productionImpact: "none",
     accessedOn: "2026-11-26"
@@ -102,8 +144,14 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     {
       id: "ncl-union-catalogue-bl-15297-d-33",
       title: "National Central Library Chinese Rare Books Union Catalogue, record for 太平天國辛酉拾壹年新曆",
-      url: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=ea1c338af53b4760ae8356da69f4dedbfDczMjU0Mw2.bBlZTruLva8_oBoZpWGYOsEbXQ73KjTvsKq65m5zUpI_&page=6808",
+      url: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail",
       role: "british_library_holding_and_shelfmark_catalogue_record"
+    },
+    {
+      id: "nypl-repo-api-documentation",
+      title: "NYPL Digital Collections API documentation and deprecation notice",
+      url: "https://api.repo.nypl.org/",
+      role: "access_method_status"
     }
   ]
 } as const;
