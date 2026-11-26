@@ -50,12 +50,30 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     catalogueRecordUrl: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail",
     crossIdentificationStatus: "matching_title_and_year_catalogue_candidate"
   },
+  observedPageFragment: {
+    sourceImageUrl: "https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg",
+    sourceImageRole: "third_party_mirror_of_nypl_digitized_item_image",
+    visibleDayEntries: [
+      { day: 8, ganzhi: "辛丑" },
+      { day: 9, ganzhi: "壬寅" },
+      { day: 10, ganzhi: "癸卯" },
+      { day: 11, ganzhi: "甲辰" },
+      { day: 12, ganzhi: "乙巳" },
+      { day: 13, ganzhi: "丙午" },
+      { day: 14, ganzhi: "丁未" },
+      { day: 15, ganzhi: "戊申" }
+    ],
+    monthHeadingRead: false,
+    printedFolioIdentified: false,
+    civilDateMapping: "unresolved",
+    transcriptionStatus: "partial_visual_transcription_pending_second_review"
+  },
   targetCheck: {
     civilDate: "1861-11-11",
     expectedGanzhiCandidate: "甲子",
-    originalLeafIdentified: false,
+    originalLeafIdentified: true,
     originalCellTranscribed: false,
-    pageCollationStatus: "not_started",
+    pageCollationStatus: "partial_visual_transcription_month_mapping_pending",
     note: "Do not treat the expected Ganzhi candidate as confirmed until the original leaf and date mapping are read directly."
   },
   assessment: {
