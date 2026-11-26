@@ -62,7 +62,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
     candidateGanzhi: "乙丑",
     candidateCycleIndex: getTaipingCalendarCycleIndex(26, 10, 1),
     conventionalGregorianGanzhi: "甲子",
-    conventionalGregorianCycleIndex: ((gregorianCivilDateToJdn("1861-11-11") ?? 0) - 2_433_191) % 60,
+    conventionalGregorianCycleIndex: (((gregorianCivilDateToJdn("1861-11-11") ?? 0) - 2_433_191) % 60 + 60) % 60,
     status: "candidate_pending_original_month_ten_leaf_collation"
   },
   pageFragmentCompatibilityCheck: {
