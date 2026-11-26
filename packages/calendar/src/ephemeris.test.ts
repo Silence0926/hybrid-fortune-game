@@ -15,7 +15,8 @@ const provenance = {
   earthRotationTimeScale: "not_required" as const,
   timeConversionPolicy: "Synthetic test: input UTC passed through without physical time conversion.",
   deltaTModel: "not_applicable_synthetic",
-  deltaTUncertaintySeconds: null,
+  dynamicalToEarthRotationModel: "not_applicable_synthetic",
+  earthRotationConversionUncertaintySeconds: null,
   supportedFrom: "2025-01-01T00:00:00.000Z",
   supportedThrough: "2026-01-01T00:00:00.000Z",
   uncertaintySeconds: null
@@ -52,7 +53,8 @@ describe("findSolarLongitudeCrossing", () => {
       expect(result.provenance.datasetId).toBe("synthetic-test-only");
       expect(result.provenance.calculationTimeScale).toBe("TT");
       expect(result.provenance.earthRotationTimeScale).toBe("not_required");
-      expect(result.provenance.deltaTUncertaintySeconds).toBeNull();
+      expect(result.provenance.dynamicalToEarthRotationModel).toBe("not_applicable_synthetic");
+      expect(result.provenance.earthRotationConversionUncertaintySeconds).toBeNull();
       expect(result.validation).toBe("provider_dependent_not_independently_validated");
     }
   });
