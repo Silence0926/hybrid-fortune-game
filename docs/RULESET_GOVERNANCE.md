@@ -162,3 +162,12 @@ Sources:
 All twelve pairs normalize to the same UTC minute. The comparison includes a local-date rollover at 芒種: Taipei publishes 2026-06-05 23:48 at UTC+8, while NAOJ publishes 2026-06-06 00:48 at UTC+9; both normalize to 2026-06-05 15:48Z.
 
 This is a cross-publication consistency result only. It does not establish independent ephemeris derivation, second-level accuracy, or production validity. The fixture validator returns only `candidate_supported`; no BaZi calculation is enabled. Tests verify source count, twelve-term coverage, local-time normalization, declared time bases, and minute precision—not astronomical accuracy.
+
+
+## JDN arithmetic and sexagenary-day anchor evidence update
+
+`gregorianCivilDateToJdn` now computes the integer JDN from a validated proleptic Gregorian civil date. The day-cycle evidence gate independently recomputes this value and rejects records whose stated JDN does not match the date.
+
+The national-standard anchor is identified as 1949-10-01 = 甲子 (zero-based cycle index 0), JDN 2433191. The CAS / Purple Mountain Observatory interpretation material states this anchor under GB/T 33661-2017. Its 1900–2025 calendar also shows 1949-10-01 as 甲子 and explicitly states that 1949–2025 follows the national standard. Since these records share the same derivation lineage, they are not counted as independent sources. The new candidate records are intentionally rejected by the two-independent-source gate.
+
+The validator now requires `sourceDerivationGroup` metadata and counts distinct derivation families rather than distinct URLs/source IDs. This prevents a mirrored or standard-derived publication from being mistaken for independent corroboration. A second genuinely independent computation or primary published calendar record is still required before approving the anchor.
