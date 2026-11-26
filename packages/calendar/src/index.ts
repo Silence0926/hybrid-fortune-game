@@ -342,5 +342,6 @@ export type { HkoMajorSolarTermFixture } from "./hko-2026-major-solar-terms.js";
 
 export { validateJieTermReferenceFixtures } from "./jie-term-fixtures.js";
 export type { JieTermReferenceFixture, JieTermFixtureValidation } from "./jie-term-fixtures.js";
+export { JIE_2027_REFERENCE_FIXTURES, JIE_2027_REFERENCE_SOURCE_NOTES } from "./jie-2027-reference-fixtures.js";
 export { SOLAR_TERMS_24, getSolarTermByLongitude, getBaziMonthBoundaryTerms } from "./solar-terms.js";
 export type { SolarTermClass, SolarTermDefinition } from "./solar-terms.js";
