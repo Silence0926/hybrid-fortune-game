@@ -338,3 +338,16 @@ The paper also identifies one event-level discrepancy: for the 525 BCE record, T
 Source: F. R. Stephenson & K. K. C. Yau (1992), *Astronomical Records in the Ch'un-ch'iu Chronicle*, Journal for the History of Astronomy 23, Tables 3–4: https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
 
 The fixture tests establish arithmetic reproducibility against the transcribed published table. They do not approve the historical anchor for production.
+
+
+## Alternative Chunqiu-calendar reconstruction cross-check
+
+A second computational reconstruction has been added as a comparison dataset: Y. T. Liu, *Reconstruction of the Chunqiu Calendar* (first draft, 2019), https://ytliu0.github.io/ChineseCalendar/chunqiu.html.
+
+The author explicitly states that the reconstruction follows Section 3.5 / Table 3-7 of Zhang Peiyu et al., *Ancient Chinese Calendars and Almanacs* (2008), and reconstructs the Lu-state calendar using a lunar-cycle model and inferred intercalations. Selected New Year date/sexagenary-day pairs are recorded in `chunqiu-calendar-model-cross-check.ts` and recomputed with the project's Julian JDN converter and 1949-10-01 Jiazi anchor.
+
+Seven selected pairs match the modern-anchor arithmetic, including the source's corrected N_-720 reading (721 BCE-01-05 = 乙亥, not the apparent table typo 己亥). This is an alternate computational reconstruction, not a new primary historical witness. Its lineage is conservatively grouped with the Zhang Peiyu 2008 reconstruction; it receives no independent-source release-gate credit.
+
+The source itself cautions that the Chunqiu calendar is a reconstruction model fitted to fragmented records. It reports 45 inconsistencies among 393 calendrical dates, discusses possible textual transmission errors and model limitations, and notes that alternative reconstructions can differ by a month. Therefore these seven matches demonstrate arithmetic consistency with a separate published reconstruction, not definitive historical validation.
+
+Source: Y. T. Liu, *Reconstruction of the Chunqiu Calendar*, especially the opening-year table, the N_-720 correction, and the reliability discussion: https://ytliu0.github.io/ChineseCalendar/chunqiu.html
