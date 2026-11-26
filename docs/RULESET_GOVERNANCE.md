@@ -590,3 +590,29 @@ This is a useful twelve-point internal consistency cross-check. It is **not** a 
 Source: Y. T. Liu, *Chinese Calendar Tables — Ming Period*, https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
 
 The National Library of Taiwan catalogue identifies the 1590 original as *大明萬曆十八年歲次庚寅大統曆*, printed copy FB.108.15(7), in Volume 4 of the 2007 facsimile set, beginning at printed page 195. The target original leaf remains uncollated. The NYPL 1861 Taiping calendar and the Ming 1590 Da Tong calendar are separate historical evidence tracks and must not share calendar-specific offset policies.
+
+## Wanli 18 (1590) original-calendar catalogue review
+
+The project now records several catalogue-level leads for the original **大明萬曆十八年歲次庚寅大統曆**. The evidence must be kept in three separate layers:
+
+1. **2007 facsimile-compendium locator:** the contents of *國家圖書館藏明代大統曆日彙編* place the 1590 calendar in volume 4, page 195, under holding identifier FB.108.15(7). Page 195 is the reprint's pagination, not an original Ming folio.
+2. **Rare-books bibliography:** the scanned *中國古籍善本書目·子部* catalogue entry 265 identifies the calendar as a Ming Wanli-period block print. This is a bibliographic description, not a scan of its daily tables.
+3. **Secondary catalogue variants:** Guoxuedashi records include one description as a generic Ming Wanli-period imprint and another as a Wanli 19 (1591) imprint. These descriptions may refer to catalogue-level edition/printing metadata, but the exact printing year of the target surviving copy has not been established by direct copy inspection.
+
+The University of Michigan Google Books record currently located for the 2007 compendium is Volume 1, not the required Volume 4. It therefore confirms the publication's existence but does not provide the 1590 leaf.
+
+Current status:
+- Original 1590 daily leaf directly inspected: **no**.
+- Gregorian date / Ganzhi daily cell collated from the original: **no**.
+- Catalogue-level access leads recorded: **yes**.
+- Historical day-cycle gate credit: **none**.
+- Production impact: **none**.
+
+Do not resolve the imprint-year variant by choosing one catalogue entry. The next acceptable evidence is a direct scan or physical inspection of the 1590 calendar copy, with its title, imprint, printed folio, month heading, day row, and Ganzhi label recorded together.
+
+References:
+- Y. T. Liu, *Chinese Calendar Tables — Ming Period*, contents locator for FB.108.15(7): https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
+- *中國古籍善本書目·子部*, scanned catalogue entry 265: https://upload.wikimedia.org/wikipedia/commons/f/f1/SSID-13990656_%E4%B8%AD%E5%9C%8B%E5%8F%A4%E7%B1%8D%E5%96%84%E6%9C%AC%E6%9B%B8%E7%9B%AE_%E5%AD%90%E9%83%A8_2.pdf
+- Guoxuedashi, generic Ming Wanli-period catalogue description: https://www.guoxuedashi.com/shumu/186654r.html
+- Guoxuedashi, Wanli 19 (1591) imprint catalogue description: https://www.guoxuedashi.com/shumu/gj-998872wi.html
+- Google Books, *國家圖書館藏明代大統曆日彙編*, Volume 1 only: https://books.google.com/books?id=VRTlAAAAMAAJ
