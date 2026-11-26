@@ -414,3 +414,27 @@ References:
 - Stephenson & Yau (1992): https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
 - Tanikawa et al. (2011): https://doi.org/10.1007/978-1-4419-8161-5_2
 - Tschang (2004): https://sino-platonic.org/complete/spp141_chinese_calendar.pdf
+
+
+## Astronomical time-scale governance — JPL Horizons review
+
+The solar-longitude ephemeris boundary now separates three distinct time concepts:
+
+- API timestamps are normalized UTC instants. This is an interchange representation, not a claim that UTC is historically defined for ancient epochs.
+- Ephemeris evaluation uses a uniform dynamical/terrestrial argument: TDB or TT. UT1 must not be labelled as the ephemeris dynamics time argument.
+- Earth-rotation conversion is separately declared as UT1 when required, or `not_required` when the provider's calculation does not require an Earth-rotation conversion.
+
+The provider provenance contract records the calculation time scale, Earth-rotation time scale, Delta-T model, conversion policy, and Delta-T/UT1 uncertainty. A null uncertainty means unknown/not supplied; it must not be interpreted as zero.
+
+JPL Horizons documentation states that its planetary ephemeris dynamics use TDB; TT and TDB differ by no more than about 0.002 seconds. For observer-time output, Horizons uses UT1 before 1962 and UTC after 1962. Its historical TDB-to-UT conversion relies on reconstructed Delta-T, and the stated uncertainty generally increases toward earlier epochs: a few minutes around AD 948 and about four hours around 3000 BCE. UTC is explicitly not well-defined before 1962 in the Horizons documentation.
+
+Project consequences:
+1. Solar-term longitude evaluation and historical Earth-rotation conversion are separate operations.
+2. Never feed an ancient civil date to a modern UTC/DST conversion as though it were a well-defined UTC instant.
+3. Any provider must declare the ephemeris time argument, Delta-T model/version, supported epoch range, uncertainty, and calendar convention.
+4. A numerically precise crossing timestamp does not override uncertainty in converting that instant to a historical local date/time.
+5. This governance change does not select a production ephemeris or enable BaZi calculations.
+
+Reference: JPL Horizons System Manual, “Specification of Time”, “Universal Time (TDB -> UT Conversion)”, and “Statement of Ephemeris Limitations”: https://ssd.jpl.nasa.gov/horizons/manual.html
+
+Implementation status: the TypeScript provider provenance now uses `TDB | TT` for ephemeris calculation time and a separate `UT1 | not_required` field for Earth-rotation time. The synthetic provider test explicitly declares its non-astronomical time conversion and null Delta-T uncertainty. This is a contract clarification only; no real ephemeris provider has been integrated or validated.
