@@ -219,3 +219,30 @@ The project now reproduces Y. T. Liu's published formula from *Sexagenary Cycle 
 Both dates are independently converted by the project's Gregorian JDN implementation. The published formula and the project's 1949 anchor both reproduce the published day names and cycle indices. The evidence is classified as an independent computational exposition, not an independent historical witness; the 2019 anchor originates from the same author's calendar page. It does not receive historical-source release-gate credit.
 
 Reference: https://ytliu0.github.io/ChineseCalendar/sexagenary.html
+
+
+## External day-table dataset review: Chinese Calendar Open Datasets v1.1.0
+
+A public third-party dataset was reviewed as a candidate cross-check:
+- Repository: https://github.com/Kuangchujia/chinese-calendar-dataset
+- Dataset DOI: https://doi.org/10.5281/zenodo.22788686
+- Version stated in the repository: v1.1.0
+- Licence: CC BY 4.0
+- A3 coverage: 55,883 daily rows, 1900-01-01 through 2052-12-31.
+
+The repository publishes its generator and an anchor verification table. Its day sequence is generated from the modern ordering anchor 1949-10-01 = 甲子 using Gregorian/Julian JDN conversion and modulo-60 arithmetic. Its verification table lists 1590-12-22, 1861-11-11, 2025-12-21 and the Chunqiu 720 BCE-02-22 己巳 record; it also explicitly rejects a conflicting 1965-12-22 = 甲子 claim as erroneous.
+
+Source-lineage assessment:
+- The 1949 anchor is supported in the dataset README by modern calendar/teaching references, but those references are not fully itemized there.
+- The 720 BCE historical check is the same Chunqiu eclipse record already covered by this project; it is not a new historical witness.
+- The listed 1590 and 1861 entries are useful candidates, but their underlying primary documentary citations have not yet been established from the dataset's verification table.
+- The 2025 entry is modern and is corroborated by a media report citing the Wuyang Astronomical Museum, but it remains a modern calendar cross-check rather than a historical witness.
+- The dataset's published generator is valuable for reproducibility, but it uses the same general JDN/modulo-60 architecture and the same 1949 anchor. It is not an independent derivation of the absolute sequence.
+
+Decision: record as a useful external implementation/data candidate, but do not import the 55,883 rows as authoritative fixtures and do not award independent historical-source gate credit. The separate Y. T. Liu published formula cross-check is recorded in `day-cycle-independent-formula-cross-check.ts`; it checks the same modular mapping against the 2019 calendar anchor and a 1781 worked example.
+
+References:
+- Repository and README: https://github.com/Kuangchujia/chinese-calendar-dataset
+- Dataset DOI: https://doi.org/10.5281/zenodo.22788686
+- Generator: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/code/gen_dataset_ganzhi.py
+- Verification anchors: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/03-%E5%B9%B2%E6%94%AF%E7%BA%AA%E6%97%A5%E5%AF%B9%E7%85%A7%E8%A1%A8/data/verification_anchors.csv
