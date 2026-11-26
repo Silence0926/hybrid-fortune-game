@@ -95,6 +95,17 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
       title: "羅爾綱, 天曆與陰陽曆對照考, 學原, 第二卷第六期 (1948)",
       url: "https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf",
       role: "secondary_historical_study_with_diary_and_foreign_correspondence_cross_checks",
+      authorAttribution: {
+        normalizedName: "羅爾綱",
+        visualTitlePageReading: "羅爾綱",
+        searchIndexOcrVariant: "羅衛綱",
+        note: "The PDF text extraction misreads the author's name in some places; the title-page image and body references support 羅爾綱."
+      },
+      issueMetadata: {
+        coverAndArticleRunningHeader: "學原第二卷第六期",
+        anomalousContentsHeader: "學原第十一卷第六期",
+        resolution: "Use volume 2 issue 6 from the cover and article running headers; preserve the anomalous contents heading as a cataloguing/transcription note."
+      },
       relevantPrintedPages: ["52", "53"]
     },
     {
