@@ -209,3 +209,13 @@ Seven selected pairs were recomputed using the repository's Julian JDN conversio
 The source warns that the Chunqiu calendar reconstruction is a model fitted to fragmented historical records; it reports 45 inconsistencies among 393 calendrical dates and discusses uncertainties in textual transmission and leap-month reconstruction. This evidence is useful for independent implementation testing and model comparison, but not for production approval.
 
 Reference: https://ytliu0.github.io/ChineseCalendar/chunqiu.html
+
+
+## Published sexagenary JDN formula cross-check
+
+The project now reproduces Y. T. Liu's published formula from *Sexagenary Cycle (六十干支)*:
+`S = 1 + mod(JD_noon - 11, 60)`, derived from the page's 2019-01-27 = 甲子, JDN 2458511. The page also supplies 1781-03-13 = 壬戌, JDN 2371629 as a worked example.
+
+Both dates are independently converted by the project's Gregorian JDN implementation. The published formula and the project's 1949 anchor both reproduce the published day names and cycle indices. The evidence is classified as an independent computational exposition, not an independent historical witness; the 2019 anchor originates from the same author's calendar page. It does not receive historical-source release-gate credit.
+
+Reference: https://ytliu0.github.io/ChineseCalendar/sexagenary.html
