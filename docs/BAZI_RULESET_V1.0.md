@@ -305,3 +305,23 @@ References:
 - NAOJ ECO, *Day number, weekday and sexagenary cycle* (additional independent comparison source to investigate): https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/cale2j.cgi
 
 The project's own day-pillar convention still governs whether the date supplied to this converter is the preceding civil date for 23:00–23:59 or the current civil date otherwise. The converter itself does not alter that confirmed policy.
+
+
+## Historical day-cycle cross-check: Chunqiu Duke Yin year 3
+
+A long-range historical cross-check is now recorded in `historical-day-cycle-cross-check.ts`.
+
+The primary text, *Chunqiu Zuo Zhuan · Duke Yin, year 3*, records: `春，王二月，己巳，日有食之。` The transmitted text supplies the sexagenary day 己巳 but does not itself give a Julian-calendar date.
+
+F. Richard Stephenson and Kevin K. C. Yau, in *Astronomical Records in the Ch'un-ch'iu Chronicle* (Journal for the History of Astronomy 23, 1992), identify the eclipse as 22 February 720 BCE on the Julian calendar, identify 己巳 as cycle day 6, state that they verified the cyclical-day conversion, and report an eclipse visible near sunrise in eastern China. A later peer-reviewed study, *Solar Eclipses in the First Half of the Chunqiu Period* (PASJ 62(3), 2010), independently analyses the Chunqiu eclipse series and gives a Delta-T range for the eclipse around 720 BCE February 22.
+
+The software explicitly converts historical 720 BCE to astronomical year -719 (there is no civil year zero), then converts Julian 720 BCE-02-22 to JDN 1,458,496. Applying the already identified modern anchor 1949-10-01 = JDN 2,433,191 = cycle index 0 gives cycle index 5, 己巳. This agrees with the historical record.
+
+This is a strong long-range historical consistency check, but it is recorded as `candidate_only_pending_domain_review`, not as a production anchor approval. It validates one historical event and does not constitute a full independent day-cycle table. The primary text and the scholarly astronomical reconstruction have distinct evidentiary roles; their independence and the detailed historical date conversion still require domain review.
+
+References:
+- Primary text: https://ctext.org/chun-qiu-zuo-zhuan/yin-gong-san-nian/ens
+- F. R. Stephenson & K. K. C. Yau (1992), *Astronomical Records in the Ch'un-ch'iu Chronicle*: https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
+- *Solar Eclipses in the First Half of the Chunqiu Period* (2010), PASJ 62(3): https://doi.org/10.1093/pasj/62.3.797
+
+The new Julian-date conversion uses astronomical year numbering and is kept separate from the existing proleptic Gregorian date converter. It does not change the confirmed BaZi rule that the day-pillar date is selected using the user's local civil-midnight policy.
