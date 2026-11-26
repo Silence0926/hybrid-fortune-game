@@ -23,7 +23,11 @@ describe("Taiping 1861 calendar one-day offset research", () => {
 
   it("reproduces the two historical day-label cross-checks without granting source-gate credit", () => {
     expect(getTaipingCalendarCycleIndex(26, 9, 11)).toBe(40);
-    expect(research.pageFragmentCompatibilityCheck.observedGanzhi).toBe("甲辰");
+    expect(research.pageFragmentCompatibilityCheck.observedDayStem).toBe("甲");
+    expect(research.pageFragmentCompatibilityCheck.observedLunarMansion).toBe("翼");
+    expect(research.pageFragmentCompatibilityCheck.derivedCandidateGanzhi).toBe("甲辰");
+    expect(research.pageFragmentCompatibilityCheck.earthlyBranchVisible).toBe(false);
+    expect(research.pageFragmentCompatibilityCheck.interpretation).toContain("not a complete pair printed");
     expect(research.pageFragmentCompatibilityCheck.candidateGregorianDate).toBe("1861-10-21");
     expect(getTaipingCalendarCycleIndex(26, 11, 10)).toBe(40);
     expect(research.independentHistoricalCrossCheck.publishedGregorianDate).toBe("1861-12-20");
