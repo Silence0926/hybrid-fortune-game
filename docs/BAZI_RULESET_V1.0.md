@@ -706,3 +706,13 @@ A separate research module now records the twelve month-start dates and publishe
 This is a modern reconstruction cross-check, not a transcription of the original Wanli 18 almanac. It does not independently validate the historical anchor and receives no source-gate credit. The 1590 original daily page remains uncollated. See `wanli-1590-month-start-cross-check.ts` and `WANLI_1590_MONTH_START_SOURCE_STATUS`.
 
 Source: https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
+
+## Wanli 1590 digital-calendar cross-check candidate
+
+A separate modern digital-calendar comparison record is implemented in `packages/engines-bazi/src/wanli-1590-ctext-cross-check.ts`.
+
+The Chinese Text Project's indexed Wanli 18 daily table lists lunar month 10, day 1 as 己巳 on Gregorian 1590-10-28 (Julian 1590-10-18). The project's configured 1949 甲子 anchor gives JDN 2,302,096 and cycle index 5 (己巳), matching the published label and the previously recorded Y. T. Liu month-start reconstruction.
+
+This is **not** direct evidence from the original Ming almanac. The CText page could not be retrieved directly during review (HTTP 403), and the derivation lineage behind its modern calendar table has not been established. The record is classified as a secondary digital-calendar cross-check candidate; it receives no independent historical source gate credit and has no production impact.
+
+The 1590 target date 1590-12-22 remains uncollated against an original Ming daily page. Do not enable the day-pillar engine on the basis of this comparison.
