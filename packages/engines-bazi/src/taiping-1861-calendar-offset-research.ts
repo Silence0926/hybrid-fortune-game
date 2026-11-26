@@ -3,16 +3,16 @@ import { gregorianCivilDateToJdn } from "./gregorian-jdn.js";
 /**
  * Taiping Heavenly Kingdom calendar research for Xin-you year 11 (1861).
  *
- * Luo Ergang's 1948 study argues that the Taiping calendar's Gan-Zhi / weekday
- * labels are one day ahead of the corresponding conventional lunar-solar
- * calendar labels. It places Taiping New Year's day (庚寅) on 1861-02-09,
- * not the older Tanaka-table date 1861-02-10.
+ * Luo Ergang's 1948 study (Section VI) explicitly maps Taiping month 1,
+ * day 1 庚寅 to Gregorian 1861-02-09 and Qing lunar month 12, day 30 己丑.
+ * Its phrase "早一日" describes the calendar-date alignment: the Taiping
+ * calendar date is one day earlier than the corresponding lunar/solar date.
+ * It must not be implemented as subtracting one from the Ganzhi cycle index.
  *
- * A 1926 reproduction of the 1861 Taiping calendar records 366 days per
- * year, odd months with 31 days, even months with 30 days, and month-one
- * day-one as 庚寅. The NYPL digitized 1861 item has a partial monthly page
- * image whose visible day 11 is 甲辰. The page's month heading and folio are
- * not legible, so the page is only a compatibility check, not a mapped leaf.
+ * A 1926 reproduction records a 366-day year with odd months of 31 days
+ * and even months of 30 days. The NYPL digitized 1861 item has a partial
+ * monthly page whose visible day 11 is stem 甲 and lunar mansion 翼; the
+ * month heading, folio, and Earthly Branch are not legible.
  */
 
 export const TAIPING_1861_MONTH_LENGTHS = [
@@ -37,6 +37,16 @@ export function getTaipingCalendarCycleIndex(startCycleIndex: number, month: num
 
 export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
   calendarYear: "Taiping Xin-you year 11 (1861)",
+  publishedYearStartCrosswalk: {
+    taipingDate: "month 1, day 1",
+    taipingGanzhi: "庚寅",
+    gregorianDate: "1861-02-09",
+    qingLunarDate: "Xianfeng year 10, month 12, day 30",
+    qingLunarGanzhi: "己丑",
+    sourceSection: "Section VI, Taiping-calendar / lunar-solar-calendar comparison table",
+    sourceId: "luo-ergang-1948-taiping-calendar-offset",
+    evidenceClass: "published_secondary_historical_crosswalk"
+  },
   proposedNewYear: {
     gregorianDate: "1861-02-09",
     taipingDate: "month 1, day 1",
@@ -44,7 +54,8 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
     taipingCycleIndex: 26,
     conventionalGregorianCycleIndex: 25,
     conventionalGregorianGanzhi: "己丑",
-    labelOffset: "one_day_ahead_of_conventional_gregorian_day_cycle",
+    labelOffset: "one_cycle_index_higher_on_the_same_gregorian_date",
+    calendarDateAlignment: "taiping_new_year_is_one_day_earlier_than_the_corresponding_qing_lunar_date",
     sourceId: "luo-ergang-1948-taiping-calendar-offset"
   },
   calendarStructure: {
@@ -92,7 +103,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
   sources: [
     {
       id: "luo-ergang-1948-taiping-calendar-offset",
-      title: "羅爾綱, 天曆與陰陽曆對照考, 學原, 第二卷第六期 (1948)",
+      title: "羅爾綱, 天曆與陰陽曆對照考, 學原, Second Volume, Issue 6 (1948)",
       url: "https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf",
       role: "secondary_historical_study_with_diary_and_foreign_correspondence_cross_checks",
       authorAttribution: {
@@ -106,7 +117,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
         anomalousContentsHeader: "學原第十一卷第六期",
         resolution: "Use volume 2 issue 6 from the cover and article running headers; preserve the anomalous contents heading as a cataloguing/transcription note."
       },
-      relevantPrintedPages: ["52", "53"]
+      relevantSection: "Section VI, comparison tables"
     },
     {
       id: "liu-fu-1926-reproduction-of-1861-taiping-calendar",
