@@ -119,6 +119,7 @@ export { CHUNQIU_525_DATE_CONVENTION_DISCREPANCY } from "./chunqiu-525-date-conv
 export { CHUNQIU_CALENDAR_MODEL_CROSS_CHECKS, CHUNQIU_CALENDAR_MODEL_CROSS_CHECK_STATUS } from "./chunqiu-calendar-model-cross-check.js";
 export { publishedSexagenaryIndexFromJdn, LIU_2019_FORMULA_CROSS_CHECK, LIU_2019_FORMULA_SOURCE_STATUS } from "./day-cycle-independent-formula-cross-check.js";
 export { DAY_CYCLE_1949_ANCHOR_REFERENCE_RECORDS, DAY_CYCLE_1949_ANCHOR_RESEARCH_STATUS } from "./day-cycle-reference-candidates.js";
+export { TENSHO_1590_DAY_CYCLE_CROSS_CHECK } from "./tensho-1590-day-cycle-cross-check.js";
 export type { DayCycleReferenceFixture, DayCycleFixtureValidation } from "./day-cycle-fixtures.js";
 export { deriveHiddenStemTenGods } from "./hidden-stem-ten-gods.js";
 export type { HiddenStemTenGodEntry } from "./hidden-stem-ten-gods.js";
