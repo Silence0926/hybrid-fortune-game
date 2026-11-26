@@ -474,3 +474,17 @@ Assessment: add the Japanese calendar table as a computational cross-check candi
 References:
 - Tetsu Ishino, *No. 8 — Tensho 18 (1590)*, historical calendar table: https://inoh-ken.org/Application/nengo/0008.pdf
 - Catalogue, *國家圖書館藏明代大統曆日彙編*: https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
+
+
+## Precision correction: Delta-T is not the same field as JPL's TDB-UT conversion
+
+The time-scale provenance contract was refined after checking the current JPL Horizons manual. Classical astronomical Delta-T is defined as TT - UT1. JPL Horizons describes its historical output conversion as TDB - UT, where UT is UT1 before 1962 and UTC after 1962. TDB and TT are close but not identical; Horizons states their periodic distinction is at most about 0.002 seconds in the documented modern model, and notes that this distinction is not maintained for sufficiently early dates where the historical data do not support it.
+
+These are related but not interchangeable quantities. The provider provenance therefore records them separately:
+- `deltaTModel`: the classical TT - UT1 model/version, or an explicit not-applicable reason.
+- `dynamicalToEarthRotationModel`: the model/version used to map the ephemeris calculation time (TDB/TT) to UT1/UTC.
+- `earthRotationConversionUncertaintySeconds`: uncertainty of that historical ephemeris-to-Earth-rotation conversion. Null means unknown/not supplied, never zero.
+
+This avoids incorrectly labelling a provider's TDB-UT conversion model as a Delta-T model. The change is a provenance-contract refinement only; it does not add an ephemeris provider or alter any calendar rule.
+
+Reference: JPL Horizons System Manual, “Specification of Time” and “Universal Time (TDB -> UT Conversion)”: https://ssd.jpl.nasa.gov/horizons/manual.html
