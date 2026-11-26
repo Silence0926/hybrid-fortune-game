@@ -307,3 +307,23 @@ References:
 - Xie Xingyao, *太平天國史事論叢* (NCL digitized copy mirror): https://upload.wikimedia.org/wikipedia/commons/5/58/NCL-9900010708_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E5%8F%B2%E4%BA%8B%E8%AB%96%E5%8F%A2.pdf
 - Chinese Text Project, 同治元年 date table: https://ctext.org/date.pl?day=&entityid=705201&if=gb&month=&year=1
 - Chinese Calendar Open Dataset verification anchors: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/03-%E5%B9%B2%E6%94%AF%E7%BA%AA%E6%97%A5%E5%AF%B9%E7%85%A7%E8%A1%A8/data/verification_anchors.csv
+
+
+## 1590-12-22 甲子 candidate — additional calendar cross-check
+
+A Japanese historical-calendar table for Tensho 18 (1590), compiled by Tetsu Ishino and published on inoh-ken.org, explicitly lists:
+
+- Gregorian date: 1590-12-22
+- Japanese lunisolar date: Tensho 18, month 11, day 26
+- Day Ganzhi: 甲子
+- Julian Day Number shown by the table: 2,302,151
+
+The same table lists the surrounding dates and their day Ganzhi in sequence. This is a useful additional computational/calendar cross-check for the dataset's 1590-12-22 = 甲子 candidate. However, the accessible source does not fully document the derivation lineage of its day-cycle assignment. It must not be assumed to be independent of the project's JDN/modulo-60 arithmetic, and it is not a contemporary Ming primary witness.
+
+A catalogue for the *國家圖書館藏明代大統曆日彙編* identifies a Ming Wanli 18 (1590) printed almanac, *大明萬曆十八年歲次庚寅大統曆*, as item FB.108.15(7) in volume four. This is a concrete primary-source retrieval lead. The catalogue listing itself does not expose the original calendar pages or verify the 1590-12-22 cell; that collation remains pending.
+
+Assessment: add the Japanese calendar table as a computational cross-check candidate, not as an independent historical witness. The Ming almanac is a primary-source retrieval target, not yet inspected evidence. No historical day-cycle gate credit is granted, and production day-pillar calculation remains disabled.
+
+References:
+- Tetsu Ishino, *No. 8 — Tensho 18 (1590)*, historical calendar table: https://inoh-ken.org/Application/nengo/0008.pdf
+- Catalogue, *國家圖書館藏明代大統曆日彙編*: https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
