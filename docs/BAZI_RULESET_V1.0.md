@@ -351,3 +351,18 @@ Seven selected pairs match the modern-anchor arithmetic, including the source's 
 The source itself cautions that the Chunqiu calendar is a reconstruction model fitted to fragmented records. It reports 45 inconsistencies among 393 calendrical dates, discusses possible textual transmission errors and model limitations, and notes that alternative reconstructions can differ by a month. Therefore these seven matches demonstrate arithmetic consistency with a separate published reconstruction, not definitive historical validation.
 
 Source: Y. T. Liu, *Reconstruction of the Chunqiu Calendar*, especially the opening-year table, the N_-720 correction, and the reliability discussion: https://ytliu0.github.io/ChineseCalendar/chunqiu.html
+
+
+## Independent published JDN formula cross-check
+
+A separate published computational exposition has been added as `day-cycle-independent-formula-cross-check.ts`: Y. T. Liu, *Sexagenary Cycle (六十干支)*, first draft October 2018, last major update 7 July 2019.
+
+The page derives the one-based sexagenary index from its 2019 calendar entry 2019-01-27 = 甲子, JDN 2,458,511:
+`S = 1 + mod(JD_noon - 11, 60)`.
+It also gives a worked example: 1781-03-13, JDN 2,371,629 = 壬戌.
+
+The repository now independently recomputes both Gregorian JDNs, evaluates the published formula, and compares both results with the project's 1949-10-01 = 甲子 anchor. Both examples match: 2019-01-27 = 甲子 and 1781-03-13 = 壬戌.
+
+This is useful as an independently published computational exposition and an alternate modern anchor/example pair. It is not a primary historical witness: the 2019 anchor is taken from the author's 2019 calendar page. The source record therefore explicitly sets `independentHistoricalWitness=false`. This strengthens implementation cross-checking but does not satisfy the independent historical-source release gate.
+
+Source: https://ytliu0.github.io/ChineseCalendar/sexagenary.html
