@@ -171,3 +171,17 @@ This is a cross-publication consistency result only. It does not establish indep
 The national-standard anchor is identified as 1949-10-01 = 甲子 (zero-based cycle index 0), JDN 2433191. The CAS / Purple Mountain Observatory interpretation material states this anchor under GB/T 33661-2017. Its 1900–2025 calendar also shows 1949-10-01 as 甲子 and explicitly states that 1949–2025 follows the national standard. Since these records share the same derivation lineage, they are not counted as independent sources. The new candidate records are intentionally rejected by the two-independent-source gate.
 
 The validator now requires `sourceDerivationGroup` metadata and counts distinct derivation families rather than distinct URLs/source IDs. This prevents a mirrored or standard-derived publication from being mistaken for independent corroboration. A second genuinely independent computation or primary published calendar record is still required before approving the anchor.
+
+
+## Historical Julian-date cross-check for the sexagenary day sequence
+
+The BaZi package now includes a separate proleptic Julian-calendar JDN converter using astronomical year numbering. This is required for historical records before the Gregorian calendar and avoids silently treating a Julian date as a Gregorian date.
+
+A cross-check record is stored in `packages/engines-bazi/src/historical-day-cycle-cross-check.ts`:
+- Primary record: *Chunqiu Zuo Zhuan · Duke Yin, year 3* records a solar eclipse on a 己巳 day.
+- Historical/astronomical reconstruction: Stephenson and Yau (1992), *Journal for the History of Astronomy*, identifies the event as 22 February 720 BCE (Julian calendar), cycle day 6, and reports that the cyclical-day conversion was checked and the eclipse was visible near sunrise in eastern China.
+- Additional peer-reviewed eclipse reconstruction: *Solar Eclipses in the First Half of the Chunqiu Period* (PASJ, 2010) analyses the Chunqiu eclipse series and gives a Delta-T range for the eclipse around 720 BCE February 22.
+
+The code converts 720 BCE to astronomical year -719, converts Julian -719-02-22 to JDN 1458496, and applies the 1949-10-01 = JDN 2433191 = 甲子 anchor. The resulting zero-based cycle index is 5 = 己巳, matching the primary record.
+
+This evidence is marked `candidate_only_pending_domain_review`. It is a strong long-range historical consistency check, not a production approval and not a full independent day-cycle table. The primary text and modern astronomical reconstruction have different evidentiary roles; a reviewer must assess the chronology, date conversion, source independence and historical calendar conventions before approving the anchor.
