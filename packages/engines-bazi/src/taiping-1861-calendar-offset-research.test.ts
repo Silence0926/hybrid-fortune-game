@@ -7,6 +7,18 @@ import {
 } from "./taiping-1861-calendar-offset-research.js";
 
 describe("Taiping 1861 calendar one-day offset research", () => {
+  it("preserves the published 1861 year-start crosswalk and distinguishes date offset from cycle-index offset", () => {
+    expect(research.publishedYearStartCrosswalk.taipingGanzhi).toBe("庚寅");
+    expect(research.publishedYearStartCrosswalk.gregorianDate).toBe("1861-02-09");
+    expect(research.publishedYearStartCrosswalk.qingLunarGanzhi).toBe("己丑");
+    expect(research.proposedNewYear.taipingCycleIndex).toBe(26);
+    expect(research.proposedNewYear.conventionalGregorianCycleIndex).toBe(25);
+    expect(research.proposedNewYear.labelOffset).toBe("one_cycle_index_higher_on_the_same_gregorian_date");
+    expect(research.proposedNewYear.calendarDateAlignment).toContain("one_day_earlier");
+    expect(research.calendarStructure.daysPerYear).toBe(366);
+    expect(research.calendarStructure.monthLengths.reduce((sum, length) => sum + length, 0)).toBe(366);
+  });
+
   it("maps the Gregorian target date to the candidate Taiping month/day under the revised year start", () => {
     expect(research.proposedNewYear.gregorianDate).toBe("1861-02-09");
     expect(research.proposedNewYear.taipingGanzhi).toBe("庚寅");
