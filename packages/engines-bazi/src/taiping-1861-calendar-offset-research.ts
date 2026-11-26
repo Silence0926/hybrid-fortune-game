@@ -67,14 +67,18 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
   },
   pageFragmentCompatibilityCheck: {
     observedDay: 11,
-    observedGanzhi: "甲辰",
+    observedDayStem: "甲",
+    observedLunarMansion: "翼",
+    derivedCandidateGanzhi: "甲辰",
     candidateTaipingMonth: 9,
     candidateGregorianDate: "1861-10-21",
     candidateCycleIndex: getTaipingCalendarCycleIndex(26, 9, 11),
     monthHeadingRead: false,
     folioRead: false,
+    earthlyBranchVisible: false,
     civilDateMappingIndependentlyConfirmed: false,
-    status: "compatible_but_not_page_identified"
+    interpretation: "The visible 甲 is a Heavenly Stem and 翼 is a lunar mansion. 甲辰 is the reconstructed cycle label, not a complete pair printed on this page.",
+    status: "day_stem_matches_candidate_branch_unverified"
   },
   independentHistoricalCrossCheck: {
     taipingMonth: 11,
@@ -105,7 +109,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
       title: "NYPL digitized 1861 Taiping calendar item, partial monthly page image",
       url: "https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg",
       role: "partial_daily_leaf_image_third_party_mirror",
-      relevantVisibleEntry: "day 11 = 甲辰; month heading and folio unresolved"
+      relevantVisibleEntry: "day 11 shows Heavenly Stem 甲 and lunar mansion 翼; Earthly Branch is not visible; month heading and folio unresolved"
     }
   ],
   assessment: {
@@ -117,7 +121,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
     productionImpact: "none",
     requiredNextEvidence: [
       "Inspect the NYPL original month-ten leaf and read day 1 directly.",
-      "Read the month heading and printed folio on the visible day-11 甲辰 page.",
+      "Read the month heading and printed folio on the visible day-11 甲 / 翼 page; locate an independent source for its Earthly Branch.",
       "Inspect Luo Ergang's cited Shen Zi diary witness or an independently preserved contemporary copy.",
       "Keep the Taiping calendar's internal day labels separate from the conventional Gregorian sexagenary day resolver."
     ]
