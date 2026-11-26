@@ -19,12 +19,44 @@ export type BirthNormalizationResult =
   | { success: true; profile: NormalizedBirthProfile }
   | { success: false; issues: Array<{ path: string; message: string }> };
 
+export interface TimeZoneRuntimeProvenance {
+  requestedTimeZone: string;
+  resolvedTimeZone: string;
+  formatterLocale: string;
+  calendar: string;
+  numberingSystem: string;
+  hourCycle: string | null;
+  /** ECMAScript Intl does not expose the underlying tzdb release identifier. */
+  tzDatabaseVersion: null;
+  tzDatabaseVersionStatus: "not_exposed_by_ecmascript_intl";
+}
+
 export type LocalTimeResolution =
-  | { status: "resolved"; timeZone: string; localDateTime: string; utcInstant: string; offsetMinutes: number; method: "iana_offset_candidate_validation"; warnings: string[] }
-  | { status: "ambiguous"; timeZone: string; localDateTime: string; candidates: Array<{ utcInstant: string; offsetMinutes: number }>; warnings: string[] }
-  | { status: "nonexistent"; timeZone: string; localDateTime: string; candidates: []; warnings: string[] }
-  | { status: "insufficient_precision"; timeZone: string; localDateTime: string | null; candidates: []; warnings: string[] }
-  | { status: "unsupported_calendar"; timeZone: string; localDateTime: string | null; candidates: []; warnings: string[] };
+  | { status: "resolved"; timeZone: string; timeZoneProvenance: TimeZoneRuntimeProvenance; localDateTime: string; utcInstant: string; offsetMinutes: number; method: "iana_offset_candidate_validation"; warnings: string[] }
+  | { status: "ambiguous"; timeZone: string; timeZoneProvenance: TimeZoneRuntimeProvenance; localDateTime: string; candidates: Array<{ utcInstant: string; offsetMinutes: number }>; warnings: string[] }
+  | { status: "nonexistent"; timeZone: string; timeZoneProvenance: TimeZoneRuntimeProvenance; localDateTime: string; candidates: []; warnings: string[] }
+  | { status: "insufficient_precision"; timeZone: string; timeZoneProvenance: TimeZoneRuntimeProvenance; localDateTime: string | null; candidates: []; warnings: string[] }
+  | { status: "unsupported_calendar"; timeZone: string; timeZoneProvenance: TimeZoneRuntimeProvenance; localDateTime: string | null; candidates: []; warnings: string[] };
+
+function getTimeZoneRuntimeProvenance(requestedTimeZone: string): TimeZoneRuntimeProvenance {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: requestedTimeZone,
+    calendar: "gregory",
+    numberingSystem: "latn",
+    hourCycle: "h23"
+  });
+  const options = formatter.resolvedOptions();
+  return {
+    requestedTimeZone,
+    resolvedTimeZone: options.timeZone,
+    formatterLocale: options.locale,
+    calendar: options.calendar,
+    numberingSystem: options.numberingSystem,
+    hourCycle: options.hourCycle ?? null,
+    tzDatabaseVersion: null,
+    tzDatabaseVersionStatus: "not_exposed_by_ecmascript_intl"
+  };
+}
 
 /** Validates and canonicalizes input without guessing a UTC instant. */
 export function normalizeBirthProfile(input: unknown): BirthNormalizationResult {
@@ -139,18 +171,19 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
   }
 
   const birth = parsed.data;
-  const timeZone = new Intl.DateTimeFormat("en-US", { timeZone: birth.timeZone }).resolvedOptions().timeZone;
+  const timeZoneProvenance = getTimeZoneRuntimeProvenance(birth.timeZone);
+  const timeZone = timeZoneProvenance.resolvedTimeZone;
   const localDateTime = birth.localTime ? `${birth.localDate}T${birth.localTime}` : null;
 
   if (birth.calendar !== "gregorian") {
     return {
-      status: "unsupported_calendar", timeZone, localDateTime, candidates: [],
+      status: "unsupported_calendar", timeZone, timeZoneProvenance, localDateTime, candidates: [],
       warnings: ["Convert the Chinese lunisolar date with a validated calendar dataset before resolving its local time."]
     };
   }
   if (birth.timePrecision !== "minute" || birth.localTime === undefined) {
     return {
-      status: "insufficient_precision", timeZone, localDateTime, candidates: [],
+      status: "insufficient_precision", timeZone, timeZoneProvenance, localDateTime, candidates: [],
       warnings: ["An exact UTC instant requires minute-level birth-time precision; no representative time has been fabricated."]
     };
   }
@@ -185,14 +218,14 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
 
   if (candidates.length === 0) {
     return {
-      status: "nonexistent", timeZone, localDateTime: exactLocalDateTime, candidates: [],
+      status: "nonexistent", timeZone, timeZoneProvenance, localDateTime: exactLocalDateTime, candidates: [],
       warnings: ["This local wall time does not exist in the selected time zone, commonly because clocks moved forward."]
     };
   }
 
   if (candidates.length > 1) {
     return {
-      status: "ambiguous", timeZone, localDateTime: exactLocalDateTime,
+      status: "ambiguous", timeZone, timeZoneProvenance, localDateTime: exactLocalDateTime,
       candidates: candidates.map(({ instantMs, offsetMinutes }) => ({
         utcInstant: new Date(instantMs).toISOString(),
         offsetMinutes
@@ -205,6 +238,7 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
   return {
     status: "resolved",
     timeZone,
+    timeZoneProvenance,
     localDateTime: exactLocalDateTime,
     utcInstant: new Date(candidate.instantMs).toISOString(),
     offsetMinutes: candidate.offsetMinutes,
