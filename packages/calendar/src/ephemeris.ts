@@ -7,7 +7,9 @@
  * mock output is never evidence of astronomical accuracy.
  */
 
-export type AstronomicalTimeScale = "UTC" | "UT1" | "TT";
+export type AstronomicalInputTimeScale = "UTC";
+export type EphemerisCalculationTimeScale = "TDB" | "TT";
+export type EarthRotationTimeScale = "UT1" | "not_required";
 
 export interface EphemerisProvenance {
   providerId: string;
@@ -19,11 +21,17 @@ export interface EphemerisProvenance {
   license: string;
   coordinateModel: "apparent_geocentric_ecliptic_of_date";
   /** API timestamps are always ISO-8601 UTC instants. */
-  inputInstantScale: "UTC";
-  /** Internal scale used for the ephemeris evaluation. */
-  calculationTimeScale: "UT1" | "TT";
+  inputInstantScale: AstronomicalInputTimeScale;
+  /** Uniform time argument used by the ephemeris dynamics/evaluation. */
+  calculationTimeScale: EphemerisCalculationTimeScale;
+  /** Earth-rotation scale is separate; it is not the ephemeris dynamics time argument. */
+  earthRotationTimeScale: EarthRotationTimeScale;
+  /** Describes UTC-to-TT/TDB and, where needed, UT1 conversion without conflating them. */
   timeConversionPolicy: string;
+  /** Explicit model/version or a reason why Delta-T is not applicable. */
   deltaTModel: string;
+  /** Estimated uncertainty of the historical Delta-T / UT1 conversion, when applicable. */
+  deltaTUncertaintySeconds: number | null;
   supportedFrom: string;
   supportedThrough: string;
   uncertaintySeconds: number | null;
