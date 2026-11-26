@@ -438,3 +438,19 @@ Project consequences:
 Reference: JPL Horizons System Manual, “Specification of Time”, “Universal Time (TDB -> UT Conversion)”, and “Statement of Ephemeris Limitations”: https://ssd.jpl.nasa.gov/horizons/manual.html
 
 Implementation status: the TypeScript provider provenance now uses `TDB | TT` for ephemeris calculation time and a separate `UT1 | not_required` field for Earth-rotation time. The synthetic provider test explicitly declares its non-astronomical time conversion and null Delta-T uncertainty. This is a contract clarification only; no real ephemeris provider has been integrated or validated.
+
+
+## 1861-11-11 candidate anchor — source inspection update
+
+The external Chinese-calendar dataset lists 1861-11-11 as a 甲子 verification anchor. A targeted source review found relevant historical-calendar material, but the exact date-to-Ganzhi cell is not yet independently verified:
+
+- Xie Xingyao, *太平天國史事論叢*, National Central Library digitized copy (accessed through a Wikimedia-hosted PDF mirror), printed page 98: the page is a 1861 calendar crosswalk with September, October, and November sections and columns for Gregorian date, Chinese lunar date, and the New Taiping calendar. The available extracted text preserves the table headers and page identity but not the complete cell-level alignment for 1861-11-11. This is a useful source lead, not a verified 甲子 witness.
+- Chinese Text Project, 同治元年 date table: search-indexed text lists sexagenary-day sequences for lunar months nine through twelve, but the retrieved excerpt does not establish the exact Gregorian-date alignment for 1861-11-11. The page was not directly inspectable during this review.
+- The 1861-11-11 = 甲子 claim also appears in the previously reviewed Chinese Calendar Open Dataset verification anchors. Its derivation is not itemized sufficiently to count as independent historical evidence.
+
+Assessment: retain 1861-11-11 = 甲子 as a candidate cross-check only. No new independent primary witness or independent source-derivation group has been established. Do not add historical day-cycle gate credit and do not enable production day-pillar calculation on this basis.
+
+References:
+- Xie Xingyao, *太平天國史事論叢* (NCL digitized copy mirror): https://upload.wikimedia.org/wikipedia/commons/5/58/NCL-9900010708_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E5%8F%B2%E4%BA%8B%E8%AB%96%E5%8F%A2.pdf
+- Chinese Text Project, 同治元年 date table: https://ctext.org/date.pl?day=&entityid=705201&if=gb&month=&year=1
+- Chinese Calendar Open Dataset verification anchors: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/03-%E5%B9%B2%E6%94%AF%E7%BA%AA%E6%97%A5%E5%AF%B9%E7%85%A7%E8%A1%A8/data/verification_anchors.csv
