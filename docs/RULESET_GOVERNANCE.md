@@ -453,10 +453,10 @@ The same source explains why the old Tanaka table cannot be used uncritically: i
 A 1926 reproduction of the 1861 Taiping calendar, *太平天國有趣文件十六種* (劉復輯), provides a separate reproduction witness for the calendar's internal rules and first-month page:
 - The reproduced calendar states a 366-day year, odd months of 31 days and even months of 30 days.
 - Its first-month page begins with day 1 庚寅 and continues the daily sequence.
-- The NYPL digitized 1861 item also has a partial monthly page image showing day 11 = 甲辰. Its month heading and folio are not yet readable.
+- The NYPL digitized 1861 item has a partial daily-table page image. On the inspected fragment, day 11 visibly carries the Heavenly Stem 甲 and the lunar mansion 翼. The Earthly Branch is not visible in that row, so 甲辰 is a reconstructed candidate rather than a direct transcription. The month heading and printed folio remain unread.
 
 Under the revised 1861 start date (1861-02-09) and the reproduced 31/30-day month structure:
-- Taiping month 9, day 11 falls on candidate Gregorian 1861-10-21 and has candidate label 甲辰, matching the visible NYPL page fragment. The page's month identity remains unconfirmed.
+- Taiping month 9, day 11 falls on candidate Gregorian 1861-10-21 and has derived cycle label 甲辰. The NYPL page fragment independently shows the Heavenly Stem 甲 for its eleventh day, but does not show the Earthly Branch; the month identity remains unconfirmed. This is a stem-level compatibility check, not a full Ganzhi transcription.
 - Taiping month 9, day 31 falls on Gregorian 1861-11-10.
 - Gregorian 1861-11-11 is therefore candidate Taiping month 10, day 1, with candidate label 乙丑.
 - Conventional Gregorian day-cycle arithmetic still labels Gregorian 1861-11-11 as 甲子. That is a different calendar-label system and must not overwrite the Taiping calendar label.
@@ -472,7 +472,8 @@ References:
 - 羅爾綱, *天曆與陰陽曆對照考*, 學原第二卷第六期 (1948), especially the discussion of the Tanaka table and the 1861 evidence, printed pp. 52–53: https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf
 - 劉復輯, *太平天國有趣文件十六種* (1926), reproduced 1861 calendar rules and first-month page: https://upload.wikimedia.org/wikipedia/commons/4/4c/NLC511-027032013013759-17435_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E6%9C%89%E8%B6%A3%E6%96%87%E4%BB%B6%E5%8D%81%E5%85%AD%E7%A8%AE.pdf
 - NYPL digitized 1861 calendar item: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
-- Partial daily-page image mirror: https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg
+- NYPL item metadata and physical description: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
+- Partial daily-page image mirror (day number + Heavenly Stem + lunar mansion; not a full Ganzhi row): https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg
 
 
 ## 1590 Ming Wanli 18 Da Tong calendar — primary-source access route
@@ -501,3 +502,24 @@ References:
 - Publisher's official record for the six-volume facsimile set: https://www.nlcpress.com/productview.aspx?id=4027
 - Nanjing Library catalogue lead: https://www.guoxuedashi.com/shumu/gj-1919658yz.html
 - National Library of China imprint-year catalogue lead: https://www.guoxuedashi.com/shumu/gj-998872wi.html
+
+
+### Source-reading correction: NYPL page fragment is not a direct full-Ganzhi transcription
+
+A second visual review of the NYPL image fragment corrected the earlier transcription. The visible daily table has columns for day number, Heavenly Stem, and 28 lunar mansion. For days 8–15 the directly visible pairs are:
+- 初八 — 辛 — 柳
+- 初九 — 壬 — 星
+- 初十 — 癸 — 張
+- 十一 — 甲 — 翼
+- 十二 — 乙 — 軫
+- 十三 — 丙 — 角
+- 十四 — 丁 — 亢
+- 十五 — 戊 — 氐
+
+The final character in each row is a lunar mansion name, not an Earthly Branch. The image therefore does not directly show full pairs such as 辛丑 or 甲辰. Those were earlier inferred by advancing the sexagenary cycle and must not be presented as visual transcription. The visible day-11 Heavenly Stem 甲 is compatible with the reconstructed candidate 甲辰, but its branch is not independently established by this page.
+
+NYPL catalogue metadata provides a detailed physical description: 19 × 10.5 cm, eight lines per page, single black fish-tail, single border, white mouth; month engraved at the top, “辛酉拾壹年” in the middle, and page number below. A “天王詔旨” supplement is described as red-and-black printing, eight lines of twenty characters. The NYPL item record identifies image ID 1707705 and states that the legacy Repo API was deprecated from 1 August 2026. The item record remains accessible as a catalogue page, but the retired API cannot be relied upon for systematic capture enumeration.
+
+Three third-party mirror image records associated with the NYPL item have been identified for manual collation. Their month headings, printed folios, and Gregorian date mappings remain unresolved. This corrects only the visual transcription claim; it does not invalidate Luo Ergang's secondary-source reconstruction or the provisional 1861-11-11 = Taiping month 10 day 1 / 乙丑 mapping. That mapping remains a candidate, not verified original-page evidence.
+
+The evidence model and tests now store only visible day numbers, Heavenly Stems, and lunar mansions. Full Ganzhi is kept in a separate derived-candidate field. No day-cycle gate credit is awarded.
