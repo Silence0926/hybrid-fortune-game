@@ -473,3 +473,31 @@ References:
 - 劉復輯, *太平天國有趣文件十六種* (1926), reproduced 1861 calendar rules and first-month page: https://upload.wikimedia.org/wikipedia/commons/4/4c/NLC511-027032013013759-17435_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E6%9C%89%E8%B6%A3%E6%96%87%E4%BB%B6%E5%8D%81%E5%85%AD%E7%A8%AE.pdf
 - NYPL digitized 1861 calendar item: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
 - Partial daily-page image mirror: https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg
+
+
+## 1590 Ming Wanli 18 Da Tong calendar — primary-source access route
+
+The 1590 calendar source hunt has advanced from a generic catalogue reference to a concrete facsimile access route:
+- The 2007 six-volume *國家圖書館藏明代大統曆日彙編* lists *大明萬曆十八年歲次庚寅大統曆* as item 67 in volume 4, beginning at printed page 195.
+- The National Library of Taiwan catalogue identifier is `FB.108.15(7)`.
+- A separate Chinese Rare Books Bibliography lead lists a Ming Wanli-period block-printed copy at Nanjing Library.
+- Another catalogue lead lists a copy at the National Library of China with an imprint described as Wanli 19 (1591), despite the calendar title referring to Wanli 18 (1590). This may be a separate copy or a catalogue/imprint distinction and must not be collapsed into the NCL/Nanjing records.
+
+No original 1590 daily page has yet been inspected. The 2007 compendium page number 195 is the next concrete access target, not a verified original folio. The previously inspected Tetsu Ishino 1590 modern calendar compilation remains a computational cross-check only; the original Ming page must be read before any historical-source gate credit is granted.
+
+Added:
+- `packages/engines-bazi/src/tensho-1590-primary-source-candidates.ts`
+- `packages/engines-bazi/src/tensho-1590-primary-source-candidates.test.ts`
+
+Assessment:
+- Original calendar title and catalogue holdings: identified.
+- 2007 facsimile-compendium route: identified, volume 4, page 195.
+- Original 1590 daily page: not yet inspected.
+- 1590 date/Ganzhi cell: not yet collated.
+- Historical day-cycle gate credit: none.
+
+References:
+- 2007 compendium contents and holding identifier: https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
+- Publisher's official record for the six-volume facsimile set: https://www.nlcpress.com/productview.aspx?id=4027
+- Nanjing Library catalogue lead: https://www.guoxuedashi.com/shumu/gj-1919658yz.html
+- National Library of China imprint-year catalogue lead: https://www.guoxuedashi.com/shumu/gj-998872wi.html
