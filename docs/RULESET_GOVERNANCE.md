@@ -550,3 +550,16 @@ NYPL API deprecation notice: https://api.repo.nypl.org/
 The scanned issue's cover and the article's running headers identify the publication as *學原* 第二卷第六期. One internal contents heading is extracted/read as 第十一卷第六期, which conflicts with the cover and the article's own repeated running headers; this anomaly is preserved rather than silently harmonized. The article title page's author is read as 羅爾綱. Some PDF text extraction/search output renders the name as 羅衛綱, an OCR variant; the research record retains 羅爾綱 while documenting the extraction discrepancy.
 
 The article begins at printed page 39; the 1861 discussion and comparison table occur later in the same article. Its conclusion is a historical reconstruction supported by cited records, not a direct transcription of the original 1861 monthly calendar leaf.
+
+
+### Taiping 1861 offset semantics — published crosswalk clarified
+
+The 1948 study's Section VI comparison table explicitly lists Taiping Xin-you year 11, month 1 day 1 庚寅 as Gregorian 1861-02-09, paired with Qing Xianfeng year 10, month 12 day 30 己丑. This is a published secondary historical crosswalk, not a direct transcription of the 1861 month-ten leaf.
+
+The phrase that Taiping calendar dates / Ganzhi were "one day earlier" must be interpreted in its calendar-alignment context. It does **not** mean subtract one from the sexagenary cycle index. On the same Gregorian date 1861-02-09, the Taiping label 庚寅 has cycle index 26 while the conventional Gregorian day-cycle candidate 己丑 has index 25. The Taiping calendar date is aligned one day earlier than the corresponding Qing lunar date, while its printed Ganzhi index on that Gregorian date is one step higher.
+
+Using the 1926 reproduction's 366-day structure (odd months 31 days, even months 30 days), 1861-11-11 maps arithmetically to Taiping month 10 day 1 and candidate 乙丑. This remains a reconstruction candidate: the original NYPL month-ten/day-one cell has not been identified and read. The general Gregorian BaZi day-cycle resolver must not inherit this Taiping-specific calendar offset.
+
+Regression coverage now asserts the published year-start crosswalk, the distinction between calendar-date alignment and cycle-index direction, the 366-day month-length sum, and the provisional 1861-11-11 mapping. Historical source-gate credit remains zero.
+
+Primary research record: https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf
