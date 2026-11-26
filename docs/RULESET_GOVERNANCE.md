@@ -572,3 +572,21 @@ A modern technical compendium on historical Chinese calendars reports that 99 su
 It does **not** provide a directly inspected 1590 day/Ganzhi cell in the material reviewed here, and it does not establish the 1590 sexagenary day anchor. The source itself distinguishes contemporary calendar artefacts, historical records, calendar-method texts, modern reconstructions, and modern astronomical calculations as different evidence grades. We therefore register this as a methodological / corpus-level cross-check only; it receives no day-cycle anchor gate credit and does not replace inspection of Volume 4, page 195 onward.
 
 Reference: https://lhttjdr.github.io/calendar/docs/calendar/compendium
+
+
+### Wanli 18 (1590) twelve-month new-moon sequence cross-check
+
+A modern reconstruction table by Y. T. Liu lists the twelve 1590 Wanli 18 month-start dates and their day-cycle labels:
+1590-02-05 甲辰; 03-06 癸酉; 04-04 壬寅; 05-04 壬申; 06-02 辛丑; 07-02 辛未; 07-31 庚子; 08-30 庚午; 09-29 庚子; 10-28 己巳; 11-27 己亥; 12-27 己巳.
+
+The project now stores these as modern reconstruction candidates and checks:
+- consecutive month starts are 29 or 30 days apart;
+- each listed Ganzhi advances consistently with the Gregorian JDN difference;
+- 1590-12-22 lies 25 days after the 11th month start and 5 days before the 12th month start;
+- the configured 1949 甲子 arithmetic anchor yields 1590-12-22 = 甲子.
+
+This is a useful twelve-point internal consistency cross-check. It is **not** a direct transcription of the Ming 1590 daily almanac and is not independent primary historical evidence. The source's month-start table is a modern reconstruction; its cycle labels are computationally checked against the project's configured anchor, not independently proven by this exercise. No historical day-cycle gate credit is granted.
+
+Source: Y. T. Liu, *Chinese Calendar Tables — Ming Period*, https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
+
+The National Library of Taiwan catalogue identifies the 1590 original as *大明萬曆十八年歲次庚寅大統曆*, printed copy FB.108.15(7), in Volume 4 of the 2007 facsimile set, beginning at printed page 195. The target original leaf remains uncollated. The NYPL 1861 Taiping calendar and the Ming 1590 Da Tong calendar are separate historical evidence tracks and must not share calendar-specific offset policies.
