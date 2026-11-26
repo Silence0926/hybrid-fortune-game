@@ -325,3 +325,16 @@ References:
 - *Solar Eclipses in the First Half of the Chunqiu Period* (2010), PASJ 62(3): https://doi.org/10.1093/pasj/62.3.797
 
 The new Julian-date conversion uses astronomical year numbering and is kept separate from the existing proleptic Gregorian date converter. It does not change the confirmed BaZi rule that the day-pillar date is selected using the user's local civil-midnight policy.
+
+
+## 31 Chunqiu sexagenary-day historical fixtures
+
+The 1992 Stephenson–Yau study's Table 3 lists 31 Chunqiu eclipse records with both a Julian-calendar date and a sexagenary cycle day. These entries have been transcribed into `chunqiu-eclipse-day-cycle-fixtures.ts` and independently recomputed by the project's Julian JDN converter and the 1949-10-01 Jiazi anchor.
+
+All 31 Table 3 date/cycle-day pairs reproduce their published 1-based cycle-day indices. This is a broader historical consistency test than the single 720 BCE example. It remains one scholarly source's table and is not counted as 31 independent sources or a complete independent calendar. The underlying historical records and the paper's date reductions still require specialist review.
+
+The paper also identifies one event-level discrepancy: for the 525 BCE record, Table 3 gives 525-08-22 (Julian), cycle day 11, while Table 4's eclipse computation places the actual eclipse on 525-08-21, cycle day 10. The repository preserves this explicitly rather than silently normalizing it. It is a discrepancy between the chronicle's recorded event date and the astronomical eclipse reconstruction, not a failure of the JDN arithmetic for the stated 525-08-22 calendar date.
+
+Source: F. R. Stephenson & K. K. C. Yau (1992), *Astronomical Records in the Ch'un-ch'iu Chronicle*, Journal for the History of Astronomy 23, Tables 3–4: https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
+
+The fixture tests establish arithmetic reproducibility against the transcribed published table. They do not approve the historical anchor for production.
