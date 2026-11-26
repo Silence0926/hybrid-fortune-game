@@ -616,3 +616,24 @@ References:
 - Guoxuedashi, generic Ming Wanli-period catalogue description: https://www.guoxuedashi.com/shumu/186654r.html
 - Guoxuedashi, Wanli 19 (1591) imprint catalogue description: https://www.guoxuedashi.com/shumu/gj-998872wi.html
 - Google Books, *國家圖書館藏明代大統曆日彙編*, Volume 1 only: https://books.google.com/books?id=VRTlAAAAMAAJ
+
+## Chinese Text Project Wanli 18 daily-table cross-check
+
+A further modern digital reference candidate is recorded in `packages/engines-bazi/src/wanli-1590-ctext-cross-check.ts`.
+
+The Chinese Text Project's indexed Wanli 18 table identifies the tenth lunar month, day 1 as **己巳**, Gregorian **1590-10-28** (Julian 1590-10-18). The configured 1949-10-01 = 甲子 arithmetic anchor maps Gregorian 1590-10-28 to JDN 2,302,096 and cycle index 5 (己巳). This also matches the tenth-month start in the Y. T. Liu Ming-period reconstruction already recorded in the project.
+
+Evidence classification:
+- Source class: modern digital calendar table.
+- Agreement with the Y. T. Liu month-start reconstruction: yes, for this one date/label.
+- Source derivation lineage: not established.
+- Independent historical witness: no.
+- Original 1590 Ming daily page inspected: no.
+- Historical day-cycle gate credit: none.
+- Production impact: none.
+
+The source's day-table entry is available through its indexed result, but direct page retrieval returned HTTP 403 during this review. The record therefore preserves the indexed content as a candidate and does not claim direct page-level collation. This is a computational cross-check only; do not treat agreement between modern tables as proof of independent derivation or as a substitute for the original Ming calendar leaf.
+
+Reference:
+- Chinese Text Project, Wanli 18, tenth lunar month, day 1: https://ctext.org/date.pl?day=8&entityid=136592&if=en&month=10&remap=gb&year=18
+- Y. T. Liu, *Chinese Calendar Tables — Ming Period*: https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
