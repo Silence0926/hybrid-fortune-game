@@ -374,3 +374,30 @@ This narrows the archival inspection target, but the available text extraction d
 Source classification: a National Central Library digitized copy of a modern historical study/calendar reconstruction, not an original 1861 government almanac or contemporaneous diary. It is a useful secondary-source cross-check target. The exact date cell and the derivation lineage remain unverified; no independent historical-source gate credit is awarded.
 
 Reference: Xie Xingyao, *太平天國史事論叢*, section *太平天國曆法考*, printed pp. 94 and 98, National Central Library digitized copy: https://upload.wikimedia.org/wikipedia/commons/5/58/NCL-9900010708_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E5%8F%B2%E4%BA%8B%E8%AB%96%E5%8F%A2.pdf
+
+
+## 1861 Taiping calendar — contemporary primary item located; daily leaf still uncollated
+
+A stronger source than the previously inspected modern calendar crosswalk has now been located: the New York Public Library (NYPL) Digital Collections record for *Tai ping tian guo xin you shi yi nian xin li ban xing tian xia* / *太平天囯辛酉拾壹年新曆頒行天下*. NYPL records the item as issued in 1861, probably at Nanjing, held by the Rare Book Division (shelf locator *OVQ 09-87), formerly owned by James Legge, and digitized in 2015. Its physical description gives 24 pages in traditional double-leaf format, with month labels at the top, the year in the middle, and page numbers below. The NYPL record exposes image ID 1707705 and the item's digitized image record.
+
+A second catalogue trail identifies a matching 1861 Taiping calendar under British Library shelfmark 15297.d.33. The National Central Library Chinese Rare Books Union Catalogue gives the title *太平天國辛酉拾壹年新曆*, publication place Nanking, year 1861, extent ff. 7, 24, and current holding institution as the British Library. Richard J. Smith's 1988 survey *A Note on Qing Calendars* independently lists “Taiping Calendar for 1861 (no. 15297.d.33)” in its British Museum holdings appendix. This is a matching catalogue identification, not proof that the NYPL and British Library copies are the same physical copy or edition state.
+
+The primary-source item is now catalogued and digitized at item/image-record level, but the original daily-calendar leaf corresponding to 1861-11-11 has not yet been identified and transcribed. The candidate label 甲子 remains unverified against the original calendar. Do not award day-cycle anchor gate credit or enable production calculation from this discovery alone.
+
+A dedicated metadata record and regression test were added:
+- `packages/engines-bazi/src/taiping-1861-primary-source-candidate.ts`
+- `packages/engines-bazi/src/taiping-1861-primary-source-candidate.test.ts`
+
+Assessment:
+- Contemporary primary calendar item: located and catalogued.
+- Digitized item/image record: located.
+- Original daily leaf: not yet identified.
+- Exact date-to-page mapping and 1861-11-11 cell: not yet collated.
+- Independent day-cycle gate credit: none.
+- Production impact: none.
+
+References:
+- NYPL Digital Collections, *Tai ping tian guo xin you shi yi nian xin li ban xing tian xia*: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
+- NYPL indexed item detail including image ID 1707705 and physical description: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
+- National Central Library Chinese Rare Books Union Catalogue, *太平天國辛酉拾壹年新曆*, British Library shelfmark 15297.d.33: https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail
+- Richard J. Smith, “A Note on Qing Calendars” (1988), appendix listing British Museum holding 15297.d.33: https://www.academia.edu/85784705/A_Note_on_Qing_Calendars
