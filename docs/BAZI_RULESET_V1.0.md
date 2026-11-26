@@ -510,3 +510,14 @@ This improves traceability and catches arithmetic drift. It does not establish i
 References:
 - Tetsu Ishino, *No. 8 — Tensho 18 (1590)*, PDF page 5, row for 1590-12-22: https://inoh-ken.org/Application/nengo/0008.pdf
 - National Library of Taiwan Ming almanac catalogue, fourth volume, entry FB.108.15(7): https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
+
+
+## 1861 Taiping calendar table — page-level inspection boundary
+
+The National Central Library digitized copy of Xie Xingyao's *太平天國史事論叢* was inspected further. The PDF contains a section titled *太平天國曆法考*. The OCR/image description identifies printed page 94 as a calendar crosswalk for 太平天國辛酉十一年 (1861), with Gregorian, lunar, and New Taiping calendar columns. Printed page 98 is a later crosswalk table with September, October, and November groupings and the same calendar-column structure.
+
+This narrows the archival inspection target, but the available text extraction does not preserve the exact row/column alignment needed to verify the 1861-11-11 = 甲子 cell. The PDF page image could not be rendered by the current retrieval path because the source PDF exceeds its page-image retrieval size limit. Do not infer the cell from nearby OCR text or from the project's modulo-60 arithmetic.
+
+Source classification: a National Central Library digitized copy of a modern historical study/calendar reconstruction, not an original 1861 government almanac or contemporaneous diary. It is a useful secondary-source cross-check target. The exact date cell and the derivation lineage remain unverified; no independent historical-source gate credit is awarded.
+
+Reference: Xie Xingyao, *太平天國史事論叢*, section *太平天國曆法考*, printed pp. 94 and 98, National Central Library digitized copy: https://upload.wikimedia.org/wikipedia/commons/5/58/NCL-9900010708_%E5%A4%AA%E5%B9%B3%E5%A4%A9%E5%9C%8B%E5%8F%B2%E4%BA%8B%E8%AB%96%E5%8F%A2.pdf
