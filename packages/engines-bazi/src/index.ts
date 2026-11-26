@@ -115,6 +115,7 @@ export { gregorianCivilDateToJdn } from "./gregorian-jdn.js";
 export { julianAstronomicalDateToJdn, astronomicalYearFromBceYear } from "./julian-jdn.js";
 export { CHUNQIU_720_BCE_DAY_CYCLE_CROSS_CHECK } from "./historical-day-cycle-cross-check.js";
 export { CHUNQIU_ECLIPSE_DAY_CYCLE_RECORDS, CHUNQIU_525_BCE_ECLIPSE_DATE_DISCREPANCY } from "./chunqiu-eclipse-day-cycle-fixtures.js";
+export { CHUNQIU_CALENDAR_MODEL_CROSS_CHECKS, CHUNQIU_CALENDAR_MODEL_CROSS_CHECK_STATUS } from "./chunqiu-calendar-model-cross-check.js";
 export { DAY_CYCLE_1949_ANCHOR_REFERENCE_RECORDS, DAY_CYCLE_1949_ANCHOR_RESEARCH_STATUS } from "./day-cycle-reference-candidates.js";
 export type { DayCycleReferenceFixture, DayCycleFixtureValidation } from "./day-cycle-fixtures.js";
 export { deriveHiddenStemTenGods } from "./hidden-stem-ten-gods.js";
