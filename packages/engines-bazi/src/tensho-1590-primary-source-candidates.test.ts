@@ -9,7 +9,10 @@ describe("Tensho 18 (1590) primary-source catalogue leads", () => {
     expect(record.candidates[1].institution).toBe("Nanjing Library");
     expect(record.candidates[2].catalogueDescription).toContain("Ming Wanli-period block print");
     expect(record.candidates[2].holdingIdentifier).toBe("entry 265");
-    expect(record.candidates[3].catalogueDescription).toContain("1591");
+    expect(record.candidates[3].catalogueDescription).toContain("Ming Wanli-period block print");
+    expect(record.candidates[4].catalogueDescription).toContain("明萬曆間刻本");
+    expect(record.assessment.catalogueVariantAssessment).toContain("Wanli 19 (1591)");
+    expect(record.assessment.reprintPageBoundary).toContain("not an original Ming folio");
     expect(record.corroboratingBibliography.visualCatalogueEntry.edition).toBe("明萬曆刻本");
     expect(record.corroboratingBibliography.relatedGoogleBooksRecord.relevance).toContain("not the required volume 4");
   });
