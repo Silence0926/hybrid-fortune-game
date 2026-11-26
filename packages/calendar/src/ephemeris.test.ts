@@ -12,8 +12,10 @@ const provenance = {
   coordinateModel: "apparent_geocentric_ecliptic_of_date" as const,
   inputInstantScale: "UTC" as const,
   calculationTimeScale: "TT" as const,
+  earthRotationTimeScale: "not_required" as const,
   timeConversionPolicy: "Synthetic test: input UTC passed through without physical time conversion.",
   deltaTModel: "not_applicable_synthetic",
+  deltaTUncertaintySeconds: null,
   supportedFrom: "2025-01-01T00:00:00.000Z",
   supportedThrough: "2026-01-01T00:00:00.000Z",
   uncertaintySeconds: null
@@ -48,6 +50,9 @@ describe("findSolarLongitudeCrossing", () => {
     if (result.status === "crossing_found") {
       expect(Math.abs(Date.parse(result.instant) - (start + 10 * 86_400_000))).toBeLessThanOrEqual(1_000);
       expect(result.provenance.datasetId).toBe("synthetic-test-only");
+      expect(result.provenance.calculationTimeScale).toBe("TT");
+      expect(result.provenance.earthRotationTimeScale).toBe("not_required");
+      expect(result.provenance.deltaTUncertaintySeconds).toBeNull();
       expect(result.validation).toBe("provider_dependent_not_independently_validated");
     }
   });
