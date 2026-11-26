@@ -20,8 +20,11 @@ describe("1861 Taiping primary calendar source candidate", () => {
 
   it("does not promote the expected day label into verified evidence", () => {
     expect(record.targetCheck.civilDate).toBe("1861-11-11");
-    expect(record.targetCheck.expectedGanzhiCandidate).toBe("甲子");
+    expect(record.targetCheck.expectedGanzhiCandidate).toBe("乙丑");
     expect(record.targetCheck.originalLeafIdentified).toBe(true);
+    expect(record.dateMappingResearch.proposedTaipingNewYear).toBe("1861-02-09");
+    expect(record.dateMappingResearch.targetTaipingDate).toBe("month 10, day 1");
+    expect(record.dateMappingResearch.conventionalGregorianGanzhi).toBe("甲子");
     expect(record.targetCheck.originalCellTranscribed).toBe(false);
     expect(record.targetCheck.pageCollationStatus).toBe("partial_visual_transcription_month_mapping_pending");
     expect(record.assessment.independentDayCycleGateCredit).toBe(false);
