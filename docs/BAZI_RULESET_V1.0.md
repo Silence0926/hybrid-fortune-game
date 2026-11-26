@@ -279,3 +279,29 @@ Swiss Ephemeris is a possible implementation candidate, not an adopted dependenc
 https://www.astro.com/swisseph-download/doc/swisseph.pdf
 
 **Current decision:** retain the provider interface; do not hard-code solar-term timestamps, select a library, or enable BaZi calculation until coordinate conventions, time scales, Delta-T handling, supported historical range, license, and independent comparison fixtures are reviewed.
+
+
+## Gregorian civil-date to JDN conversion and 1949 anchor evidence
+
+The BaZi package now exposes `gregorianCivilDateToJdn`, an integer-arithmetic Gregorian date converter using the project's `integer_jdn_gregorian` convention. It validates impossible dates and does not apply a timezone: callers must first resolve the intended local civil date under the birth-time policy.
+
+The 1949-10-01 day-cycle anchor has now been identified in the national standard material: GB/T 33661-2017 specifies that the Beijing-time Gregorian date 1949-10-01 corresponds to a 甲子 day. The integer JDN for the Gregorian civil date is 2433191, and the corresponding zero-based cycle index is 0.
+
+Two corroborating records are stored in `day-cycle-reference-candidates.ts`:
+- Chinese Academy of Sciences / Purple Mountain Observatory interpretation of GB/T 33661-2017.
+- Purple Mountain Observatory's 1900–2025 calendar, whose preface states that 1949–2025 follows GB/T 33661-2017.
+
+These are deliberately assigned the same derivation-family ID because the calendar publication explicitly follows the same national standard. They corroborate the anchor but are **not independent evidence**. The anchor is therefore identified but not approved for production.
+
+The fixture gate has been strengthened:
+- Recomputes JDN from the Gregorian civil date and rejects mismatches.
+- Requires an explicit source derivation-family identifier.
+- Counts distinct derivation families, not merely distinct URLs or source IDs.
+- Keeps successful automated validation at candidate-only status.
+
+References:
+- CAS / Purple Mountain Observatory, *Interpretation of GB/T 33661-2017*: https://pmo.cas.cn/xwdt2019/kpdt2019/202203/P020240201504886119982.pdf
+- Purple Mountain Observatory, *1900–2025 Calendar*: https://www.pmo.cas.cn/xwdt2019/kpdt2019/202203/P020250414456381274062.pdf
+- NAOJ ECO, *Day number, weekday and sexagenary cycle* (additional independent comparison source to investigate): https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/cale2j.cgi
+
+The project's own day-pillar convention still governs whether the date supplied to this converter is the preceding civil date for 23:00–23:59 or the current civil date otherwise. The converter itself does not alter that confirmed policy.
