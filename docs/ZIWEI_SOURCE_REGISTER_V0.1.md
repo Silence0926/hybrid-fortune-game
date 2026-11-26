@@ -166,7 +166,7 @@ It accepts IIIF Presentation API v2 and v3 JSON and extracts:
 - ordered canvas identifiers, digital labels, and dimensions;
 - image resource identifiers, dimensions, formats, and Image API service identifiers.
 
-The adapter intentionally preserves the canvas sequence exactly as supplied. It does **not** infer original folio numbers, recto/verso order, chapter boundaries, or rule passages. Those require visual collation and a separate reviewed mapping record.
+The adapter intentionally preserves the canvas sequence exactly as supplied. It indexes painting annotations as image resources and excludes explicitly non-painting annotations such as supplemental text/transcriptions. It does **not** infer original folio numbers, recto/verso order, chapter boundaries, or rule passages. Those require visual collation and a separate reviewed mapping record.
 
 Synthetic tests cover v2 and v3 shapes, multiple image bodies, canvases without recognized image annotations, and malformed/unsupported manifests. These tests validate the parser contract only; they do not claim that the National Archives manifests have been fully extracted or that any page has been matched to the electronic transcription.
 
@@ -184,6 +184,12 @@ A separate record contract is now available in `packages/engines-ziwei/src/iiif-
 
 A record may remain a `draft` while only digital identifiers are known. It cannot be marked `reviewed` unless the printed folio/side, transcription source/locator, reviewer, and review date are present. The validator also checks that the referenced records have the correct evidence kinds.
 
-No real-world collation records have been created. Tests use synthetic identifiers only. A reviewed collation would certify the image-to-folio/text correspondence, not the historical accuracy or doctrinal authority of the rule itself.
+No real-world collation records have been created. Tests use synthetic identifiers only. A reviewed collation would certify the image-to-folio/text correspondence, not the historical accuracy or doctrinal authority of the rule itself.\n\nA second structural validator, `packages/engines-ziwei/src/iiif-manifest-collation.ts`, cross-checks each record against a parsed manifest. It rejects a canvas identifier absent from the manifest, an image not attached to that canvas, or a digital sequence index that differs from the manifest order. Synthetic tests cover all three mismatch classes. This check is intentionally separate from the source-registry validator: the latter establishes provenance/evidence kinds, while the manifest-backed check establishes structural membership.
 
 The collation validator also enforces minimum source inspection depth: a facsimile must be `content_inspected` or better, a manifest must be `url_accessible` or better, and a transcription must be `content_inspected` or better. A record cannot become `reviewed` merely by supplying plausible-looking identifiers.
+
+## 14. Official National Archives metadata retrieval path
+
+The National Archives of Japan documents that catalogue metadata is available in JSON by appending `.json` to a catalogue URI, and that the IIIF Manifest URI is exposed in the RDF metadata as `rdfs:seeAlso`. The archive also documents that a Manifest URI can be loaded into a compatible IIIF viewer. This gives the next extraction attempt a documented route: retrieve the JSON metadata for the relevant file record, inspect the `seeAlso` Manifest link, then retrieve and parse that exact Manifest. The exact manifest payload is still not recorded in this repository, and the existing manifest identifiers must remain marked `url_accessible` rather than `content_inspected` until that payload is actually inspected.
+
+Official archive documentation: https://www.digital.archives.go.jp/howto/helpKbun_06
