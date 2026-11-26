@@ -30,6 +30,15 @@ export const TENSHO_1590_PRIMARY_SOURCE_CANDIDATES = {
       status: "secondary_catalogue_lead_no_digitized_facsimile_confirmed"
     },
     {
+      id: "chinese-rare-books-bibliography-wanli-1590-entry-265",
+      institution: "Chinese Rare Books Bibliography (中國古籍善本書目)",
+      holdingIdentifier: "entry 265",
+      catalogueDescription: "大明萬曆十八年歲次庚寅大統曆一卷; Ming Wanli-period block print",
+      catalogueSource: "中國古籍善本書目, 子部",
+      catalogueScanUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f1/SSID-13990656_%E4%B8%AD%E5%9C%8B%E5%8F%A4%E7%B1%8D%E5%96%84%E6%9C%AC%E6%9B%B8%E7%9B%AE_%E5%AD%90%E9%83%A8_2.pdf",
+      status: "scanned_bibliography_entry_candidate_not_daily_calendar_content"
+    },
+    {
       id: "ncl-wanli-19-printing-variant",
       institution: "National Library of China",
       holdingIdentifier: null,
@@ -50,13 +59,29 @@ export const TENSHO_1590_PRIMARY_SOURCE_CANDIDATES = {
       "whether the 2007 reprint page is complete and legible"
     ]
   },
+  corroboratingBibliography: {
+    title: "中國古籍善本書目, 子部",
+    scanUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f1/SSID-13990656_%E4%B8%AD%E5%9C%8B%E5%8F%A4%E7%B1%8D%E5%96%84%E6%9C%AC%E6%9B%B8%E7%9B%AE_%E5%AD%90%E9%83%A8_2.pdf",
+    visualCatalogueEntry: {
+      calendarTitle: "大明萬曆十八年歲次庚寅大統曆一卷",
+      edition: "明萬曆刻本",
+      catalogueEntryNumber: "二六五",
+      note: "Catalogue scan visual entry; does not expose the calendar's daily tables."
+    },
+    relatedGoogleBooksRecord: {
+      title: "國家圖書館藏明代大統曆日彙編, Volume 1",
+      url: "https://books.google.com/books?id=VRTlAAAAMAAJ",
+      digitizedCopy: "University of Michigan copy digitized 2009",
+      relevance: "confirms the six-volume set exists, but this record is volume 1 and is not the required volume 4 scan"
+    }
+  },
   assessment: {
     status: "primary_source_catalogue_leads_found",
     original1590PageInspected: false,
     dateGanzhiCellCollated: false,
     independentHistoricalDayCycleGateCredit: false,
     productionImpact: "none",
-    note: "The 2007 facsimile anthology is a route to a reproduced original calendar; catalogue records alone do not establish the contents of the target daily cell."
+    note: "The 2007 facsimile anthology and scanned rare-books bibliography provide stronger access and edition-identification routes, but no daily page or target Ganzhi cell has been inspected. Google Books currently surfaced only volume 1, not the required volume 4."
   },
   accessedOn: "2026-11-26"
 } as const;
