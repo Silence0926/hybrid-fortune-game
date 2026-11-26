@@ -401,3 +401,39 @@ References:
 - NYPL indexed item detail including image ID 1707705 and physical description: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
 - National Central Library Chinese Rare Books Union Catalogue, *太平天國辛酉拾壹年新曆*, British Library shelfmark 15297.d.33: https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail
 - Richard J. Smith, “A Note on Qing Calendars” (1988), appendix listing British Museum holding 15297.d.33: https://www.academia.edu/85784705/A_Note_on_Qing_Calendars
+
+
+### Follow-up: partial image-level transcription of the 1861 Taiping calendar
+
+After the item-level discovery above, a digitized daily-calendar leaf associated with the NYPL item was located through its image record and a third-party image mirror. The visible sequence can be transcribed as:
+
+| Taiping calendar day label | Visible Ganzhi |
+|---|---|
+| 初八 | 辛丑 |
+| 初九 | 壬寅 |
+| 初十 | 癸卯 |
+| 十一 | 甲辰 |
+| 十二 | 乙巳 |
+| 十三 | 丙午 |
+| 十四 | 丁未 |
+| 十五 | 戊申 |
+
+The sequence is internally continuous. However, the month heading is not yet readable, the printed folio/page identity has not been established, and the image has not yet been mapped to a Gregorian date. Therefore the visible “十一 = 甲辰” is only a day-of-month entry on this unidentified monthly leaf; it is not evidence that Gregorian 1861-11-11 was 甲辰. Likewise, the previously researched 1861-11-11 = 甲子 remains only a candidate until the original monthly leaf and date conversion are established.
+
+The source record now distinguishes:
+- daily-calendar leaf image located: yes;
+- partial day/Ganzhi transcription: yes, pending a second visual review;
+- month heading and printed folio: unresolved;
+- target Gregorian date mapping: unresolved;
+- 1861-11-11 target cell: not identified;
+- independent historical day-cycle gate credit: none.
+
+The record and test were updated in:
+- `packages/engines-bazi/src/taiping-1861-primary-source-candidate.ts`
+- `packages/engines-bazi/src/taiping-1861-primary-source-candidate.test.ts`
+
+Image references:
+- NYPL item record: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
+- Third-party mirror of a page image associated with the NYPL item: https://cdn6.picryl.com/photo/1861/12/31/tai-ping-tian-guo-xin-you-shi-yi-nian-xin-li-ban-xing-tian-xia-82c575-640.jpg
+
+This follow-up supersedes only the earlier statement that no daily-calendar leaf image had been located. It does not supersede the unresolved date-mapping boundary.
