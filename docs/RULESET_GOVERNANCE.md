@@ -149,3 +149,16 @@ The records preserve each source's local wall time, IANA time zone, normalized U
 The fixture validator returns only `candidate_supported`; it does not approve the values for production or certify the sources as independent. No seconds are inferred from minute-level publications. The 2027 records are comparison candidates only and do not enable BaZi calculation.
 
 Automated tests verify twelve-term coverage, two source records per term, timezone normalization, minute-precision preservation, and source time-basis metadata. They validate data integrity and the evidence-gate contract, not astronomical accuracy.
+
+
+## 2026 institutional Jie reference candidates
+
+A second year of real-world comparison candidates is recorded in `packages/calendar/src/jie-2026-reference-fixtures.ts`. It contains 24 source records: all twelve BaZi month-boundary Jie, each represented by Taipei City Government's 2026 Astronomical Almanac and the National Astronomical Observatory of Japan (NAOJ) ECO 2026 solar-term table.
+
+Sources:
+- Taipei City Government, *2026 Astronomical Almanac* (2026 曆象表). The publication states that its values use mean solar time at longitude 120°E. The fixtures retain this basis using the fixed offset zone `Etc/GMT-8`: https://www-ws.gov.taipei/001/Upload/439/relfile/21703/3425086/28f5213a-4834-4958-a452-81477e358e73.pdf
+- National Astronomical Observatory of Japan, ECO *24 Solar Terms (Equinoxes, Solstices)*, 2026. The page reports Japan Civil Standard Time (UT+9h) and ΔT = 69 seconds: https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenom_sekki_en.cgi
+
+All twelve pairs normalize to the same UTC minute. The comparison includes a local-date rollover at 芒種: Taipei publishes 2026-06-05 23:48 at UTC+8, while NAOJ publishes 2026-06-06 00:48 at UTC+9; both normalize to 2026-06-05 15:48Z.
+
+This is a cross-publication consistency result only. It does not establish independent ephemeris derivation, second-level accuracy, or production validity. The fixture validator returns only `candidate_supported`; no BaZi calculation is enabled. Tests verify source count, twelve-term coverage, local-time normalization, declared time bases, and minute precision—not astronomical accuracy.
