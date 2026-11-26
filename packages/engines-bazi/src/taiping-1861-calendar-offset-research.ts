@@ -88,7 +88,7 @@ export const TAIPING_1861_CALENDAR_OFFSET_RESEARCH = {
   sources: [
     {
       id: "luo-ergang-1948-taiping-calendar-offset",
-      title: "羅爾綱, 天曆與陰陽曆對照考, 學原, 第十一卷第六期 (1948)",
+      title: "羅爾綱, 天曆與陰陽曆對照考, 學原, 第二卷第六期 (1948)",
       url: "https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf",
       role: "secondary_historical_study_with_diary_and_foreign_correspondence_cross_checks",
       relevantPrintedPages: ["52", "53"]
