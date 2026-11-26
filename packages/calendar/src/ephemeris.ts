@@ -7,6 +7,8 @@
  * mock output is never evidence of astronomical accuracy.
  */
 
+/** Complete set of scales referenced by the calendar/ephemeris boundary. */
+export type AstronomicalTimeScale = "UTC" | "UT1" | "TT" | "TDB";
 export type AstronomicalInputTimeScale = "UTC";
 export type EphemerisCalculationTimeScale = "TDB" | "TT";
 export type EarthRotationTimeScale = "UT1" | "not_required";
