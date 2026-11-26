@@ -25,7 +25,7 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
   physicalDescription: {
     extent: "2, 2, 7, 24 p.",
     format: "traditional_double_leaf",
-    pageSizeCm: [23],
+    heightCm: 23,
     layout: {
       linesPerPage: 8,
       monthLabel: "top",
@@ -47,7 +47,7 @@ export const TAIPING_1861_PRIMARY_SOURCE_CANDIDATE = {
     institution: "British Library",
     shelfmark: "15297.d.33",
     catalogueTitle: "Taiping Calendar for 1861",
-    catalogueRecordUrl: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail?HasImage=&SourceID=1&item=ea1c338af53b4760ae8356da69f4dedbfDczMjU0Mw2.bBlZTruLva8_oBoZpWGYOsEbXQ73KjTvsKq65m5zUpI_&page=6808&sourceWhereString=&whereString=IChOVUxMSUYoQ3JlYXRlX05hbWUsICcgJykg",
+    catalogueRecordUrl: "https://rbook.ncl.edu.tw/NCLSearch/Search/SearchDetail",
     crossIdentificationStatus: "matching_title_and_year_catalogue_candidate"
   },
   targetCheck: {
