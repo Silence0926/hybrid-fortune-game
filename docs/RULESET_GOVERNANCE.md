@@ -523,3 +523,23 @@ NYPL catalogue metadata provides a detailed physical description: 19 × 10.5 cm,
 Three third-party mirror image records associated with the NYPL item have been identified for manual collation. Their month headings, printed folios, and Gregorian date mappings remain unresolved. This corrects only the visual transcription claim; it does not invalidate Luo Ergang's secondary-source reconstruction or the provisional 1861-11-11 = Taiping month 10 day 1 / 乙丑 mapping. That mapping remains a candidate, not verified original-page evidence.
 
 The evidence model and tests now store only visible day numbers, Heavenly Stems, and lunar mansions. Full Ganzhi is kept in a separate derived-candidate field. No day-cycle gate credit is awarded.
+
+
+### 1590 catalogue corroboration and scan-access boundary
+
+A scanned page from *中國古籍善本書目·子部* contains a bibliographic entry for *大明萬曆十八年歲次庚寅大統曆一卷*, described as a Ming Wanli-period block print and carrying catalogue entry number 二六五. This independently corroborates the existence and edition classification of a 1590 calendar title, but it is a catalogue entry, not a reproduction of the calendar's daily tables.
+
+The 2007 six-volume *國家圖書館藏明代大統曆日彙編* is confirmed as a published facsimile set. Google Books currently exposes a record for Volume 1 (University of Michigan copy digitized in 2009), not the required Volume 4 containing the 1590 item. It is therefore not valid to claim that the 1590 facsimile pages are available from the surfaced Google Books record.
+
+The next required operation remains obtaining Volume 4, printed page 195 onward, or arranging access to the National Library of Taiwan / Nanjing Library copy. No 1590 date/Ganzhi cell has yet been read directly.
+
+New catalogue evidence:
+- *中國古籍善本書目·子部* scanned catalogue: https://upload.wikimedia.org/wikipedia/commons/f/f1/SSID-13990656_%E4%B8%AD%E5%9C%8B%E5%8F%A4%E7%B1%8D%E5%96%84%E6%9C%AC%E6%9B%B8%E7%9B%AE_%E5%AD%90%E9%83%A8_2.pdf
+- Google Books record for Volume 1 only: https://books.google.com/books?id=VRTlAAAAMAAJ
+
+### NYPL 1861 access-method boundary
+
+The NYPL item record still identifies the digitized Taiping calendar (image ID 1707705) and its detailed physical layout. However, NYPL's legacy Repo API documentation states that the API was deprecated from 1 August 2026 and that no public API replacement was planned at the time of the notice. The item page remains a catalogue-level access point, while systematic capture enumeration through the retired API is not a dependable route. Third-party GetArchive/Picryl mirrors expose several associated page images, but they are not NYPL-operated and their page-to-folio mappings still require verification.
+
+NYPL item record: https://old-digitalcollections.nypl.org/items/6d7f2f1d-b7e1-ae9f-e040-e00a180648de
+NYPL API deprecation notice: https://api.repo.nypl.org/
