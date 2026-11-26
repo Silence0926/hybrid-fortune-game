@@ -24,7 +24,7 @@ export function getTaipingCalendarDayOfYear(month: number, day: number): number 
     return null;
   }
   const monthLength = TAIPING_1861_MONTH_LENGTHS[month - 1];
-  if (day < 1 || day > monthLength) return null;
+  if (monthLength === undefined || day < 1 || day > monthLength) return null;
   return TAIPING_1861_MONTH_LENGTHS.slice(0, month - 1).reduce((sum, length) => sum + length, 0) + day;
 }
 
