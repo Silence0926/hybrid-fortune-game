@@ -246,3 +246,24 @@ References:
 - Dataset DOI: https://doi.org/10.5281/zenodo.22788686
 - Generator: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/code/gen_dataset_ganzhi.py
 - Verification anchors: https://github.com/Kuangchujia/chinese-calendar-dataset/blob/main/03-%E5%B9%B2%E6%94%AF%E7%BA%AA%E6%97%A5%E5%AF%B9%E7%85%A7%E8%A1%A8/data/verification_anchors.csv
+
+
+## Chunqiu 525 BCE eclipse-date convention discrepancy
+
+A dedicated evidence record now preserves a one-day discrepancy for the 525 BCE Chunqiu eclipse without normalizing it away.
+
+- Stephenson & Yau (1992), Table 3: the chronicle date is 525 BCE-08-22 (proleptic Julian), with the recorded day 甲戌 (cycle index 11).
+- Stephenson & Yau, Table 4: their computed astronomical eclipse date is 525 BCE-08-21.
+- Tanikawa, Yamamoto & Sôma (2011), Table 1: lists the Julian eclipse date as 525 BCE-08-21 while retaining the Chunqiu period designation 甲戌 [11].
+- Tschang (2004), Table 1: lists 525 BCE-08-21 and quotes the record 夏六月甲戌朔，日有食之。
+
+Using the project's 1949-10-01 = 甲子 anchor and proleptic Julian JDN arithmetic, 525 BCE-08-21 maps to 癸酉 (cycle index 10), while 525 BCE-08-22 maps to 甲戌 (cycle index 11). Thus the sources appear to attach the historical Ganzhi designation to a different date field than the reconstructed astronomical event date.
+
+This module deliberately keeps (a) the transmitted chronicle date, (b) the astronomical event date, and (c) the reported Ganzhi label separate. It does not assert a cause. Candidate explanations to review include ancient local day boundary, astronomical event-date convention, calendar reconstruction, and source/transcription differences.
+
+Tschang and Tanikawa provide separate astronomical reconstructions, but neither is a new primary historical witness for the Ganzhi label. No independent day-cycle anchor credit is awarded, and production calculation remains disabled.
+
+References:
+- Stephenson & Yau (1992): https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
+- Tanikawa et al. (2011): https://doi.org/10.1007/978-1-4419-8161-5_2
+- Tschang (2004): https://sino-platonic.org/complete/spp141_chinese_calendar.pdf
