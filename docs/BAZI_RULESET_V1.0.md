@@ -697,3 +697,12 @@ NYPL API deprecation notice: https://api.repo.nypl.org/
 The scanned issue's cover and the article's running headers identify the publication as *學原* 第二卷第六期. One internal contents heading is extracted/read as 第十一卷第六期, which conflicts with the cover and the article's own repeated running headers; this anomaly is preserved rather than silently harmonized. The article title page's author is read as 羅爾綱. Some PDF text extraction/search output renders the name as 羅衛綱, an OCR variant; the research record retains 羅爾綱 while documenting the extraction discrepancy.
 
 The article begins at printed page 39; the 1861 discussion and comparison table occur later in the same article. Its conclusion is a historical reconstruction supported by cited records, not a direct transcription of the original 1861 monthly calendar leaf.
+
+
+### Wanli 18 (1590) month-start reconstruction cross-check (non-authoritative)
+
+A separate research module now records the twelve month-start dates and published Ganzhi labels from Y. T. Liu's modern Ming-period calendar reconstruction. The module verifies 29/30-day month-start intervals, JDN arithmetic, and consistency of all twelve Ganzhi labels with the configured 1949 甲子 anchor. It also confirms that 1590-12-22 is 25 days after the reconstructed 11th-month start (1590-11-27) and five days before the 12th-month start (1590-12-27), with the computational candidate 甲子.
+
+This is a modern reconstruction cross-check, not a transcription of the original Wanli 18 almanac. It does not independently validate the historical anchor and receives no source-gate credit. The 1590 original daily page remains uncollated. See `wanli-1590-month-start-cross-check.ts` and `WANLI_1590_MONTH_START_SOURCE_STATUS`.
+
+Source: https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
