@@ -39,6 +39,14 @@ export const TENSHO_1590_PRIMARY_SOURCE_CANDIDATES = {
       status: "scanned_bibliography_entry_candidate_not_daily_calendar_content"
     },
     {
+      id: "guoxuedashi-wanli-1590-generic-imprint-record",
+      institution: "Guoxuedashi catalogue index",
+      holdingIdentifier: null,
+      catalogueDescription: "大明萬曆十八年歲次庚寅大統曆一卷; 明萬曆間刻本 (generic Ming Wanli-period imprint)",
+      catalogueUrl: "https://www.guoxuedashi.com/shumu/186654r.html",
+      status: "secondary_catalogue_record_generic_imprint_date_not_specified"
+    },
+    {
       id: "ncl-wanli-19-printing-variant",
       institution: "National Library of China",
       holdingIdentifier: null,
@@ -81,7 +89,9 @@ export const TENSHO_1590_PRIMARY_SOURCE_CANDIDATES = {
     dateGanzhiCellCollated: false,
     independentHistoricalDayCycleGateCredit: false,
     productionImpact: "none",
-    note: "The 2007 facsimile anthology and scanned rare-books bibliography provide stronger access and edition-identification routes, but no daily page or target Ganzhi cell has been inspected. Google Books currently surfaced only volume 1, not the required volume 4."
+    note: "The 2007 facsimile anthology and scanned rare-books bibliography provide stronger access and edition-identification routes, but no daily page or target Ganzhi cell has been inspected. Google Books currently surfaced only volume 1, not the required volume 4.",
+    catalogueVariantAssessment: "One secondary catalogue describes a Wanli-period imprint without an exact year, while another describes a Wanli 19 (1591) imprint. The scanned rare-books bibliography labels the item 明萬曆刻本. These descriptions are not sufficient to identify the printing year of the specific surviving copy; copy-level collation is required.",
+    reprintPageBoundary: "Volume 4, page 195 is the 2007 facsimile-compendium pagination, not an original Ming folio number."
   },
   accessedOn: "2026-11-26"
 } as const;
