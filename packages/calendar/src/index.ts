@@ -243,7 +243,7 @@ export function resolveLocalBirthTime(input: unknown): LocalTimeResolution | { s
     utcInstant: new Date(candidate.instantMs).toISOString(),
     offsetMinutes: candidate.offsetMinutes,
     method: "iana_offset_candidate_validation",
-    warnings: ["Resolution uses the host runtime's ICU/IANA time-zone database; record runtime and tzdb provenance before production use."]
+    warnings: ["Resolution uses the host runtime's ICU/IANA time-zone data. ECMAScript Intl does not expose its exact tzdb release; see timeZoneProvenance."]
   };
 }
 
