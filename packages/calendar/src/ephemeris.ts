@@ -30,10 +30,12 @@ export interface EphemerisProvenance {
   earthRotationTimeScale: EarthRotationTimeScale;
   /** Describes UTC-to-TT/TDB and, where needed, UT1 conversion without conflating them. */
   timeConversionPolicy: string;
-  /** Explicit model/version or a reason why Delta-T is not applicable. */
+  /** Model/version for classical Delta-T = TT - UT1; use an explicit not-applicable reason when unused. */
   deltaTModel: string;
-  /** Estimated uncertainty of the historical Delta-T / UT1 conversion, when applicable. */
-  deltaTUncertaintySeconds: number | null;
+  /** Model/version for converting the ephemeris time argument (TDB/TT) to Earth-rotation time (UT1/UTC). */
+  dynamicalToEarthRotationModel: string;
+  /** Estimated uncertainty of the historical ephemeris-to-Earth-rotation conversion, when applicable. */
+  earthRotationConversionUncertaintySeconds: number | null;
   supportedFrom: string;
   supportedThrough: string;
   uncertaintySeconds: number | null;
