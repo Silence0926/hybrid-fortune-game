@@ -563,3 +563,12 @@ Using the 1926 reproduction's 366-day structure (odd months 31 days, even months
 Regression coverage now asserts the published year-start crosswalk, the distinction between calendar-date alignment and cycle-index direction, the 366-day month-length sum, and the provisional 1861-11-11 mapping. Historical source-gate credit remains zero.
 
 Primary research record: https://upload.wikimedia.org/wikipedia/commons/5/54/NLC404-01J001344-36791_%E5%AD%B8%E5%8E%9F_1948%E5%B9%B42%E5%8D%B76%E6%9C%9F.pdf
+
+
+### Ming Da Tong calendar corpus — modern reconstruction is not a day-Ganzhi witness
+
+A modern technical compendium on historical Chinese calendars reports that 99 surviving Ming Da Tong almanacs (from Zhengtong 11 through Chongzhen 14), reproduced in the six-volume *明代大統曆日彙編*, were checked month by month: 1,233 months of month size and new-moon-day data reportedly agree with the Da Tong calculations and other reconstruction tables. This is useful methodological corroboration that surviving Ming almanac artefacts can be compared against reconstructed calendar structure.
+
+It does **not** provide a directly inspected 1590 day/Ganzhi cell in the material reviewed here, and it does not establish the 1590 sexagenary day anchor. The source itself distinguishes contemporary calendar artefacts, historical records, calendar-method texts, modern reconstructions, and modern astronomical calculations as different evidence grades. We therefore register this as a methodological / corpus-level cross-check only; it receives no day-cycle anchor gate credit and does not replace inspection of Volume 4, page 195 onward.
+
+Reference: https://lhttjdr.github.io/calendar/docs/calendar/compendium
