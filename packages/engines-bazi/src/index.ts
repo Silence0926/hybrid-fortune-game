@@ -120,6 +120,7 @@ export { CHUNQIU_CALENDAR_MODEL_CROSS_CHECKS, CHUNQIU_CALENDAR_MODEL_CROSS_CHECK
 export { publishedSexagenaryIndexFromJdn, LIU_2019_FORMULA_CROSS_CHECK, LIU_2019_FORMULA_SOURCE_STATUS } from "./day-cycle-independent-formula-cross-check.js";
 export { DAY_CYCLE_1949_ANCHOR_REFERENCE_RECORDS, DAY_CYCLE_1949_ANCHOR_RESEARCH_STATUS } from "./day-cycle-reference-candidates.js";
 export { TENSHO_1590_DAY_CYCLE_CROSS_CHECK } from "./tensho-1590-day-cycle-cross-check.js";
+export { TENSHO_1590_PRIMARY_SOURCE_CANDIDATES } from "./tensho-1590-primary-source-candidates.js";
 export { TAIPING_1861_PRIMARY_SOURCE_CANDIDATE } from "./taiping-1861-primary-source-candidate.js";
 export { TAIPING_1861_MONTH_LENGTHS, getTaipingCalendarDayOfYear, getTaipingCalendarCycleIndex, TAIPING_1861_CALENDAR_OFFSET_RESEARCH } from "./taiping-1861-calendar-offset-research.js";
 export type { DayCycleReferenceFixture, DayCycleFixtureValidation } from "./day-cycle-fixtures.js";
