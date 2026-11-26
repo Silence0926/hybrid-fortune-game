@@ -198,3 +198,14 @@ The paper also identifies one event-level discrepancy: for the 525 BCE record, T
 Source: F. R. Stephenson & K. K. C. Yau (1992), *Astronomical Records in the Ch'un-ch'iu Chronicle*, Journal for the History of Astronomy 23, Tables 3–4: https://caeno.org/pdf/Stephenson_Yau%20Chun%20chiu.pdf
 
 The fixture tests establish arithmetic reproducibility against the transcribed published table. They do not approve the historical anchor for production.
+
+
+## Alternative Chunqiu calendar reconstruction evidence
+
+The project now records selected date/day pairs from Y. T. Liu's *Reconstruction of the Chunqiu Calendar* (first draft 2019). The author explicitly bases the reconstruction on Zhang Peiyu et al., *Ancient Chinese Calendars and Almanacs* (2008), Section 3.5 / Table 3-7. The page describes a lunar-cycle reconstruction, provides proleptic Julian New Year dates and sexagenary day names, and identifies several errors in the source table, including N_-720 (corrected to 乙亥).
+
+Seven selected pairs were recomputed using the repository's Julian JDN conversion and the 1949 Jiazi anchor; all match. This is an alternate computational reconstruction, not an independent primary witness. The registry explicitly sets `independentPrimaryWitness=false` and `independentSourceGateCredit=false`, with a conservative shared lineage ID for Zhang Peiyu's reconstruction family.
+
+The source warns that the Chunqiu calendar reconstruction is a model fitted to fragmented historical records; it reports 45 inconsistencies among 393 calendrical dates and discusses uncertainties in textual transmission and leap-month reconstruction. This evidence is useful for independent implementation testing and model comparison, but not for production approval.
+
+Reference: https://ytliu0.github.io/ChineseCalendar/chunqiu.html
