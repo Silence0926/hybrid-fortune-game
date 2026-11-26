@@ -488,3 +488,25 @@ These are related but not interchangeable quantities. The provider provenance th
 This avoids incorrectly labelling a provider's TDB-UT conversion model as a Delta-T model. The change is a provenance-contract refinement only; it does not add an ephemeris provider or alter any calendar rule.
 
 Reference: JPL Horizons System Manual, “Specification of Time” and “Universal Time (TDB -> UT Conversion)”: https://ssd.jpl.nasa.gov/horizons/manual.html
+
+
+## Tensho 18 (1590) daily row inspected — exact cross-check
+
+The six-page Tetsu Ishino historical-calendar PDF was inspected directly. On PDF page index 4 (the fifth page), the row at lines 366–368 explicitly reads:
+
+- 1590-12-22
+- Tensho 18, month 11, day 26
+- Day Ganzhi 甲子
+- Published Julian-day value 2,302,151
+
+The next row is 1590-12-23 = 乙丑, and the previous row is 1590-12-21 = 癸亥, so the daily sequence is continuous across the target date. The project's proleptic-Gregorian civil-date-to-JDN routine also gives 2,302,151. Relative to the project's provisional 1949-10-01 = 甲子 anchor (JDN 2,433,191), the offset is an exact multiple of 60 and maps to cycle index 0 (甲子).
+
+A dedicated source record and regression test were added in:
+- `packages/engines-bazi/src/tensho-1590-day-cycle-cross-check.ts`
+- `packages/engines-bazi/src/tensho-1590-day-cycle-cross-check.test.ts`
+
+This improves traceability and catches arithmetic drift. It does not establish independent derivation: the Japanese table is a modern compilation and its source lineage for the Ganzhi assignment is not fully disclosed. It is not a contemporary Ming witness. The National Library of Taiwan catalogue lists the original *大明萬曆十八年歲次庚寅大統曆* (FB.108.15(7)), but the original page has not yet been inspected or collated against the modern Gregorian date. No historical-source gate credit is awarded; production day-pillar calculation remains disabled.
+
+References:
+- Tetsu Ishino, *No. 8 — Tensho 18 (1590)*, PDF page 5, row for 1590-12-22: https://inoh-ken.org/Application/nengo/0008.pdf
+- National Library of Taiwan Ming almanac catalogue, fourth volume, entry FB.108.15(7): https://ytliu0.github.io/ChineseCalendar/MingCalendar_index.html
