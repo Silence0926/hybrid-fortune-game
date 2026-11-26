@@ -13,6 +13,8 @@ export interface JieTermReferenceFixture {
   timeZone: string;
   utcInstant: string;
   publishedPrecision: "minute" | "second";
+  /** Distinguishes civil clock time from a source's mean/standard-time convention. */
+  publishedTimeBasis?: "civil_time" | "mean_solar_time" | "standard_time";
   sourceId: string;
   sourceTitle: string;
   sourceUrl: string;
