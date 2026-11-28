@@ -730,3 +730,25 @@ This improves the acquisition route: the six-volume facsimile set is a currently
 
 Official publisher record: https://www.nlcpress.com/productview.aspx?id=4027
 Publisher sample-page download index checked: https://www.nlcpress.com/DownLoadList.aspx?Rid=2
+
+
+### Taiping 1861: additional full-Ganzhi mirror fragments (candidate transcription)
+
+A fresh inspection of the NYPL item page's “Related media” links on GetArchive surfaced four additional low-resolution page-image candidates. The images are served from GetArchive's cache, not directly from an NYPL image host. Their visible daily-table rows contain day number, a complete two-character Ganzhi pair, and a lunar mansion. The transcribed sequences are:
+
+- Candidate getarchive-cbef83: days 6–13, 丁未、戊申、己酉、庚戌、辛亥、壬子、癸丑、甲寅; lunar mansions 井、鬼、柳、星、張、翼、軫、角.
+- Candidate getarchive-3695e8: days 4–10, 戊子、己丑、庚寅、辛卯、壬辰、癸巳、甲午; lunar mansions 奎、婁、胃、昴、畢、觜、參.
+- Candidate getarchive-80190e: days 4–11, 丙辰、丁巳、戊午、己未、庚申、辛酉、壬戌、癸亥; lunar mansions 箕、斗、牛、女、虛、危、室、壁.
+- Candidate getarchive-bfee76: days 8–15, 己巳、庚午、辛未、壬申、癸酉、甲戌、乙亥、丙子; lunar mansions 危、室、壁、奎、婁、胃、昴、畢.
+
+Each fragment is internally consecutive in the sexagenary cycle, and the tests check both cycle progression and consecutive day numbers. This is a transcription consistency check, not independent proof that the mirror's page-to-month mapping is correct.
+
+The source page's month heading and printed folio are not securely legible in the surfaced thumbnails. The /1861/01/01/ and /1861/12/31/ segments in mirror image paths are storage/capture path components and must not be interpreted as the calendar page's Gregorian date. The pages cannot yet be assigned to Taiping month/day or Gregorian civil dates. In particular, none identifies the target month-ten/day-one cell for 1861-11-11.
+
+The earlier fragment picryl-nypl-capture-82c575 remains a separate partial transcription where the Earthly Branch was not visible. Do not overwrite that observation with these newly surfaced page fragments; record each image independently.
+
+Implementation:
+- packages/engines-bazi/src/taiping-1861-mirror-page-fragments.ts
+- packages/engines-bazi/src/taiping-1861-mirror-page-fragments.test.ts
+
+Evidence status remains third-party mirror transcription only: direct NYPL image-host provenance is not verified, month headings and folios are unresolved, target date mapping is unresolved, no independent historical day-cycle gate credit, and no production impact.
