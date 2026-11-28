@@ -138,3 +138,5 @@ export type {
 
 export { WANLI_1590_MONTH_START_CANDIDATES, WANLI_1590_MONTH_START_CROSS_CHECKS, WANLI_1590_TARGET_DATE_CROSS_CHECK, WANLI_1590_MONTH_START_SOURCE_STATUS } from "./wanli-1590-month-start-cross-check.js";
 export { WANLI_1590_CTEXT_CROSS_CHECK } from "./wanli-1590-ctext-cross-check.js";
+
+export { TAIPING_1861_MIRROR_PAGE_FRAGMENTS, TAIPING_1861_MIRROR_PAGE_FRAGMENT_STATUS } from "./taiping-1861-mirror-page-fragments.js";
