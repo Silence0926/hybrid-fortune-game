@@ -716,3 +716,17 @@ The Chinese Text Project's indexed Wanli 18 daily table lists lunar month 10, da
 This is **not** direct evidence from the original Ming almanac. The CText page could not be retrieved directly during review (HTTP 403), and the derivation lineage behind its modern calendar table has not been established. The record is classified as a secondary digital-calendar cross-check candidate; it receives no independent historical source gate credit and has no production impact.
 
 The 1590 target date 1590-12-22 remains uncollated against an original Ming daily page. Do not enable the day-pillar engine on the basis of this comparison.
+
+
+### Official publisher access check for the 1590 facsimile route
+
+The National Library of China Press product record for *國家圖書館藏明代大統曆日彙編（全六冊）* was directly inspected:
+- The publisher describes the set as containing 99 kinds / 105 volumes of Ming-printed Da Tong almanacs issued from 1446 to 1641.
+- Its official contents list places *大明萬曆十八年（1590）歲次庚寅大統曆* at Volume 4, printed page 195.
+- The product record showed a listed price of RMB 1,350 and an in-stock notice at the time of inspection.
+- The publisher's general “selected contents / sample pages” download listing did not expose a sample for this title, and the product record did not provide a public full-text or volume scan.
+
+This improves the acquisition route: the six-volume facsimile set is a currently listed purchasable publication, rather than only an inferred catalogue lead. It does **not** mean the target pages have been obtained or inspected. Page 195 is the facsimile set's pagination, not the original 1590 almanac's printed folio. A physical copy or a separately accessible Volume 4 scan is still required before recording any daily Ganzhi cell.
+
+Official publisher record: https://www.nlcpress.com/productview.aspx?id=4027
+Publisher sample-page download index checked: https://www.nlcpress.com/DownLoadList.aspx?Rid=2
