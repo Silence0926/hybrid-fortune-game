@@ -637,3 +637,10 @@ The source's day-table entry is available through its indexed result, but direct
 Reference:
 - Chinese Text Project, Wanli 18, tenth lunar month, day 1: https://ctext.org/date.pl?day=8&entityid=136592&if=en&month=10&remap=gb&year=18
 - Y. T. Liu, *Chinese Calendar Tables — Ming Period*: https://ytliu0.github.io/ChineseCalendar/table_period_chinese.html?period=ming
+
+
+### Taiping 1861 mirror-page transcription status
+
+Four additional GetArchive related-media thumbnails associated with the NYPL Taiping calendar title have been visually transcribed into a separate candidate module. Unlike the earlier 82c575 fragment, these images visibly show complete Ganzhi pairs alongside day numbers and lunar mansions. Unit tests verify the within-fragment sexagenary progression and consecutive day numbering.
+
+This is not a verified collation to original printed folios: the third-party mirror is not an NYPL-hosted image endpoint, the month headings and folios remain unresolved, and the mirror's path date segments are not calendar-date evidence. The new fragments do not identify the target month-ten/day-one leaf. They receive no independent historical day-cycle gate credit and have no production impact.
